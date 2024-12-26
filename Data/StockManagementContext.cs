@@ -198,10 +198,10 @@ public partial class StockManagementContext : DbContext
                 .HasMaxLength(255)
                 .IsUnicode(false)
                 .HasColumnName("name");
-
+          
             entity.HasOne(d => d.Brand).WithMany(p => p.Items)
                 .HasForeignKey(d => d.BrandId)
-                .HasConstraintName("FK_Items_Brand");
+                .HasConstraintName("FK_Items_Brand"); 
 
             entity.HasOne(d => d.Category).WithMany(p => p.Items)
                 .HasForeignKey(d => d.CategoryId)
