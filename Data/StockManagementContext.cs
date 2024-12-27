@@ -203,10 +203,10 @@ public partial class StockManagementContext : DbContext
                 .HasForeignKey(d => d.BrandId)
                 .HasConstraintName("FK_Items_Brand"); 
 
-            entity.HasOne(d => d.Category).WithMany(p => p.Items)
-                .HasForeignKey(d => d.CategoryId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_Items_Category");
+           entity.HasOne(d => d.Category).WithMany(p => p.Items)
+               .HasForeignKey(d => d.CategoryId)
+               .OnDelete(DeleteBehavior.ClientSetNull)
+               .HasConstraintName("FK_Items_Category");
         });
 
         modelBuilder.Entity<ItemDetail>(entity =>

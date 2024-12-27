@@ -21,7 +21,30 @@ namespace StockManagement.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Item>>> GetItems()
         {
-            return await _context.Items.ToListAsync();
+            // Fetch items and include the related Category data
+            var items = await _context.Items
+                .Include(i => i.Category) // Load the related Category data
+                .Include(i => i.Brand)
+                .ToListAsync();
+
+            // Project the data to include CategoryName in the response
+            var result = items.Select(i => new
+            {
+                i.ItemId,
+                i.Name,
+                i.ModelNumber,
+                i.BrandId,
+                i.CategoryId,
+                i.Barcode,
+                CategoryName = i.Category != null ? i.Category.CategoryName : null,
+                BrandName = i.Brand != null ? i.Brand.BrandName : null,
+                i.ItemDetails,
+                i.SalesmanStocks
+            });
+
+            return Ok(result);
+
+            //return await _context.Items.ToListAsync();
         }
         [HttpPost]
         public async Task<IActionResult> PostItem([FromBody] Item item)

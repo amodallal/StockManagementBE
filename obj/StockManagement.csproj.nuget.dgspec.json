@@ -1,23 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\StockManagementBE\\StockManagement.csproj": {}
+    "E:\\StockManagement\\StockManagement.csproj": {}
   },
   "projects": {
-    "D:\\StockManagementBE\\StockManagement.csproj": {
+    "E:\\StockManagement\\StockManagement.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\StockManagementBE\\StockManagement.csproj",
+        "projectUniqueName": "E:\\StockManagement\\StockManagement.csproj",
         "projectName": "StockManagement",
-        "projectPath": "D:\\StockManagementBE\\StockManagement.csproj",
-        "packagesPath": "C:\\Users\\Ahmad\\.nuget\\packages\\",
-        "outputPath": "D:\\StockManagementBE\\obj\\",
+        "projectPath": "E:\\StockManagement\\StockManagement.csproj",
+        "packagesPath": "C:\\Users\\amodallal\\.nuget\\packages\\",
+        "outputPath": "E:\\StockManagement\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Ahmad\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\amodallal\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -25,6 +22,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -37,11 +35,28 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -53,7 +68,15 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.302/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

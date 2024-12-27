@@ -19,6 +19,7 @@ public partial class Item
     public virtual Brand? Brand { get; set; }
 
     public virtual Category? Category { get; set; } = null!;
+
     public virtual ICollection<ItemDetail> ItemDetails { get; set; } = new List<ItemDetail>();
 
     public virtual ICollection<SalesmanStock> SalesmanStocks { get; set; } = new List<SalesmanStock>();
