@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using StockManagement.Data;
 using StockManagement.Models;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
 
 namespace StockManagement.Controllers
 {
@@ -23,6 +22,7 @@ namespace StockManagement.Controllers
         {
             return await _context.Items.ToListAsync();
         }
+
         [HttpPost]
         public async Task<IActionResult> PostItem([FromBody] Item item)
         {
@@ -42,14 +42,45 @@ namespace StockManagement.Controllers
                 return BadRequest("Item model cannot be null or empty");
             }
 
-
-
             _context.Items.Add(item);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction(nameof(PostItem), new { id = item.ItemId }, item);
         }
 
+        [HttpPost("bulk")]
+        public async Task<IActionResult> AddItemsBulk([FromBody] List<Item> items)
+        {
+            if (items == null || !items.Any())
+            {
+                return BadRequest("No items provided.");
+            }
 
+            foreach (var item in items)
+            {
+                // Validate each item
+                if (string.IsNullOrEmpty(item.Name))
+                {
+                    return BadRequest("One or more items have a missing or invalid name.");
+                }
+
+                if (string.IsNullOrEmpty(item.ModelNumber))
+                {
+                    return BadRequest("One or more items have a missing or invalid model number.");
+                }
+            }
+
+            try
+            {
+                _context.Items.AddRange(items);
+                await _context.SaveChangesAsync();
+
+                return Ok(new { Message = "Items added successfully!", Count = items.Count });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
+        }
     }
 }
