@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace StockManagement.Models;
 
@@ -9,13 +11,14 @@ public partial class Item
 
     public string Name { get; set; } = null!;
 
-    public string? ModelNumber { get; set; }
+    
+    public string ModelNumber { get; set; }
 
     public int? BrandId { get; set; }
 
     public int CategoryId { get; set; }
 
-    public string Barcode { get; set; } = null!;
+    public string Barcode { get; set; } 
     public virtual Brand? Brand { get; set; }
 
     public virtual Category? Category { get; set; } = null!;
