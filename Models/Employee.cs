@@ -15,6 +15,8 @@ public partial class Employee
 
     public int? RoleId { get; set; }
 
+    public bool IsActive { get; set; }
+
     public virtual ICollection<Delivery> Deliveries { get; set; } = new List<Delivery>();
 
     public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
