@@ -244,10 +244,10 @@ public partial class StockManagementContext : DbContext
                 .HasForeignKey(d => d.DescriptionId)
                 .HasConstraintName("fk_item_details_description");
 
-            entity.HasOne(d => d.Item).WithMany(p => p.ItemDetails)
-                .HasForeignKey(d => d.ItemId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__item_deta__item___76969D2E");
+            //entity.HasOne(d => d.Item).WithMany(p => p.ItemDetails)
+               // .HasForeignKey(d => d.ItemId)
+               // .OnDelete(DeleteBehavior.ClientSetNull)
+               // .HasConstraintName("FK__item_deta__item___76969D2E");
 
             entity.HasOne(d => d.Supplier).WithMany(p => p.ItemDetails)
                 .HasForeignKey(d => d.SupplierId)

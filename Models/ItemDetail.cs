@@ -7,7 +7,7 @@ public partial class ItemDetail
 {
     public int ItemDetailsId { get; set; }
 
-    public int ItemId { get; set; }
+    public int? ItemId { get; set; }
 
     public string? SerialNumber { get; set; }
 
@@ -29,7 +29,7 @@ public partial class ItemDetail
 
     public virtual Description? Description { get; set; }
 
-    public virtual Item Item { get; set; } = null!;
+    public virtual Item? Item { get; set; } = null!;
 
     public virtual Supplier? Supplier { get; set; }
 }

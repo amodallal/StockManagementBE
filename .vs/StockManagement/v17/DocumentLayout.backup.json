@@ -3,20 +3,24 @@
   "WorkspaceRootPath": "D:\\StockManagementBE\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{EF061CC4-749C-4BD4-8124-893A4613BF52}|StockManagement.csproj|d:\\stockmanagementbe\\controllers\\itemscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EF061CC4-749C-4BD4-8124-893A4613BF52}|StockManagement.csproj|solutionrelative:controllers\\itemscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{EF061CC4-749C-4BD4-8124-893A4613BF52}|StockManagement.csproj|d:\\stockmanagementbe\\models\\itemdetail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF061CC4-749C-4BD4-8124-893A4613BF52}|StockManagement.csproj|solutionrelative:models\\itemdetail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF061CC4-749C-4BD4-8124-893A4613BF52}|StockManagement.csproj|d:\\stockmanagementbe\\controllers\\itemdetailscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF061CC4-749C-4BD4-8124-893A4613BF52}|StockManagement.csproj|solutionrelative:controllers\\itemdetailscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF061CC4-749C-4BD4-8124-893A4613BF52}|StockManagement.csproj|d:\\stockmanagementbe\\data\\stockmanagementcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF061CC4-749C-4BD4-8124-893A4613BF52}|StockManagement.csproj|solutionrelative:data\\stockmanagementcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF061CC4-749C-4BD4-8124-893A4613BF52}|StockManagement.csproj|d:\\stockmanagementbe\\controllers\\suppliercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF061CC4-749C-4BD4-8124-893A4613BF52}|StockManagement.csproj|solutionrelative:controllers\\suppliercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{EF061CC4-749C-4BD4-8124-893A4613BF52}|StockManagement.csproj|d:\\stockmanagementbe\\controllers\\brandscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{EF061CC4-749C-4BD4-8124-893A4613BF52}|StockManagement.csproj|solutionrelative:controllers\\brandscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EF061CC4-749C-4BD4-8124-893A4613BF52}|StockManagement.csproj|d:\\stockmanagementbe\\models\\brand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EF061CC4-749C-4BD4-8124-893A4613BF52}|StockManagement.csproj|solutionrelative:models\\brand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EF061CC4-749C-4BD4-8124-893A4613BF52}|StockManagement.csproj|d:\\stockmanagementbe\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EF061CC4-749C-4BD4-8124-893A4613BF52}|StockManagement.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,57 +30,68 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ItemsController.cs",
-              "DocumentMoniker": "D:\\StockManagementBE\\Controllers\\ItemsController.cs",
-              "RelativeDocumentMoniker": "Controllers\\ItemsController.cs",
-              "ToolTip": "D:\\StockManagementBE\\Controllers\\ItemsController.cs",
-              "RelativeToolTip": "Controllers\\ItemsController.cs",
-              "ViewState": "AgIAABgAAAAAAAAAAAAowAAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "StockManagementContext.cs",
+              "DocumentMoniker": "D:\\StockManagementBE\\Data\\StockManagementContext.cs",
+              "RelativeDocumentMoniker": "Data\\StockManagementContext.cs",
+              "ToolTip": "D:\\StockManagementBE\\Data\\StockManagementContext.cs",
+              "RelativeToolTip": "Data\\StockManagementContext.cs",
+              "ViewState": "AgIAAOMAAAAAAAAAAAAUwPkAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-28T20:44:53.699Z",
+              "WhenOpened": "2024-12-31T20:31:45.574Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ItemDetail.cs",
+              "DocumentMoniker": "D:\\StockManagementBE\\Models\\ItemDetail.cs",
+              "RelativeDocumentMoniker": "Models\\ItemDetail.cs",
+              "ToolTip": "D:\\StockManagementBE\\Models\\ItemDetail.cs",
+              "RelativeToolTip": "Models\\ItemDetail.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAcwB8AAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-31T20:29:10.166Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Brand.cs",
-              "DocumentMoniker": "D:\\StockManagementBE\\Models\\Brand.cs",
-              "RelativeDocumentMoniker": "Models\\Brand.cs",
-              "ToolTip": "D:\\StockManagementBE\\Models\\Brand.cs",
-              "RelativeToolTip": "Models\\Brand.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAEAAAA",
+              "DocumentIndex": 1,
+              "Title": "ItemdetailsController.cs",
+              "DocumentMoniker": "D:\\StockManagementBE\\Controllers\\ItemdetailsController.cs",
+              "RelativeDocumentMoniker": "Controllers\\ItemdetailsController.cs",
+              "ToolTip": "D:\\StockManagementBE\\Controllers\\ItemdetailsController.cs",
+              "RelativeToolTip": "Controllers\\ItemdetailsController.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAAgwBcAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-26T08:22:30.403Z"
+              "WhenOpened": "2024-12-31T20:20:23.021Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
+              "Title": "SupplierController.cs",
+              "DocumentMoniker": "D:\\StockManagementBE\\Controllers\\SupplierController.cs",
+              "RelativeDocumentMoniker": "Controllers\\SupplierController.cs",
+              "ToolTip": "D:\\StockManagementBE\\Controllers\\SupplierController.cs",
+              "RelativeToolTip": "Controllers\\SupplierController.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-31T20:09:25.058Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "BrandsController.cs",
               "DocumentMoniker": "D:\\StockManagementBE\\Controllers\\BrandsController.cs",
               "RelativeDocumentMoniker": "Controllers\\BrandsController.cs",
               "ToolTip": "D:\\StockManagementBE\\Controllers\\BrandsController.cs",
               "RelativeToolTip": "Controllers\\BrandsController.cs",
-              "ViewState": "AgIAABQAAAAAAAAAAAAawAwAAAARAAAAAAAAAA==",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-26T08:22:22.252Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Program.cs",
-              "DocumentMoniker": "D:\\StockManagementBE\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "D:\\StockManagementBE\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AQIAAAkAAAAAAAAAAAAAACEAAAADAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-26T07:06:01.265Z"
+              "WhenOpened": "2024-12-31T19:51:39.601Z"
             }
           ]
         }

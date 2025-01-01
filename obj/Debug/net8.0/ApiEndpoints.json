@@ -11,7 +11,7 @@
   },
   {
     "ContainingType": "StockManagement.Controllers.BrandsController",
-    "Method": "PostItem",
+    "Method": "PostBrand",
     "RelativePath": "api/Brands",
     "HttpMethod": "POST",
     "IsController": true,
@@ -26,6 +26,38 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "StockManagement.Controllers.BrandsController",
+    "Method": "DeleteBrand",
+    "RelativePath": "api/Brands/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "StockManagement.Controllers.BrandsController",
+    "Method": "AddBrands",
+    "RelativePath": "api/Brands/bulk",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "brands",
+        "Type": "System.Collections.Generic.List\u00601[[StockManagement.Models.Brand, StockManagement, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "StockManagement.Controllers.CategoriesController",
     "Method": "GetTestData",
     "RelativePath": "api/Categories",
@@ -33,6 +65,105 @@
     "IsController": true,
     "Order": 0,
     "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "StockManagement.Controllers.DescriptionController",
+    "Method": "GetTestData",
+    "RelativePath": "api/Description",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "StockManagement.Controllers.EmployeesController",
+    "Method": "GetTestData",
+    "RelativePath": "api/Employees",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "StockManagement.Controllers.EmployeesController",
+    "Method": "PostEmployee",
+    "RelativePath": "api/Employees",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "employee",
+        "Type": "StockManagement.Models.Employee",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "StockManagement.Controllers.EmployeesController",
+    "Method": "DeleteEmployee",
+    "RelativePath": "api/Employees/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "StockManagement.Controllers.EmployeesController",
+    "Method": "UpdateEmployeeStatus",
+    "RelativePath": "api/Employees/{id}/status",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "isActive",
+        "Type": "System.Boolean",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "StockManagement.Controllers.ItemdetailsController",
+    "Method": "GetTestData",
+    "RelativePath": "api/Itemdetails",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "StockManagement.Controllers.ItemdetailsController",
+    "Method": "PostItemDetails",
+    "RelativePath": "api/Itemdetails",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "itemDetail",
+        "Type": "StockManagement.Models.ItemDetail",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": []
   },
   {
@@ -85,6 +216,26 @@
         "IsRequired": true
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "StockManagement.Controllers.RoleController",
+    "Method": "GetTestData",
+    "RelativePath": "api/Role",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "StockManagement.Controllers.SupplierController",
+    "Method": "GetTestData",
+    "RelativePath": "api/Supplier",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   }
 ]
