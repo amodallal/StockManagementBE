@@ -167,6 +167,22 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "StockManagement.Controllers.ItemdetailsController",
+    "Method": "CheckIMEIExists",
+    "RelativePath": "api/Itemdetails/CheckIMEI/{imei1}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "imei1",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "StockManagement.Controllers.ItemsController",
     "Method": "GetItems",
     "RelativePath": "api/Items",
