@@ -58,6 +58,16 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "StockManagement.Controllers.CapacitiesController",
+    "Method": "GetTestData",
+    "RelativePath": "api/Capacities",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "StockManagement.Controllers.CategoriesController",
     "Method": "GetTestData",
     "RelativePath": "api/Categories",

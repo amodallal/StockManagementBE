@@ -30,6 +30,8 @@ public partial class StockManagementContext : DbContext
 
     public virtual DbSet<Item> Items { get; set; }
 
+    public virtual DbSet<Capacity> Capacities { get; set; } // DbSet for Capacity table
+
     public virtual DbSet<ItemDetail> ItemDetails { get; set; }
 
     public virtual DbSet<Order> Orders { get; set; }
@@ -207,6 +209,10 @@ public partial class StockManagementContext : DbContext
                .HasForeignKey(d => d.CategoryId)
                .OnDelete(DeleteBehavior.ClientSetNull)
                .HasConstraintName("FK_Items_Category");
+
+            entity.HasMany(i => i.Capacities)
+                  .WithMany(c => c.Items)
+                  .UsingEntity(j => j.ToTable("ItemCapacity")); // Optional: Customize join table name
         });
 
         modelBuilder.Entity<ItemDetail>(entity =>
@@ -253,6 +259,16 @@ public partial class StockManagementContext : DbContext
                 .HasForeignKey(d => d.SupplierId)
                 .HasConstraintName("fk_supplier_id");
         });
+
+        // Optional: Configure Capacity table if needed
+        modelBuilder.Entity<Capacity>(entity =>
+        {
+            entity.HasKey(c => c.CapacityID); // Configure primary key
+            entity.Property(c => c.CapacityName)
+                  .IsRequired() // Make CapacityName required
+                  .HasMaxLength(100); // Set a max length for CapacityName
+        });
+
 
         modelBuilder.Entity<Order>(entity =>
         {

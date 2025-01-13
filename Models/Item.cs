@@ -26,4 +26,6 @@ public partial class Item
     public virtual ICollection<ItemDetail> ItemDetails { get; set; } = new List<ItemDetail>();
 
     public virtual ICollection<SalesmanStock> SalesmanStocks { get; set; } = new List<SalesmanStock>();
+
+    public virtual ICollection<Capacity> Capacities { get; set; } = new List<Capacity>();
 }

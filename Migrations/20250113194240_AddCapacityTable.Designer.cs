@@ -12,8 +12,8 @@ using StockManagement.Data;
 namespace StockManagement.Migrations
 {
     [DbContext(typeof(StockManagementContext))]
-    [Migration("20241231090338_isactivecolumn")]
-    partial class isactivecolumn
+    [Migration("20250113194240_AddCapacityTable")]
+    partial class AddCapacityTable
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -45,6 +45,24 @@ namespace StockManagement.Migrations
                         .HasName("PK__brand__5E5A8E276F139381");
 
                     b.ToTable("brand", (string)null);
+                });
+
+            modelBuilder.Entity("StockManagement.Models.Capacity", b =>
+                {
+                    b.Property<int>("CapacityID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CapacityID"));
+
+                    b.Property<string>("CapacityName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("CapacityID");
+
+                    b.ToTable("Capacities");
                 });
 
             modelBuilder.Entity("StockManagement.Models.Category", b =>
@@ -303,7 +321,7 @@ namespace StockManagement.Migrations
                         .HasColumnType("varchar(100)")
                         .HasColumnName("imei_2");
 
-                    b.Property<int>("ItemId")
+                    b.Property<int?>("ItemId")
                         .HasColumnType("int")
                         .HasColumnName("item_id");
 
@@ -656,9 +674,7 @@ namespace StockManagement.Migrations
 
                     b.HasOne("StockManagement.Models.Item", "Item")
                         .WithMany("ItemDetails")
-                        .HasForeignKey("ItemId")
-                        .IsRequired()
-                        .HasConstraintName("FK__item_deta__item___76969D2E");
+                        .HasForeignKey("ItemId");
 
                     b.HasOne("StockManagement.Models.Supplier", "Supplier")
                         .WithMany("ItemDetails")
