@@ -25,5 +25,28 @@ namespace StockManagement.Controllers
             var items = _context.Capacities.ToList();
             return Ok(items);
         }
+
+
+        [HttpPost]
+        public async Task<IActionResult> PostCapacity([FromBody] Capacity Capacity)
+        {
+            if (Capacity == null)
+            {
+                return BadRequest("Capacity is null");
+            }
+
+            // Check if required fields are missing
+            if (string.IsNullOrEmpty(Capacity.CapacityName))
+            {
+                return BadRequest("Capacity cannot be null or empty");
+            }
+
+            _context.Capacities.Add(Capacity);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction(nameof(PostCapacity), new { id = Capacity.CapacityID }, Capacity);
+
+        }
+
     }
 }

@@ -32,7 +32,7 @@ namespace StockManagement.Controllers
         {
             if (Brand == null)
             {
-                return BadRequest("Item is null");
+                return BadRequest("Brand is null");
             }
 
             // Check if required fields are missing

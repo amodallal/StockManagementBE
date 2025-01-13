@@ -68,6 +68,22 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "StockManagement.Controllers.CapacitiesController",
+    "Method": "PostCapacity",
+    "RelativePath": "api/Capacities",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Capacity",
+        "Type": "StockManagement.Models.Capacity",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "StockManagement.Controllers.CategoriesController",
     "Method": "GetTestData",
     "RelativePath": "api/Categories",
