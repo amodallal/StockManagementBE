@@ -18,35 +18,49 @@ namespace StockManagement.Controllers
             _context = context;
         }
 
-        // GET: api/brand
+        // GET: api/capacities
         [HttpGet]
-        public IActionResult GetTestData()
+        public IActionResult GetCapacities()
         {
             var items = _context.Capacities.ToList();
             return Ok(items);
         }
 
-
+        // POST: api/capacities
         [HttpPost]
-        public async Task<IActionResult> PostCapacity([FromBody] Capacity Capacity)
+        public async Task<IActionResult> PostCapacity([FromBody] Capacity capacity)
         {
-            if (Capacity == null)
+            if (capacity == null)
             {
                 return BadRequest("Capacity is null");
             }
 
             // Check if required fields are missing
-            if (string.IsNullOrEmpty(Capacity.CapacityName))
+            if (string.IsNullOrEmpty(capacity.CapacityName))
             {
                 return BadRequest("Capacity cannot be null or empty");
             }
 
-            _context.Capacities.Add(Capacity);
+            _context.Capacities.Add(capacity);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(PostCapacity), new { id = Capacity.CapacityID }, Capacity);
-
+            return CreatedAtAction(nameof(PostCapacity), new { id = capacity.CapacityID }, capacity);
         }
 
+        // DELETE: api/capacities/{id}
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteCapacity(int id)
+        {
+            var capacity = await _context.Capacities.FindAsync(id);
+            if (capacity == null)
+            {
+                return NotFound("Capacity not found");
+            }
+
+            _context.Capacities.Remove(capacity);
+            await _context.SaveChangesAsync();
+
+            return NoContent(); // 204 No Content status
+        }
     }
 }
