@@ -25,8 +25,17 @@
           "SelectedChildIndex": 1,
           "Children": [
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "CapacitiesController.cs",
+              "DocumentMoniker": "E:\\StockManagementBE\\Controllers\\CapacitiesController.cs",
+              "RelativeDocumentMoniker": "Controllers\\CapacitiesController.cs",
+              "ToolTip": "E:\\StockManagementBE\\Controllers\\CapacitiesController.cs",
+              "RelativeToolTip": "Controllers\\CapacitiesController.cs",
+              "ViewState": "AQIAABgAAAAAAAAAAAAYwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-15T10:19:39.898Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -36,22 +45,9 @@
               "RelativeDocumentMoniker": "Controllers\\ItemsController.cs",
               "ToolTip": "E:\\StockManagementBE\\Controllers\\ItemsController.cs",
               "RelativeToolTip": "Controllers\\ItemsController.cs",
-              "ViewState": "AQIAAHAAAAAAAAAAAAAUwHwAAAAJAAAA",
+              "ViewState": "AQIAALIAAAAAAAAAAAAUwLgAAAAkAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-15T06:38:27.858Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "CapacitiesController.cs",
-              "DocumentMoniker": "E:\\StockManagementBE\\Controllers\\CapacitiesController.cs",
-              "RelativeDocumentMoniker": "Controllers\\CapacitiesController.cs",
-              "ToolTip": "E:\\StockManagementBE\\Controllers\\CapacitiesController.cs",
-              "RelativeToolTip": "Controllers\\CapacitiesController.cs",
-              "ViewState": "AQIAAC0AAAAAAAAAAAAuwD8AAAAJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-14T10:03:20.513Z",
               "EditorCaption": ""
             },
             {

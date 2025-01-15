@@ -493,6 +493,13 @@ D:\StockManagementBE\obj\Debug\net8.0\StockManagement.pdb
 D:\StockManagementBE\obj\Debug\net8.0\StockManagement.genruntimeconfig.cache
 D:\StockManagementBE\obj\Debug\net8.0\ref\StockManagement.dll
 D:\StockManagementBE\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
+E:\StockManagementBE\obj\Debug\net8.0\StockManagement.csproj.AssemblyReference.cache
+E:\StockManagementBE\obj\Debug\net8.0\StockManagement.GeneratedMSBuildEditorConfig.editorconfig
+E:\StockManagementBE\obj\Debug\net8.0\StockManagement.AssemblyInfoInputs.cache
+E:\StockManagementBE\obj\Debug\net8.0\StockManagement.AssemblyInfo.cs
+E:\StockManagementBE\obj\Debug\net8.0\StockManagement.csproj.CoreCompileInputs.cache
+E:\StockManagementBE\obj\Debug\net8.0\StockManagement.MvcApplicationPartsAssemblyInfo.cache
+E:\StockManagementBE\obj\Debug\net8.0\StockManagement.sourcelink.json
 E:\StockManagementBE\bin\Debug\net8.0\appsettings.Development.json
 E:\StockManagementBE\bin\Debug\net8.0\appsettings.json
 E:\StockManagementBE\bin\Debug\net8.0\StockManagement.exe
@@ -636,13 +643,6 @@ E:\StockManagementBE\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Runtime.Cac
 E:\StockManagementBE\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
 E:\StockManagementBE\bin\Debug\net8.0\runtimes\browser\lib\net8.0\System.Text.Encodings.Web.dll
 E:\StockManagementBE\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
-E:\StockManagementBE\obj\Debug\net8.0\StockManagement.csproj.AssemblyReference.cache
-E:\StockManagementBE\obj\Debug\net8.0\StockManagement.GeneratedMSBuildEditorConfig.editorconfig
-E:\StockManagementBE\obj\Debug\net8.0\StockManagement.AssemblyInfoInputs.cache
-E:\StockManagementBE\obj\Debug\net8.0\StockManagement.AssemblyInfo.cs
-E:\StockManagementBE\obj\Debug\net8.0\StockManagement.csproj.CoreCompileInputs.cache
-E:\StockManagementBE\obj\Debug\net8.0\StockManagement.MvcApplicationPartsAssemblyInfo.cache
-E:\StockManagementBE\obj\Debug\net8.0\StockManagement.sourcelink.json
 E:\StockManagementBE\obj\Debug\net8.0\staticwebassets.build.json
 E:\StockManagementBE\obj\Debug\net8.0\staticwebassets.development.json
 E:\StockManagementBE\obj\Debug\net8.0\staticwebassets\msbuild.StockManagement.Microsoft.AspNetCore.StaticWebAssets.props

@@ -107,21 +107,94 @@ namespace StockManagement.Controllers
 
 
         }
-
-        // DELETE: api/items/{id}
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteItem(int id)
-        {
-            var Items = await _context.Items.FindAsync(id);
-            if (Items == null)
+        
+            // DELETE: api/items/{id}
+            [HttpDelete("{id}")]
+            public async Task<IActionResult> DeleteItem(int id)
             {
-                return NotFound("Item not found");
+                var Items = await _context.Items.FindAsync(id);
+                if (Items == null)
+                {
+                    return NotFound("Item not found");
+                }
+
+                _context.Items.Remove(Items);
+                await _context.SaveChangesAsync();
+
+                return NoContent(); // 204 No Content status
+            }
+        [HttpPost("item-capacities")]
+        public async Task<IActionResult> AddItemCapacities([FromBody] AddItemCapacitiesRequest request)
+        {
+            // Validation: Ensure request is not null and contains valid data
+            if (request == null || request.ItemId <= 0 || request.CapacityIds == null || !request.CapacityIds.Any())
+            {
+                return BadRequest("Invalid input. ItemId and CapacityIds are required.");
             }
 
-            _context.Items.Remove(Items);
+            // Fetch the item from the database to ensure it exists
+            var item = await _context.Items.Include(i => i.Capacities)  // Include Capacities to handle the navigation
+                                           .FirstOrDefaultAsync(i => i.ItemId == request.ItemId);
+            if (item == null)
+            {
+                return NotFound("Item not found.");
+            }
+
+            // Fetch the capacities from the database
+            var capacities = await _context.Capacities
+                                           .Where(c => request.CapacityIds.Contains(c.CapacityID))
+                                           .ToListAsync();
+
+            // Check if all the provided capacities exist
+            if (capacities.Count != request.CapacityIds.Count)
+            {
+                return NotFound("One or more capacities not found.");
+            }
+
+            // Add the new capacities to the item's Capacities collection (using Add for each capacity)
+            foreach (var capacity in capacities)
+            {
+                item.Capacities.Add(capacity); // Use Add() instead of AddRange()
+            }
+
+            // Save changes to the database
             await _context.SaveChangesAsync();
 
-            return NoContent(); // 204 No Content status
+            // Return a success message if the operation was successful
+            return Ok(new { message = "Item successfully associated with capacities." });
         }
+
+        [HttpGet("item-capacities")]
+        public async Task<IActionResult> GetAllItemsWithCapacities()
+        {
+            try
+            {
+                // Fetch all items with their capacities
+                var items = await _context.Items
+                    .Include(i => i.Capacities)
+                    .ToListAsync();
+
+                // Map the result to a simplified DTO
+                var result = items.Select(item => new
+                {
+                    ItemId = item.ItemId,
+                    Name = item.Name,
+                    ModelNumber = item.ModelNumber,
+                    Capacities = item.Capacities.Select(c => new
+                    {
+                        c.CapacityID,
+                        c.CapacityName
+                    })
+                });
+
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
+        }
+
+
     }
 }
