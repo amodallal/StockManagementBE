@@ -104,6 +104,24 @@ namespace StockManagement.Controllers
             {
                 return StatusCode(500, $"Internal server error: {ex.Message}");
             }
+
+
+        }
+
+        // DELETE: api/items/{id}
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteItem(int id)
+        {
+            var Items = await _context.Items.FindAsync(id);
+            if (Items == null)
+            {
+                return NotFound("Item not found");
+            }
+
+            _context.Items.Remove(Items);
+            await _context.SaveChangesAsync();
+
+            return NoContent(); // 204 No Content status
         }
     }
 }
