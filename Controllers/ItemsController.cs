@@ -4,6 +4,7 @@ using StockManagement.Data;
 using StockManagement.Models;
 using Microsoft.EntityFrameworkCore;
 
+
 namespace StockManagement.Controllers
 {
     [Route("api/[controller]")]
@@ -164,37 +165,42 @@ namespace StockManagement.Controllers
             return Ok(new { message = "Item successfully associated with capacities." });
         }
 
-        [HttpGet("item-capacities")]
-        public async Task<IActionResult> GetAllItemsWithCapacities()
-        {
-            try
-            {
-                // Fetch all items with their capacities
-                var items = await _context.Items
-                    .Include(i => i.Capacities)
-                    .ToListAsync();
+         [HttpGet("item-capacities")]
+         public async Task<IActionResult> GetAllItemsWithCapacities()
+         {
+             try
+             {
+                 // Fetch all items with their capacities
+                 var items = await _context.Items
+                     .Include(i => i.Capacities)
+                     .ToListAsync();
 
-                // Map the result to a simplified DTO
-                var result = items.Select(item => new
-                {
-                    ItemId = item.ItemId,
-                    Name = item.Name,
-                    ModelNumber = item.ModelNumber,
-                    Capacities = item.Capacities.Select(c => new
-                    {
-                        c.CapacityID,
-                        c.CapacityName
-                    })
-                });
+                 // Map the result to a simplified DTO
+                 var result = items.Select(item => new
+                 {
+                     ItemId = item.ItemId,
+                     Name = item.Name,
+                     ModelNumber = item.ModelNumber,
+                     Capacities = item.Capacities.Select(c => new
+                     {
+                         c.CapacityID,
+                         c.CapacityName
+                     })
+                 });
 
-                return Ok(result);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, $"Internal server error: {ex.Message}");
-            }
-        }
-
-
+                 return Ok(result);
+             }
+             catch (Exception ex)
+             {
+                 return StatusCode(500, $"Internal server error: {ex.Message}");
+             }
+         }
+      
+       
+        
     }
+
+
+
 }
+

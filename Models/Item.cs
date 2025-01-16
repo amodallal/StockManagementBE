@@ -18,10 +18,14 @@ public partial class Item
 
     public int CategoryId { get; set; }
 
-    public string Barcode { get; set; } 
+    public string Barcode { get; set; }
+
+    public bool IsIemiId { get; set; }
+
     public virtual Brand? Brand { get; set; }
 
     public virtual Category? Category { get; set; } = null!;
+
 
     public virtual ICollection<ItemDetail> ItemDetails { get; set; } = new List<ItemDetail>();
 

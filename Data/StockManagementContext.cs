@@ -209,10 +209,14 @@ public partial class StockManagementContext : DbContext
                .HasForeignKey(d => d.CategoryId)
                .OnDelete(DeleteBehavior.ClientSetNull)
                .HasConstraintName("FK_Items_Category");
-
+             
             entity.HasMany(i => i.Capacities)
                   .WithMany(c => c.Items)
                   .UsingEntity(j => j.ToTable("ItemCapacity")); // Optional: Customize join table name
+
+            entity.Property(e => e.IsIemiId)
+                .IsRequired() // Ensure it's required (not nullable)
+                .HasDefaultValue(false); // Set default value as false
         });
 
         modelBuilder.Entity<ItemDetail>(entity =>
@@ -258,6 +262,7 @@ public partial class StockManagementContext : DbContext
             entity.HasOne(d => d.Supplier).WithMany(p => p.ItemDetails)
                 .HasForeignKey(d => d.SupplierId)
                 .HasConstraintName("fk_supplier_id");
+
         });
 
         // Optional: Configure Capacity table if needed

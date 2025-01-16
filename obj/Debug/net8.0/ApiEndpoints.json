@@ -59,7 +59,7 @@
   },
   {
     "ContainingType": "StockManagement.Controllers.CapacitiesController",
-    "Method": "GetTestData",
+    "Method": "GetCapacities",
     "RelativePath": "api/Capacities",
     "HttpMethod": "GET",
     "IsController": true,
@@ -76,8 +76,24 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "Capacity",
+        "Name": "capacity",
         "Type": "StockManagement.Models.Capacity",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "StockManagement.Controllers.CapacitiesController",
+    "Method": "DeleteCapacity",
+    "RelativePath": "api/Capacities/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],
@@ -246,6 +262,22 @@
   },
   {
     "ContainingType": "StockManagement.Controllers.ItemsController",
+    "Method": "DeleteItem",
+    "RelativePath": "api/Items/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "StockManagement.Controllers.ItemsController",
     "Method": "AddItemsBulk",
     "RelativePath": "api/Items/bulk",
     "HttpMethod": "POST",
@@ -258,6 +290,32 @@
         "IsRequired": true
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "StockManagement.Controllers.ItemsController",
+    "Method": "AddItemCapacities",
+    "RelativePath": "api/Items/item-capacities",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "StockManagement.AddItemCapacitiesRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "StockManagement.Controllers.ItemsController",
+    "Method": "GetAllItemsWithCapacities",
+    "RelativePath": "api/Items/item-capacities",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {
