@@ -36,7 +36,7 @@ namespace StockManagement.Controllers
                 i.BrandId,
                 i.CategoryId,
                 i.Barcode,
-                i.IsIemiId,
+                i.IsImeiId,
                 CategoryName = i.Category != null ? i.Category.CategoryName : null,
                 BrandName = i.Brand != null ? i.Brand.BrandName : null,
                 i.ItemDetails,

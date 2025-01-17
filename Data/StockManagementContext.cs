@@ -214,7 +214,7 @@ public partial class StockManagementContext : DbContext
                   .WithMany(c => c.Items)
                   .UsingEntity(j => j.ToTable("ItemCapacity")); // Optional: Customize join table name
 
-            entity.Property(e => e.IsIemiId)
+            entity.Property(e => e.IsImeiId)
                 .IsRequired() // Ensure it's required (not nullable)
                 .HasDefaultValue(false); // Set default value as false
         });

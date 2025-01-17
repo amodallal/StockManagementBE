@@ -20,7 +20,7 @@ public partial class Item
 
     public string Barcode { get; set; }
 
-    public bool IsIemiId { get; set; }
+    public bool IsImeiId { get; set; }
 
     public virtual Brand? Brand { get; set; }
 
