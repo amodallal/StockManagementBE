@@ -4,6 +4,7 @@ using StockManagement.Data;
 using StockManagement.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -20,7 +21,7 @@ namespace StockManagement.Controllers
             _context = context;
         }
 
-        // Existing GET endpoint to fetch all item details (you can keep this if necessary)
+        // Existing GET endpoint to fetch all item details
         [HttpGet]
         public IActionResult GetTestData()
         {
@@ -45,8 +46,37 @@ namespace StockManagement.Controllers
             var exists = await _context.ItemDetails
                 .AnyAsync(item => item.Imei1 == imei1);
 
-            // Return true if IMEI exists, otherwise false
             return Ok(new { exists });
+        }
+
+        // New POST endpoint to add item details in batches
+        [HttpPost("batch")]
+        public async Task<IActionResult> PostItemDetailsBatch([FromBody] List<ItemDetail> itemDetails)
+        {
+            if (itemDetails == null || !itemDetails.Any())
+            {
+                return BadRequest("The request body must contain a non-empty list of item details.");
+            }
+
+            try
+            {
+                // Add items in a single operation for efficiency
+                await _context.ItemDetails.AddRangeAsync(itemDetails);
+                await _context.SaveChangesAsync();
+
+                return Ok(new
+                {
+                    message = $"{itemDetails.Count} item details added successfully."
+                });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new
+                {
+                    message = "An error occurred while processing the batch.",
+                    details = ex.Message
+                });
+            }
         }
     }
 }

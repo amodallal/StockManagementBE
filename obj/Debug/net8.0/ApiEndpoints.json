@@ -210,6 +210,22 @@
   },
   {
     "ContainingType": "StockManagement.Controllers.ItemdetailsController",
+    "Method": "PostItemDetailsBatch",
+    "RelativePath": "api/Itemdetails/batch",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "itemDetails",
+        "Type": "System.Collections.Generic.List\u00601[[StockManagement.Models.ItemDetail, StockManagement, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "StockManagement.Controllers.ItemdetailsController",
     "Method": "CheckIMEIExists",
     "RelativePath": "api/Itemdetails/CheckIMEI/{imei1}",
     "HttpMethod": "GET",

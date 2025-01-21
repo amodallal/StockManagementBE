@@ -650,10 +650,10 @@ D:\StockManagementBE\obj\Debug\net8.0\staticwebassets\msbuild.build.StockManagem
 D:\StockManagementBE\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.StockManagement.props
 D:\StockManagementBE\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.StockManagement.props
 D:\StockManagementBE\obj\Debug\net8.0\staticwebassets.pack.json
+D:\StockManagementBE\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
 D:\StockManagementBE\obj\Debug\net8.0\StockMan.405D865A.Up2Date
 D:\StockManagementBE\obj\Debug\net8.0\StockManagement.dll
 D:\StockManagementBE\obj\Debug\net8.0\refint\StockManagement.dll
 D:\StockManagementBE\obj\Debug\net8.0\StockManagement.pdb
 D:\StockManagementBE\obj\Debug\net8.0\StockManagement.genruntimeconfig.cache
 D:\StockManagementBE\obj\Debug\net8.0\ref\StockManagement.dll
-D:\StockManagementBE\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
