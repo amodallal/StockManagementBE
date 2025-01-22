@@ -32,4 +32,7 @@ public partial class Item
     public virtual ICollection<SalesmanStock> SalesmanStocks { get; set; } = new List<SalesmanStock>();
 
     public virtual ICollection<Capacity> Capacities { get; set; } = new List<Capacity>();
+
+
+    public virtual ICollection<ItemSupplier> ItemSuppliers { get; set; } = new List<ItemSupplier>();
 }

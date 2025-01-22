@@ -48,12 +48,34 @@ public partial class StockManagementContext : DbContext
 
     public virtual DbSet<Supplier> Suppliers { get; set; }
 
+
+    public virtual DbSet<ItemSupplier> ItemSupplier { get; set; }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
         => optionsBuilder.UseSqlServer("Server=localhost;Database=StockManagement;Trusted_Connection=True;TrustServerCertificate=True;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<ItemSupplier>(entity =>
+        {
+            entity.HasKey(e => e.ItemSupplierId);
+
+            modelBuilder.Entity<ItemSupplier>()
+                .HasOne(e => e.Item)
+                .WithMany(i => i.ItemSuppliers)
+                .HasForeignKey(e => e.ItemId);
+
+            modelBuilder.Entity<ItemSupplier>()
+                .HasOne(e => e.Supplier)
+                .WithMany(s => s.ItemSuppliers)
+                .HasForeignKey(e => e.SupplierId);
+
+            base.OnModelCreating(modelBuilder);
+
+        });
+
+
         modelBuilder.Entity<Brand>(entity =>
         {
             entity.HasKey(e => e.BrandId).HasName("PK__brand__5E5A8E276F139381");

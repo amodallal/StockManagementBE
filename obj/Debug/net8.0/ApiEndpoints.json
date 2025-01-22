@@ -335,6 +335,22 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "StockManagement.Controllers.ItemsController",
+    "Method": "AddItemSupplier",
+    "RelativePath": "api/Items/supplier-item",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "itemSupplier",
+        "Type": "StockManagement.Models.ItemSupplier",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "StockManagement.Controllers.RoleController",
     "Method": "GetTestData",
     "RelativePath": "api/Role",

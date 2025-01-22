@@ -196,9 +196,33 @@ namespace StockManagement.Controllers
                  return StatusCode(500, $"Internal server error: {ex.Message}");
              }
          }
-      
-       
-        
+
+
+        [HttpPost("supplier-item")]
+        public async Task<IActionResult> AddItemSupplier([FromBody] ItemSupplier itemSupplier)
+        {
+            if (itemSupplier == null)
+            {
+                return BadRequest("Invalid data.");
+            }
+
+            // Validate if ItemId and SupplierId exist
+            var itemExists = await _context.Items.AnyAsync(i => i.ItemId == itemSupplier.ItemId);
+            var supplierExists = await _context.Suppliers.AnyAsync(s => s.SupplierId == itemSupplier.SupplierId);
+
+            if (!itemExists || !supplierExists)
+            {
+                return NotFound("Item or Supplier not found.");
+            }
+
+            _context.ItemSupplier.Add(itemSupplier);
+            await _context.SaveChangesAsync();
+
+            return Ok(new { Message = "Item-Supplier relationship added successfully!" });
+        }
+
+
+
     }
 
 
