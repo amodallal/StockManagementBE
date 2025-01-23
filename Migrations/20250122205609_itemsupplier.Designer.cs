@@ -12,8 +12,8 @@ using StockManagement.Data;
 namespace StockManagement.Migrations
 {
     [DbContext(typeof(StockManagementContext))]
-    [Migration("20250122200619_itemsupplier-relationship")]
-    partial class itemsupplierrelationship
+    [Migration("20250122205609_itemsupplier")]
+    partial class itemsupplier
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

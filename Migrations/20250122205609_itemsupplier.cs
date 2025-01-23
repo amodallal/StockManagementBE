@@ -1,15 +1,18 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
 namespace StockManagement.Migrations
 {
     /// <inheritdoc />
-    public partial class itemsupplierrelationship : Migration
+    public partial class itemsupplier : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+           
+
             migrationBuilder.CreateTable(
                 name: "ItemSupplier",
                 columns: table => new
@@ -38,22 +41,18 @@ namespace StockManagement.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateIndex(
-                name: "IX_ItemSupplier_ItemId",
-                table: "ItemSupplier",
-                column: "ItemId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ItemSupplier_SupplierId",
-                table: "ItemSupplier",
-                column: "SupplierId");
+            
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+           
+
             migrationBuilder.DropTable(
                 name: "ItemSupplier");
+
+            
         }
     }
 }

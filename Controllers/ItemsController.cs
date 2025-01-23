@@ -220,6 +220,45 @@ namespace StockManagement.Controllers
 
             return Ok(new { Message = "Item-Supplier relationship added successfully!" });
         }
+        [HttpGet("supplier-item")]
+        public async Task<IActionResult> GetItemSuppliers([FromQuery] int? itemId, [FromQuery] int? supplierId)
+        {
+            // Base query for ItemSupplier
+            var query = _context.ItemSupplier.AsQueryable();
+
+            // Filter by ItemId if provided
+            if (itemId.HasValue)
+            {
+                query = query.Where(x => x.ItemId == itemId.Value);
+            }
+
+            // Filter by SupplierId if provided
+            if (supplierId.HasValue)
+            {
+                query = query.Where(x => x.SupplierId == supplierId.Value);
+            }
+
+            // Fetch the filtered or all results
+            var itemSuppliers = await query
+                .Select(x => new
+                {
+                    x.ItemId,
+                    x.SupplierId,
+                    x.CostPrice,
+                    x.SalePrice
+                })
+                .ToListAsync();
+
+            // If no records found
+            //if (!itemSuppliers.Any())
+           // {
+            //    return NotFound("No Item-Supplier relationships found.");
+           // }
+
+            return Ok(itemSuppliers);
+        }
+
+
 
 
 
