@@ -37,6 +37,7 @@ namespace StockManagement.Controllers
                 i.CategoryId,
                 i.Barcode,
                 i.IsImeiId,
+                i.Description,
                 CategoryName = i.Category != null ? i.Category.CategoryName : null,
                 BrandName = i.Brand != null ? i.Brand.BrandName : null,
                 i.ItemDetails,
@@ -47,6 +48,38 @@ namespace StockManagement.Controllers
 
             //return await _context.Items.ToListAsync();
         }
+        // GET: api/items/{id}
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Item>> GetItemById(int id)
+        {
+            var item = await _context.Items
+
+        .FirstOrDefaultAsync(i => i.ItemId == id);
+
+            if (item == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(item);
+        }
+
+        // GET: api/items/by-model-number/{modelNumber}
+        [HttpGet("bymodelnumber/{modelNumber}")]
+        public async Task<ActionResult<Item>> GetItemByModelNumber(string modelNumber)
+        {
+            // Fetch the item by modelNumber
+            var item = await _context.Items
+                .FirstOrDefaultAsync(i => i.ModelNumber == modelNumber);
+
+            if (item == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(item);
+        }
+
 
         [HttpPost]
         public async Task<IActionResult> PostItem([FromBody] Item item)

@@ -22,10 +22,16 @@ public partial class Item
 
     public bool IsImeiId { get; set; }
 
+    public int? ColorId { get; set; }
+
     public virtual Brand? Brand { get; set; }
 
     public virtual Category? Category { get; set; } = null!;
 
+
+    public string Description { get; set; }
+
+    public virtual Color? Color { get; set; }
 
     public virtual ICollection<ItemDetail> ItemDetails { get; set; } = new List<ItemDetail>();
 

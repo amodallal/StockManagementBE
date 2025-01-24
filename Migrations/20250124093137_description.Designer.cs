@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StockManagement.Data;
 
@@ -11,9 +12,11 @@ using StockManagement.Data;
 namespace StockManagement.Migrations
 {
     [DbContext(typeof(StockManagementContext))]
-    partial class StockManagementContextModelSnapshot : ModelSnapshot
+    [Migration("20250124093137_description")]
+    partial class description
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -97,24 +100,6 @@ namespace StockManagement.Migrations
                         .HasName("PK__category__D54EE9B4F809BF32");
 
                     b.ToTable("category", (string)null);
-                });
-
-            modelBuilder.Entity("StockManagement.Models.Color", b =>
-                {
-                    b.Property<int>("ColorId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ColorId"));
-
-                    b.Property<string>("ColorName")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.HasKey("ColorId");
-
-                    b.ToTable("Colors");
                 });
 
             modelBuilder.Entity("StockManagement.Models.Customer", b =>
@@ -294,9 +279,6 @@ namespace StockManagement.Migrations
                         .HasColumnType("int")
                         .HasColumnName("category_id");
 
-                    b.Property<int?>("ColorId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasMaxLength(500)
@@ -327,8 +309,6 @@ namespace StockManagement.Migrations
                     b.HasIndex("BrandId");
 
                     b.HasIndex("CategoryId");
-
-                    b.HasIndex("ColorId");
 
                     b.ToTable("items", (string)null);
                 });
@@ -749,16 +729,9 @@ namespace StockManagement.Migrations
                         .IsRequired()
                         .HasConstraintName("FK_Items_Category");
 
-                    b.HasOne("StockManagement.Models.Color", "Color")
-                        .WithMany("Items")
-                        .HasForeignKey("ColorId")
-                        .OnDelete(DeleteBehavior.SetNull);
-
                     b.Navigation("Brand");
 
                     b.Navigation("Category");
-
-                    b.Navigation("Color");
                 });
 
             modelBuilder.Entity("StockManagement.Models.ItemDetail", b =>
@@ -888,11 +861,6 @@ namespace StockManagement.Migrations
                 });
 
             modelBuilder.Entity("StockManagement.Models.Category", b =>
-                {
-                    b.Navigation("Items");
-                });
-
-            modelBuilder.Entity("StockManagement.Models.Color", b =>
                 {
                     b.Navigation("Items");
                 });

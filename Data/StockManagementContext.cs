@@ -30,6 +30,9 @@ public partial class StockManagementContext : DbContext
 
     public virtual DbSet<Item> Items { get; set; }
 
+
+    public virtual DbSet<Color> Colors { get; set; }
+
     public virtual DbSet<Capacity> Capacities { get; set; } // DbSet for Capacity table
 
     public virtual DbSet<ItemDetail> ItemDetails { get; set; }
@@ -239,6 +242,15 @@ public partial class StockManagementContext : DbContext
             entity.Property(e => e.IsImeiId)
                 .IsRequired() // Ensure it's required (not nullable)
                 .HasDefaultValue(false); // Set default value as false
+
+            entity.Property(e => e.Description)
+              .HasMaxLength(500);
+
+            entity.HasOne(e => e.Color)
+                 .WithMany(c => c.Items)
+                 .HasForeignKey(e => e.ColorId)
+                 .OnDelete(DeleteBehavior.SetNull);
+
         });
 
         modelBuilder.Entity<ItemDetail>(entity =>
@@ -466,6 +478,15 @@ public partial class StockManagementContext : DbContext
                 .HasMaxLength(255)
                 .IsUnicode(false)
                 .HasColumnName("supplier_name");
+        });
+
+
+        modelBuilder.Entity<Color>(entity =>
+        {
+            // Optional: Set constraints for the Color model
+            entity.Property(e => e.ColorName)
+                  .HasMaxLength(100)  // Limit the length of ColorName
+                  .IsRequired();  // Ensure ColorName is required
         });
 
         OnModelCreatingPartial(modelBuilder);
