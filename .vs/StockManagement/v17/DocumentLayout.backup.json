@@ -3,24 +3,32 @@
   "WorkspaceRootPath": "D:\\StockManagementBE\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{EF061CC4-749C-4BD4-8124-893A4613BF52}|StockManagement.csproj|d:\\stockmanagementbe\\models\\itemsupplier.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EF061CC4-749C-4BD4-8124-893A4613BF52}|StockManagement.csproj|solutionrelative:models\\itemsupplier.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{EF061CC4-749C-4BD4-8124-893A4613BF52}|StockManagement.csproj|d:\\stockmanagementbe\\data\\stockmanagementcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{EF061CC4-749C-4BD4-8124-893A4613BF52}|StockManagement.csproj|solutionrelative:data\\stockmanagementcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EF061CC4-749C-4BD4-8124-893A4613BF52}|StockManagement.csproj|d:\\stockmanagementbe\\controllers\\itemscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EF061CC4-749C-4BD4-8124-893A4613BF52}|StockManagement.csproj|solutionrelative:controllers\\itemscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{EF061CC4-749C-4BD4-8124-893A4613BF52}|StockManagement.csproj|d:\\stockmanagementbe\\models\\delivery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF061CC4-749C-4BD4-8124-893A4613BF52}|StockManagement.csproj|solutionrelative:models\\delivery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EF061CC4-749C-4BD4-8124-893A4613BF52}|StockManagement.csproj|d:\\stockmanagementbe\\models\\item.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EF061CC4-749C-4BD4-8124-893A4613BF52}|StockManagement.csproj|solutionrelative:models\\item.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{EF061CC4-749C-4BD4-8124-893A4613BF52}|StockManagement.csproj|d:\\stockmanagementbe\\models\\salesmanstock.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF061CC4-749C-4BD4-8124-893A4613BF52}|StockManagement.csproj|solutionrelative:models\\salesmanstock.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EF061CC4-749C-4BD4-8124-893A4613BF52}|StockManagement.csproj|d:\\stockmanagementbe\\models\\supplier.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EF061CC4-749C-4BD4-8124-893A4613BF52}|StockManagement.csproj|solutionrelative:models\\supplier.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{EF061CC4-749C-4BD4-8124-893A4613BF52}|StockManagement.csproj|d:\\stockmanagementbe\\models\\status.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF061CC4-749C-4BD4-8124-893A4613BF52}|StockManagement.csproj|solutionrelative:models\\status.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF061CC4-749C-4BD4-8124-893A4613BF52}|StockManagement.csproj|d:\\stockmanagementbe\\migrations\\20250127201735_salesmanstockstatusrelation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF061CC4-749C-4BD4-8124-893A4613BF52}|StockManagement.csproj|solutionrelative:migrations\\20250127201735_salesmanstockstatusrelation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF061CC4-749C-4BD4-8124-893A4613BF52}|StockManagement.csproj|d:\\stockmanagementbe\\models\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF061CC4-749C-4BD4-8124-893A4613BF52}|StockManagement.csproj|solutionrelative:models\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF061CC4-749C-4BD4-8124-893A4613BF52}|StockManagement.csproj|d:\\stockmanagementbe\\migrations\\20250127194930_changestatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF061CC4-749C-4BD4-8124-893A4613BF52}|StockManagement.csproj|solutionrelative:migrations\\20250127194930_changestatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,71 +38,97 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ItemsController.cs",
-              "DocumentMoniker": "D:\\StockManagementBE\\Controllers\\ItemsController.cs",
-              "RelativeDocumentMoniker": "Controllers\\ItemsController.cs",
-              "ToolTip": "D:\\StockManagementBE\\Controllers\\ItemsController.cs",
-              "RelativeToolTip": "Controllers\\ItemsController.cs",
-              "ViewState": "AgIAALsAAAAAAAAAAAAQwNkAAAAhAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-22T20:03:05.755Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "StockManagementContext.cs",
-              "DocumentMoniker": "D:\\StockManagementBE\\Data\\StockManagementContext.cs",
-              "RelativeDocumentMoniker": "Data\\StockManagementContext.cs",
-              "ToolTip": "D:\\StockManagementBE\\Data\\StockManagementContext.cs",
-              "RelativeToolTip": "Data\\StockManagementContext.cs",
-              "ViewState": "AgIAADAAAAAAAAAAAAA1wD0AAAAxAAAAAAAAAA==",
+              "Title": "Delivery.cs",
+              "DocumentMoniker": "D:\\StockManagementBE\\Models\\Delivery.cs",
+              "RelativeDocumentMoniker": "Models\\Delivery.cs",
+              "ToolTip": "D:\\StockManagementBE\\Models\\Delivery.cs",
+              "RelativeToolTip": "Models\\Delivery.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAA5wBgAAAA3AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-22T19:59:25.902Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ItemSupplier.cs",
-              "DocumentMoniker": "D:\\StockManagementBE\\Models\\ItemSupplier.cs",
-              "RelativeDocumentMoniker": "Models\\ItemSupplier.cs",
-              "ToolTip": "D:\\StockManagementBE\\Models\\ItemSupplier.cs",
-              "RelativeToolTip": "Models\\ItemSupplier.cs",
-              "ViewState": "AgIAAAEAAAAAAAAAAAAYwBIAAAAzAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-22T19:58:48.13Z",
+              "WhenOpened": "2025-01-27T20:27:49.191Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "Supplier.cs",
-              "DocumentMoniker": "D:\\StockManagementBE\\Models\\Supplier.cs",
-              "RelativeDocumentMoniker": "Models\\Supplier.cs",
-              "ToolTip": "D:\\StockManagementBE\\Models\\Supplier.cs",
-              "RelativeToolTip": "Models\\Supplier.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Title": "20250127201735_salesmanstockStatusRelation.cs",
+              "DocumentMoniker": "D:\\StockManagementBE\\Migrations\\20250127201735_salesmanstockStatusRelation.cs",
+              "RelativeDocumentMoniker": "Migrations\\20250127201735_salesmanstockStatusRelation.cs",
+              "ToolTip": "D:\\StockManagementBE\\Migrations\\20250127201735_salesmanstockStatusRelation.cs",
+              "RelativeToolTip": "Migrations\\20250127201735_salesmanstockStatusRelation.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAQwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-22T19:56:24.464Z",
+              "WhenOpened": "2025-01-27T20:17:40.899Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "Item.cs",
-              "DocumentMoniker": "D:\\StockManagementBE\\Models\\Item.cs",
-              "RelativeDocumentMoniker": "Models\\Item.cs",
-              "ToolTip": "D:\\StockManagementBE\\Models\\Item.cs",
-              "RelativeToolTip": "Models\\Item.cs",
-              "ViewState": "AgIAABMAAAAAAAAAAAAcwCQAAABkAAAAAAAAAA==",
+              "Title": "Status.cs",
+              "DocumentMoniker": "D:\\StockManagementBE\\Models\\Status.cs",
+              "RelativeDocumentMoniker": "Models\\Status.cs",
+              "ToolTip": "D:\\StockManagementBE\\Models\\Status.cs",
+              "RelativeToolTip": "Models\\Status.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-22T19:55:59.846Z",
+              "WhenOpened": "2025-01-27T20:16:55.133Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Order.cs",
+              "DocumentMoniker": "D:\\StockManagementBE\\Models\\Order.cs",
+              "RelativeDocumentMoniker": "Models\\Order.cs",
+              "ToolTip": "D:\\StockManagementBE\\Models\\Order.cs",
+              "RelativeToolTip": "Models\\Order.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAcwAUAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-27T19:58:18.045Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "SalesmanStock.cs",
+              "DocumentMoniker": "D:\\StockManagementBE\\Models\\SalesmanStock.cs",
+              "RelativeDocumentMoniker": "Models\\SalesmanStock.cs",
+              "ToolTip": "D:\\StockManagementBE\\Models\\SalesmanStock.cs",
+              "RelativeToolTip": "Models\\SalesmanStock.cs",
+              "ViewState": "AgIAABcAAAAAAAAAAAAAwCMAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-27T20:02:04.006Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "20250127194930_changestatus.cs",
+              "DocumentMoniker": "D:\\StockManagementBE\\Migrations\\20250127194930_changestatus.cs",
+              "RelativeDocumentMoniker": "Migrations\\20250127194930_changestatus.cs",
+              "ToolTip": "D:\\StockManagementBE\\Migrations\\20250127194930_changestatus.cs",
+              "RelativeToolTip": "Migrations\\20250127194930_changestatus.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-27T19:50:14.024Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "StockManagementContext.cs",
+              "DocumentMoniker": "D:\\StockManagementBE\\Data\\StockManagementContext.cs",
+              "RelativeDocumentMoniker": "Data\\StockManagementContext.cs",
+              "ToolTip": "D:\\StockManagementBE\\Data\\StockManagementContext.cs",
+              "RelativeToolTip": "Data\\StockManagementContext.cs",
+              "ViewState": "AgIAAIwAAAAAAAAAAAAAwJcAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-22T19:59:25.902Z",
               "EditorCaption": ""
             }
           ]

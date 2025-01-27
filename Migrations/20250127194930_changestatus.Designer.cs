@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StockManagement.Data;
 
@@ -11,9 +12,11 @@ using StockManagement.Data;
 namespace StockManagement.Migrations
 {
     [DbContext(typeof(StockManagementContext))]
-    partial class StockManagementContextModelSnapshot : ModelSnapshot
+    [Migration("20250127194930_changestatus")]
+    partial class changestatus
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -190,10 +193,12 @@ namespace StockManagement.Migrations
                         .HasColumnName("order_id");
 
                     b.Property<string>("Status_Id")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("status_id")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(50)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(50)")
+                        .HasDefaultValue("Pending")
+                        .HasColumnName("delivery_status");
 
                     b.HasKey("DeliveryId")
                         .HasName("PK__deliveri__1C5CF4F59A1F4DEC");
@@ -201,8 +206,6 @@ namespace StockManagement.Migrations
                     b.HasIndex("EmployeeId");
 
                     b.HasIndex("OrderId");
-
-                    b.HasIndex("status_id");
 
                     b.ToTable("deliveries", (string)null);
                 });
@@ -589,8 +592,6 @@ namespace StockManagement.Migrations
 
                     b.HasIndex("ItemId");
 
-                    b.HasIndex("StatusId");
-
                     b.ToTable("salesman_stock", (string)null);
                 });
 
@@ -738,17 +739,9 @@ namespace StockManagement.Migrations
                         .IsRequired()
                         .HasConstraintName("FK__deliverie__order__693CA210");
 
-                    b.HasOne("StockManagement.Models.Status", "Status")
-                        .WithMany("Delivery")
-                        .HasForeignKey("status_id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Employee");
 
                     b.Navigation("Order");
-
-                    b.Navigation("Status");
                 });
 
             modelBuilder.Entity("StockManagement.Models.Employee", b =>
@@ -879,14 +872,7 @@ namespace StockManagement.Migrations
                         .IsRequired()
                         .HasConstraintName("fk_salesman_stock_items");
 
-                    b.HasOne("StockManagement.Models.Status", "Status")
-                        .WithMany("SalesmanStocks")
-                        .HasForeignKey("StatusId")
-                        .HasConstraintName("fk_salesman_stock_status");
-
                     b.Navigation("Item");
-
-                    b.Navigation("Status");
                 });
 
             modelBuilder.Entity("StockManagement.Models.TransfersHistory", b =>
@@ -961,11 +947,7 @@ namespace StockManagement.Migrations
 
             modelBuilder.Entity("StockManagement.Models.Status", b =>
                 {
-                    b.Navigation("Delivery");
-
                     b.Navigation("Orders");
-
-                    b.Navigation("SalesmanStocks");
                 });
 
             modelBuilder.Entity("StockManagement.Models.Supplier", b =>

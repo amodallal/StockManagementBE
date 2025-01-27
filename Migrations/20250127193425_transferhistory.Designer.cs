@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StockManagement.Data;
 
@@ -11,9 +12,11 @@ using StockManagement.Data;
 namespace StockManagement.Migrations
 {
     [DbContext(typeof(StockManagementContext))]
-    partial class StockManagementContextModelSnapshot : ModelSnapshot
+    [Migration("20250127193425_transferhistory")]
+    partial class transferhistory
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -181,6 +184,14 @@ namespace StockManagement.Migrations
                         .HasColumnName("delivery_date")
                         .HasDefaultValueSql("(getdate())");
 
+                    b.Property<string>("DeliveryStatus")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(50)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(50)")
+                        .HasDefaultValue("Pending")
+                        .HasColumnName("delivery_status");
+
                     b.Property<int>("EmployeeId")
                         .HasColumnType("int")
                         .HasColumnName("employee_id");
@@ -189,20 +200,12 @@ namespace StockManagement.Migrations
                         .HasColumnType("int")
                         .HasColumnName("order_id");
 
-                    b.Property<string>("Status_Id")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("status_id")
-                        .HasColumnType("int");
-
                     b.HasKey("DeliveryId")
                         .HasName("PK__deliveri__1C5CF4F59A1F4DEC");
 
                     b.HasIndex("EmployeeId");
 
                     b.HasIndex("OrderId");
-
-                    b.HasIndex("status_id");
 
                     b.ToTable("deliveries", (string)null);
                 });
@@ -450,7 +453,7 @@ namespace StockManagement.Migrations
                         .HasColumnType("date")
                         .HasColumnName("order_date");
 
-                    b.Property<int?>("Status_Id")
+                    b.Property<int?>("StatusId")
                         .HasColumnType("int")
                         .HasColumnName("status_id");
 
@@ -465,7 +468,7 @@ namespace StockManagement.Migrations
 
                     b.HasIndex("EmployeeId");
 
-                    b.HasIndex("Status_Id");
+                    b.HasIndex("StatusId");
 
                     b.ToTable("orders", (string)null);
                 });
@@ -589,27 +592,25 @@ namespace StockManagement.Migrations
 
                     b.HasIndex("ItemId");
 
-                    b.HasIndex("StatusId");
-
                     b.ToTable("salesman_stock", (string)null);
                 });
 
             modelBuilder.Entity("StockManagement.Models.Status", b =>
                 {
-                    b.Property<int>("status_id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("id");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("status_id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("StatusName")
+                    b.Property<string>("Status1")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("status");
 
-                    b.HasKey("status_id")
+                    b.HasKey("Id")
                         .HasName("PK__status__3213E83F9BA64F51");
 
                     b.ToTable("status", (string)null);
@@ -738,17 +739,9 @@ namespace StockManagement.Migrations
                         .IsRequired()
                         .HasConstraintName("FK__deliverie__order__693CA210");
 
-                    b.HasOne("StockManagement.Models.Status", "Status")
-                        .WithMany("Delivery")
-                        .HasForeignKey("status_id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Employee");
 
                     b.Navigation("Order");
-
-                    b.Navigation("Status");
                 });
 
             modelBuilder.Entity("StockManagement.Models.Employee", b =>
@@ -842,7 +835,7 @@ namespace StockManagement.Migrations
 
                     b.HasOne("StockManagement.Models.Status", "Status")
                         .WithMany("Orders")
-                        .HasForeignKey("Status_Id")
+                        .HasForeignKey("StatusId")
                         .HasConstraintName("fk_orders_status");
 
                     b.Navigation("Customer");
@@ -879,14 +872,7 @@ namespace StockManagement.Migrations
                         .IsRequired()
                         .HasConstraintName("fk_salesman_stock_items");
 
-                    b.HasOne("StockManagement.Models.Status", "Status")
-                        .WithMany("SalesmanStocks")
-                        .HasForeignKey("StatusId")
-                        .HasConstraintName("fk_salesman_stock_status");
-
                     b.Navigation("Item");
-
-                    b.Navigation("Status");
                 });
 
             modelBuilder.Entity("StockManagement.Models.TransfersHistory", b =>
@@ -961,11 +947,7 @@ namespace StockManagement.Migrations
 
             modelBuilder.Entity("StockManagement.Models.Status", b =>
                 {
-                    b.Navigation("Delivery");
-
                     b.Navigation("Orders");
-
-                    b.Navigation("SalesmanStocks");
                 });
 
             modelBuilder.Entity("StockManagement.Models.Supplier", b =>

@@ -146,14 +146,10 @@ public partial class StockManagementContext : DbContext
             entity.Property(e => e.DeliveryDate)
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnName("delivery_date");
-            entity.Property(e => e.DeliveryStatus)
-                .HasMaxLength(50)
-                .IsUnicode(false)
-                .HasDefaultValue("Pending")
-                .HasColumnName("delivery_status");
+            
             entity.Property(e => e.EmployeeId).HasColumnName("employee_id");
             entity.Property(e => e.OrderId).HasColumnName("order_id");
-
+            
             entity.HasOne(d => d.Employee).WithMany(p => p.Deliveries)
                 .HasForeignKey(d => d.EmployeeId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
@@ -318,7 +314,7 @@ public partial class StockManagementContext : DbContext
             entity.Property(e => e.CustomerId).HasColumnName("customer_id");
             entity.Property(e => e.EmployeeId).HasColumnName("employee_id");
             entity.Property(e => e.OrderDate).HasColumnName("order_date");
-            entity.Property(e => e.StatusId).HasColumnName("status_id");
+            entity.Property(e => e.Status_Id).HasColumnName("status_id");
             entity.Property(e => e.TotalAmount)
                 .HasColumnType("decimal(10, 2)")
                 .HasColumnName("total amount");
@@ -332,7 +328,7 @@ public partial class StockManagementContext : DbContext
                 .HasConstraintName("FK__orders__employee__571DF1D5");
 
             entity.HasOne(d => d.Status).WithMany(p => p.Orders)
-                .HasForeignKey(d => d.StatusId)
+                .HasForeignKey(d => d.Status_Id)
                 .HasConstraintName("fk_orders_status");
         });
 
@@ -392,6 +388,7 @@ public partial class StockManagementContext : DbContext
             entity.Property(e => e.DateReceived).HasColumnName("date_received");
             entity.Property(e => e.DescriptionId).HasColumnName("description_id");
             entity.Property(e => e.EmployeeId).HasColumnName("employee_id");
+            entity.Property(e => e.StatusId).HasColumnName("status_id");
             entity.Property(e => e.Imei1)
                 .HasMaxLength(50)
                 .HasColumnName("imei_1");
@@ -414,17 +411,22 @@ public partial class StockManagementContext : DbContext
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("fk_salesman_stock_items");
 
-         
+            entity.HasOne(d => d.Status)
+        .WithMany(p => p.SalesmanStocks)
+        .HasForeignKey(d => d.StatusId)
+        .OnDelete(DeleteBehavior.ClientSetNull)
+        .HasConstraintName("fk_salesman_stock_status");
+
         });
 
         modelBuilder.Entity<Status>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__status__3213E83F9BA64F51");
+            entity.HasKey(e => e.status_id).HasName("PK__status__3213E83F9BA64F51");
 
             entity.ToTable("status");
 
-            entity.Property(e => e.Id).HasColumnName("id");
-            entity.Property(e => e.Status1)
+            entity.Property(e => e.status_id).HasColumnName("id");
+            entity.Property(e => e.StatusName)
                 .HasMaxLength(50)
                 .HasColumnName("status");
         });

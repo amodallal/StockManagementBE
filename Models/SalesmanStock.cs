@@ -32,6 +32,10 @@ public partial class SalesmanStock
 
     public virtual Item Item { get; set; } = null!;
 
+
+    public virtual Status Status { get; set; } = null!;
+
     public virtual ICollection<OrderedItem> OrderedItems { get; set; } = new List<OrderedItem>();
+
 
 }

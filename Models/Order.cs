@@ -15,7 +15,7 @@ public partial class Order
 
     public decimal? TotalAmount { get; set; }
 
-    public int? StatusId { get; set; }
+    public int? Status_Id { get; set; }
 
     public virtual Customer? Customer { get; set; }
 
