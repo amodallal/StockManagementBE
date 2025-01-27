@@ -29,11 +29,9 @@ public partial class SalesmanStock
 
     public int? StatusId { get; set; }
 
-    public int? TransferId { get; set; }
 
     public virtual Item Item { get; set; } = null!;
 
     public virtual ICollection<OrderedItem> OrderedItems { get; set; } = new List<OrderedItem>();
 
-    public virtual StockTransfer? Transfer { get; set; }
 }

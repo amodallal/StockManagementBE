@@ -30,7 +30,7 @@ public partial class StockManagementContext : DbContext
 
     public virtual DbSet<Item> Items { get; set; }
 
-
+    public DbSet<TransfersHistory> TransfersHistories { get; set; }
     public virtual DbSet<Color> Colors { get; set; }
 
     public virtual DbSet<Capacity> Capacities { get; set; } // DbSet for Capacity table
@@ -47,7 +47,6 @@ public partial class StockManagementContext : DbContext
 
     public virtual DbSet<Status> Statuses { get; set; }
 
-    public virtual DbSet<StockTransfer> StockTransfers { get; set; }
 
     public virtual DbSet<Supplier> Suppliers { get; set; }
 
@@ -264,7 +263,6 @@ public partial class StockManagementContext : DbContext
                 .HasColumnType("decimal(10, 2)")
                 .HasColumnName("cost");
             entity.Property(e => e.DateReceived).HasColumnName("date_received");
-            entity.Property(e => e.DateCollected).HasColumnName("date_collected");
             entity.Property(e => e.DescriptionId).HasColumnName("description_id");
             entity.Property(e => e.Imei1)
                 .HasMaxLength(100)
@@ -409,16 +407,14 @@ public partial class StockManagementContext : DbContext
                 .HasColumnName("serial_number");
             entity.Property(e => e.StatusId).HasColumnName("status_id");
             entity.Property(e => e.SupplierId).HasColumnName("supplier_id");
-            entity.Property(e => e.TransferId).HasColumnName("transfer_id");
+            
 
             entity.HasOne(d => d.Item).WithMany(p => p.SalesmanStocks)
                 .HasForeignKey(d => d.ItemId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("fk_salesman_stock_items");
 
-            entity.HasOne(d => d.Transfer).WithMany(p => p.SalesmanStocks)
-                .HasForeignKey(d => d.TransferId)
-                .HasConstraintName("fk_salesman_stock_transfer");
+         
         });
 
         modelBuilder.Entity<Status>(entity =>
@@ -433,32 +429,7 @@ public partial class StockManagementContext : DbContext
                 .HasColumnName("status");
         });
 
-        modelBuilder.Entity<StockTransfer>(entity =>
-        {
-            entity.HasKey(e => e.TransferId).HasName("PK__stock_tr__78E6FD33062DE066");
-
-            entity.ToTable("stock_transfers");
-
-            entity.Property(e => e.TransferId).HasColumnName("transfer_id");
-            entity.Property(e => e.DateReceived)
-                .HasColumnType("datetime")
-                .HasColumnName("date_received");
-            entity.Property(e => e.DateTransfered)
-                .HasColumnType("datetime")
-                .HasColumnName("date_transfered");
-            entity.Property(e => e.EmployeeId).HasColumnName("employee_id");
-            entity.Property(e => e.ItemDetailsId).HasColumnName("item_details_id");
-            entity.Property(e => e.StatusId).HasColumnName("status_id");
-
-            entity.HasOne(d => d.Employee).WithMany(p => p.StockTransfers)
-                .HasForeignKey(d => d.EmployeeId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("fk_employee");
-
-            entity.HasOne(d => d.Status).WithMany(p => p.StockTransfers)
-                .HasForeignKey(d => d.StatusId)
-                .HasConstraintName("fk_stock_transfers_status");
-        });
+        
 
         modelBuilder.Entity<Supplier>(entity =>
         {
@@ -491,6 +462,30 @@ public partial class StockManagementContext : DbContext
         });
 
         OnModelCreatingPartial(modelBuilder);
+
+        modelBuilder.Entity<TransfersHistory>(entity =>
+        {
+            entity.HasKey(e => e.TransferHistoryId).HasName("PK_TransfersHistory");
+
+            entity.ToTable("transfers_history");
+
+            entity.Property(e => e.TransferHistoryId).HasColumnName("transfer_history_id");
+            entity.Property(e => e.ItemId).HasColumnName("item_id");
+            entity.Property(e => e.IMEI1).HasColumnName("imei1").HasMaxLength(100);
+            entity.Property(e => e.IMEI2).HasColumnName("imei2").HasMaxLength(100);
+            entity.Property(e => e.SerialNumber).HasColumnName("serial_number").HasMaxLength(100);
+            entity.Property(e => e.DateTransfered).HasColumnName("date_transfered").HasColumnType("datetime");
+            entity.Property(e => e.Source).HasColumnName("source").HasMaxLength(255);
+            entity.Property(e => e.Destination).HasColumnName("destination").HasMaxLength(255);
+            entity.Property(e => e.Note).HasColumnName("note").HasMaxLength(500);
+
+            entity.HasOne(d => d.Item)
+                .WithMany()
+                .HasForeignKey(d => d.ItemId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FK_TransfersHistory_Items");
+        });
+
     }
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);

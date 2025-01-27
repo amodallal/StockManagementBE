@@ -11,5 +11,5 @@ public partial class Status
 
     public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
 
-    public virtual ICollection<StockTransfer> StockTransfers { get; set; } = new List<StockTransfer>();
+   
 }

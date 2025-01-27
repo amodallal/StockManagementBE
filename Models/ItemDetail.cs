@@ -21,7 +21,6 @@ public partial class ItemDetail
 
     public DateOnly? DateReceived { get; set; }
 
-    public DateOnly? DateCollected { get; set; }
 
     public int? DescriptionId { get; set; }
 

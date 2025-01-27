@@ -23,5 +23,5 @@ public partial class Employee
 
     public virtual Role? Role { get; set; }
 
-    public virtual ICollection<StockTransfer> StockTransfers { get; set; } = new List<StockTransfer>();
+   
 }

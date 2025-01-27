@@ -74,7 +74,7 @@ namespace StockManagement.Migrations
 
                     b.HasKey("CapacityID");
 
-                    b.ToTable("Capacities");
+                    b.ToTable("Capacities", (string)null);
                 });
 
             modelBuilder.Entity("StockManagement.Models.Category", b =>
@@ -114,7 +114,7 @@ namespace StockManagement.Migrations
 
                     b.HasKey("ColorId");
 
-                    b.ToTable("Colors");
+                    b.ToTable("Colors", (string)null);
                 });
 
             modelBuilder.Entity("StockManagement.Models.Customer", b =>
@@ -346,9 +346,7 @@ namespace StockManagement.Migrations
                         .HasColumnType("decimal(10, 2)")
                         .HasColumnName("cost");
 
-                    b.Property<DateOnly?>("DateCollected")
-                        .HasColumnType("date")
-                        .HasColumnName("date_collected");
+
 
                     b.Property<DateOnly?>("DateReceived")
                         .HasColumnType("date")
@@ -430,7 +428,7 @@ namespace StockManagement.Migrations
 
                     b.HasIndex("SupplierId");
 
-                    b.ToTable("ItemSupplier");
+                    b.ToTable("ItemSupplier", (string)null);
                 });
 
             modelBuilder.Entity("StockManagement.Models.Order", b =>
@@ -588,16 +586,10 @@ namespace StockManagement.Migrations
                         .HasColumnType("int")
                         .HasColumnName("supplier_id");
 
-                    b.Property<int?>("TransferId")
-                        .HasColumnType("int")
-                        .HasColumnName("transfer_id");
-
                     b.HasKey("ItemDetailsId")
                         .HasName("PK__salesman__7D6D00AEBDF35074");
 
                     b.HasIndex("ItemId");
-
-                    b.HasIndex("TransferId");
 
                     b.ToTable("salesman_stock", (string)null);
                 });
@@ -621,45 +613,6 @@ namespace StockManagement.Migrations
                         .HasName("PK__status__3213E83F9BA64F51");
 
                     b.ToTable("status", (string)null);
-                });
-
-            modelBuilder.Entity("StockManagement.Models.StockTransfer", b =>
-                {
-                    b.Property<int>("TransferId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("transfer_id");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TransferId"));
-
-                    b.Property<DateTime?>("DateReceived")
-                        .HasColumnType("datetime")
-                        .HasColumnName("date_received");
-
-                    b.Property<DateTime>("DateTransfered")
-                        .HasColumnType("datetime")
-                        .HasColumnName("date_transfered");
-
-                    b.Property<int>("EmployeeId")
-                        .HasColumnType("int")
-                        .HasColumnName("employee_id");
-
-                    b.Property<int>("ItemDetailsId")
-                        .HasColumnType("int")
-                        .HasColumnName("item_details_id");
-
-                    b.Property<int?>("StatusId")
-                        .HasColumnType("int")
-                        .HasColumnName("status_id");
-
-                    b.HasKey("TransferId")
-                        .HasName("PK__stock_tr__78E6FD33062DE066");
-
-                    b.HasIndex("EmployeeId");
-
-                    b.HasIndex("StatusId");
-
-                    b.ToTable("stock_transfers", (string)null);
                 });
 
             modelBuilder.Entity("StockManagement.Models.Supplier", b =>
@@ -858,32 +811,7 @@ namespace StockManagement.Migrations
                         .IsRequired()
                         .HasConstraintName("fk_salesman_stock_items");
 
-                    b.HasOne("StockManagement.Models.StockTransfer", "Transfer")
-                        .WithMany("SalesmanStocks")
-                        .HasForeignKey("TransferId")
-                        .HasConstraintName("fk_salesman_stock_transfer");
-
                     b.Navigation("Item");
-
-                    b.Navigation("Transfer");
-                });
-
-            modelBuilder.Entity("StockManagement.Models.StockTransfer", b =>
-                {
-                    b.HasOne("StockManagement.Models.Employee", "Employee")
-                        .WithMany("StockTransfers")
-                        .HasForeignKey("EmployeeId")
-                        .IsRequired()
-                        .HasConstraintName("fk_employee");
-
-                    b.HasOne("StockManagement.Models.Status", "Status")
-                        .WithMany("StockTransfers")
-                        .HasForeignKey("StatusId")
-                        .HasConstraintName("fk_stock_transfers_status");
-
-                    b.Navigation("Employee");
-
-                    b.Navigation("Status");
                 });
 
             modelBuilder.Entity("StockManagement.Models.Brand", b =>
@@ -916,8 +844,6 @@ namespace StockManagement.Migrations
                     b.Navigation("Deliveries");
 
                     b.Navigation("Orders");
-
-                    b.Navigation("StockTransfers");
                 });
 
             modelBuilder.Entity("StockManagement.Models.Item", b =>
@@ -949,13 +875,6 @@ namespace StockManagement.Migrations
             modelBuilder.Entity("StockManagement.Models.Status", b =>
                 {
                     b.Navigation("Orders");
-
-                    b.Navigation("StockTransfers");
-                });
-
-            modelBuilder.Entity("StockManagement.Models.StockTransfer", b =>
-                {
-                    b.Navigation("SalesmanStocks");
                 });
 
             modelBuilder.Entity("StockManagement.Models.Supplier", b =>
