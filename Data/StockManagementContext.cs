@@ -161,7 +161,7 @@ public partial class StockManagementContext : DbContext
                 .HasConstraintName("FK__deliverie__order__693CA210");
 
 
-            entity.HasOne(d => d.Status).WithMany(p => p.Delivery)
+            entity.HasOne(d => d.Status).WithMany(p => p.Deliveries)
     .HasForeignKey(d => d.Status_Id)
     .OnDelete(DeleteBehavior.ClientSetNull)
     .HasConstraintName("FK__deliverie__statu__6B24EA82");

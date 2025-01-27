@@ -14,6 +14,6 @@ public partial class Status
     public virtual ICollection<SalesmanStock> SalesmanStocks { get; set; }
 
 
-    public virtual ICollection<Delivery> Delivery { get; set; }
+    public virtual ICollection<Delivery> Deliveries { get; set; }
 
 }
