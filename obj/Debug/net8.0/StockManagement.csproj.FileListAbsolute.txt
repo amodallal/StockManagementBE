@@ -489,13 +489,6 @@ E:\StockManagementBE\obj\Debug\net8.0\refint\StockManagement.dll
 E:\StockManagementBE\obj\Debug\net8.0\StockManagement.pdb
 E:\StockManagementBE\obj\Debug\net8.0\StockManagement.genruntimeconfig.cache
 E:\StockManagementBE\obj\Debug\net8.0\ref\StockManagement.dll
-D:\StockManagementBE\obj\Debug\net8.0\StockManagement.csproj.AssemblyReference.cache
-D:\StockManagementBE\obj\Debug\net8.0\StockManagement.GeneratedMSBuildEditorConfig.editorconfig
-D:\StockManagementBE\obj\Debug\net8.0\StockManagement.AssemblyInfoInputs.cache
-D:\StockManagementBE\obj\Debug\net8.0\StockManagement.AssemblyInfo.cs
-D:\StockManagementBE\obj\Debug\net8.0\StockManagement.csproj.CoreCompileInputs.cache
-D:\StockManagementBE\obj\Debug\net8.0\StockManagement.MvcApplicationPartsAssemblyInfo.cache
-D:\StockManagementBE\obj\Debug\net8.0\StockManagement.sourcelink.json
 D:\StockManagementBE\bin\Debug\net8.0\appsettings.Development.json
 D:\StockManagementBE\bin\Debug\net8.0\appsettings.json
 D:\StockManagementBE\bin\Debug\net8.0\StockManagement.staticwebassets.endpoints.json
@@ -640,6 +633,13 @@ D:\StockManagementBE\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Runtime.Cac
 D:\StockManagementBE\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
 D:\StockManagementBE\bin\Debug\net8.0\runtimes\browser\lib\net8.0\System.Text.Encodings.Web.dll
 D:\StockManagementBE\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
+D:\StockManagementBE\obj\Debug\net8.0\StockManagement.csproj.AssemblyReference.cache
+D:\StockManagementBE\obj\Debug\net8.0\StockManagement.GeneratedMSBuildEditorConfig.editorconfig
+D:\StockManagementBE\obj\Debug\net8.0\StockManagement.AssemblyInfoInputs.cache
+D:\StockManagementBE\obj\Debug\net8.0\StockManagement.AssemblyInfo.cs
+D:\StockManagementBE\obj\Debug\net8.0\StockManagement.csproj.CoreCompileInputs.cache
+D:\StockManagementBE\obj\Debug\net8.0\StockManagement.MvcApplicationPartsAssemblyInfo.cache
+D:\StockManagementBE\obj\Debug\net8.0\StockManagement.sourcelink.json
 D:\StockManagementBE\obj\Debug\net8.0\scopedcss\bundle\StockManagement.styles.css
 D:\StockManagementBE\obj\Debug\net8.0\staticwebassets.build.json
 D:\StockManagementBE\obj\Debug\net8.0\staticwebassets.development.json

@@ -146,7 +146,7 @@ public partial class StockManagementContext : DbContext
             entity.Property(e => e.DeliveryDate)
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnName("delivery_date");
-            
+            entity.Property(e => e.Status_Id).HasColumnName("status_id");
             entity.Property(e => e.EmployeeId).HasColumnName("employee_id");
             entity.Property(e => e.OrderId).HasColumnName("order_id");
             
@@ -159,6 +159,12 @@ public partial class StockManagementContext : DbContext
                 .HasForeignKey(d => d.OrderId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__deliverie__order__693CA210");
+
+
+            entity.HasOne(d => d.Status).WithMany(p => p.Delivery)
+    .HasForeignKey(d => d.Status_Id)
+    .OnDelete(DeleteBehavior.ClientSetNull)
+    .HasConstraintName("FK__deliverie__statu__6B24EA82");
         });
 
         modelBuilder.Entity<Description>(entity =>

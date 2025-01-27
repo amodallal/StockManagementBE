@@ -15,7 +15,7 @@ public partial class Delivery
 
     public DateOnly? DeliveryDate { get; set; }
 
-    public string? Status_Id { get; set; }
+    public int? Status_Id { get; set; }
 
     public virtual Employee Employee { get; set; } = null!;
 
