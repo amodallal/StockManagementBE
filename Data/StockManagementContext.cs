@@ -264,6 +264,7 @@ public partial class StockManagementContext : DbContext
                 .HasColumnType("decimal(10, 2)")
                 .HasColumnName("cost");
             entity.Property(e => e.DateReceived).HasColumnName("date_received");
+            entity.Property(e => e.DateCollected).HasColumnName("date_collected");
             entity.Property(e => e.DescriptionId).HasColumnName("description_id");
             entity.Property(e => e.Imei1)
                 .HasMaxLength(100)
