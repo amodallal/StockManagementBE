@@ -392,7 +392,7 @@ public partial class StockManagementContext : DbContext
                 .HasColumnType("decimal(10, 2)")
                 .HasColumnName("cost");
             entity.Property(e => e.DateReceived).HasColumnName("date_received");
-            entity.Property(e => e.DescriptionId).HasColumnName("description_id");
+            
             entity.Property(e => e.EmployeeId).HasColumnName("employee_id");
             entity.Property(e => e.StatusId).HasColumnName("status_id");
             entity.Property(e => e.Imei1)
@@ -409,7 +409,6 @@ public partial class StockManagementContext : DbContext
                 .HasMaxLength(50)
                 .HasColumnName("serial_number");
             entity.Property(e => e.StatusId).HasColumnName("status_id");
-            entity.Property(e => e.SupplierId).HasColumnName("supplier_id");
             
 
             entity.HasOne(d => d.Item).WithMany(p => p.SalesmanStocks)

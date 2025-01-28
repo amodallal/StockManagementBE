@@ -11,7 +11,6 @@ public partial class SalesmanStock
 
     public int ItemId { get; set; }
 
-    public int DescriptionId { get; set; }
 
     public string? SerialNumber { get; set; }
 
@@ -25,7 +24,6 @@ public partial class SalesmanStock
 
     public DateOnly DateReceived { get; set; }
 
-    public int? SupplierId { get; set; }
 
     public int? StatusId { get; set; }
 

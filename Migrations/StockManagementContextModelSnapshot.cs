@@ -543,10 +543,6 @@ namespace StockManagement.Migrations
                         .HasColumnType("date")
                         .HasColumnName("date_received");
 
-                    b.Property<int>("DescriptionId")
-                        .HasColumnType("int")
-                        .HasColumnName("description_id");
-
                     b.Property<int>("EmployeeId")
                         .HasColumnType("int")
                         .HasColumnName("employee_id");
@@ -577,10 +573,6 @@ namespace StockManagement.Migrations
                     b.Property<int?>("StatusId")
                         .HasColumnType("int")
                         .HasColumnName("status_id");
-
-                    b.Property<int?>("SupplierId")
-                        .HasColumnType("int")
-                        .HasColumnName("supplier_id");
 
                     b.HasKey("ItemDetailsId")
                         .HasName("PK__salesman__7D6D00AEBDF35074");
@@ -737,7 +729,7 @@ namespace StockManagement.Migrations
                         .HasConstraintName("FK__deliverie__order__693CA210");
 
                     b.HasOne("StockManagement.Models.Status", "Status")
-                        .WithMany("Delivery")
+                        .WithMany("Deliveries")
                         .HasForeignKey("Status_Id")
                         .HasConstraintName("FK__deliverie__statu__6B24EA82");
 
@@ -958,7 +950,7 @@ namespace StockManagement.Migrations
 
             modelBuilder.Entity("StockManagement.Models.Status", b =>
                 {
-                    b.Navigation("Delivery");
+                    b.Navigation("Deliveries");
 
                     b.Navigation("Orders");
 
