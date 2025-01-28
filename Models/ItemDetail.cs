@@ -26,7 +26,6 @@ public partial class ItemDetail
 
     public int? Quantity { get; set; }
 
-    public virtual Description? Description { get; set; }
 
     public virtual Item? Item { get; set; } = null!;
 

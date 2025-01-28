@@ -3,8 +3,16 @@
   "WorkspaceRootPath": "E:\\StockManagementBE\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{EF061CC4-749C-4BD4-8124-893A4613BF52}|StockManagement.csproj|e:\\stockmanagementbe\\migrations\\20250128095801_removedescid.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EF061CC4-749C-4BD4-8124-893A4613BF52}|StockManagement.csproj|solutionrelative:migrations\\20250128095801_removedescid.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{EF061CC4-749C-4BD4-8124-893A4613BF52}|StockManagement.csproj|e:\\stockmanagementbe\\controllers\\statuscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF061CC4-749C-4BD4-8124-893A4613BF52}|StockManagement.csproj|solutionrelative:controllers\\statuscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF061CC4-749C-4BD4-8124-893A4613BF52}|StockManagement.csproj|e:\\stockmanagementbe\\controllers\\brandscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF061CC4-749C-4BD4-8124-893A4613BF52}|StockManagement.csproj|solutionrelative:controllers\\brandscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF061CC4-749C-4BD4-8124-893A4613BF52}|StockManagement.csproj|e:\\stockmanagementbe\\models\\transfershistory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF061CC4-749C-4BD4-8124-893A4613BF52}|StockManagement.csproj|solutionrelative:models\\transfershistory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,19 +22,45 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "20250128095801_removedescID.cs",
-              "DocumentMoniker": "E:\\StockManagementBE\\Migrations\\20250128095801_removedescID.cs",
-              "RelativeDocumentMoniker": "Migrations\\20250128095801_removedescID.cs",
-              "ToolTip": "E:\\StockManagementBE\\Migrations\\20250128095801_removedescID.cs",
-              "RelativeToolTip": "Migrations\\20250128095801_removedescID.cs",
-              "ViewState": "AQIAAAEAAAAAAAAAAAAqwBIAAAALAAAA",
+              "DocumentIndex": 1,
+              "Title": "BrandsController.cs",
+              "DocumentMoniker": "E:\\StockManagementBE\\Controllers\\BrandsController.cs",
+              "RelativeDocumentMoniker": "Controllers\\BrandsController.cs",
+              "ToolTip": "E:\\StockManagementBE\\Controllers\\BrandsController.cs",
+              "RelativeToolTip": "Controllers\\BrandsController.cs",
+              "ViewState": "AQIAAA4AAAAAAAAAAAAAwBUAAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-28T09:59:17.219Z",
+              "WhenOpened": "2025-01-28T12:20:24.873Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "StatusController.cs",
+              "DocumentMoniker": "E:\\StockManagementBE\\Controllers\\StatusController.cs",
+              "RelativeDocumentMoniker": "Controllers\\StatusController.cs",
+              "ToolTip": "E:\\StockManagementBE\\Controllers\\StatusController.cs",
+              "RelativeToolTip": "Controllers\\StatusController.cs",
+              "ViewState": "AQIAAAcAAAAAAAAAAAAiwBQAAAAeAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-28T12:14:00.008Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "TransfersHistory.cs",
+              "DocumentMoniker": "E:\\StockManagementBE\\Models\\TransfersHistory.cs",
+              "RelativeDocumentMoniker": "Models\\TransfersHistory.cs",
+              "ToolTip": "E:\\StockManagementBE\\Models\\TransfersHistory.cs",
+              "RelativeToolTip": "Models\\TransfersHistory.cs",
+              "ViewState": "AQIAAAoAAAAAAAAAAAAQwBIAAAAuAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-28T10:49:12.919Z",
               "EditorCaption": ""
             }
           ]
