@@ -49,6 +49,17 @@ namespace StockManagement.Controllers
             return Ok(new { exists });
         }
 
+
+        [HttpGet("GetbyIMEI/{imei1}")]
+        public async Task<IActionResult> GetByIMEI(string imei1)
+        {
+            // Find the item by IMEI
+            var itemDetails = await _context.ItemDetails
+                .FirstOrDefaultAsync(item => item.Imei1 == imei1);
+
+            return Ok(itemDetails);
+        }
+
         // New POST endpoint to add item details in batches
         [HttpPost("batch")]
         public async Task<IActionResult> PostItemDetailsBatch([FromBody] List<ItemDetail> itemDetails)
