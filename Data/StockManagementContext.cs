@@ -265,7 +265,6 @@ public partial class StockManagementContext : DbContext
                 .HasColumnType("decimal(10, 2)")
                 .HasColumnName("cost");
             entity.Property(e => e.DateReceived).HasColumnName("date_received");
-            entity.Property(e => e.DescriptionId).HasColumnName("description_id");
             entity.Property(e => e.Imei1)
                 .HasMaxLength(100)
                 .IsUnicode(false)
@@ -285,9 +284,7 @@ public partial class StockManagementContext : DbContext
                 .HasColumnName("serial_number");
             entity.Property(e => e.SupplierId).HasColumnName("supplier_id");
 
-            entity.HasOne(d => d.Description).WithMany(p => p.ItemDetails)
-                .HasForeignKey(d => d.DescriptionId)
-                .HasConstraintName("fk_item_details_description");
+            
 
             //entity.HasOne(d => d.Item).WithMany(p => p.ItemDetails)
                // .HasForeignKey(d => d.ItemId)

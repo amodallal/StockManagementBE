@@ -9,5 +9,5 @@ public partial class Description
 
     public string DescriptionText { get; set; } = null!;
 
-    public virtual ICollection<ItemDetail> ItemDetails { get; set; } = new List<ItemDetail>();
+
 }

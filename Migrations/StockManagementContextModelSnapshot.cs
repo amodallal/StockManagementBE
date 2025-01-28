@@ -349,8 +349,7 @@ namespace StockManagement.Migrations
                         .HasColumnName("date_received");
 
                     b.Property<int?>("DescriptionId")
-                        .HasColumnType("int")
-                        .HasColumnName("description_id");
+                        .HasColumnType("int");
 
                     b.Property<string>("Imei1")
                         .HasMaxLength(100)
@@ -778,9 +777,8 @@ namespace StockManagement.Migrations
             modelBuilder.Entity("StockManagement.Models.ItemDetail", b =>
                 {
                     b.HasOne("StockManagement.Models.Description", "Description")
-                        .WithMany("ItemDetails")
-                        .HasForeignKey("DescriptionId")
-                        .HasConstraintName("fk_item_details_description");
+                        .WithMany()
+                        .HasForeignKey("DescriptionId");
 
                     b.HasOne("StockManagement.Models.Item", "Item")
                         .WithMany("ItemDetails")
@@ -908,11 +906,6 @@ namespace StockManagement.Migrations
             modelBuilder.Entity("StockManagement.Models.Customer", b =>
                 {
                     b.Navigation("Orders");
-                });
-
-            modelBuilder.Entity("StockManagement.Models.Description", b =>
-                {
-                    b.Navigation("ItemDetails");
                 });
 
             modelBuilder.Entity("StockManagement.Models.Employee", b =>
