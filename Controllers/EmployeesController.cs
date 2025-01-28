@@ -19,23 +19,23 @@ namespace StockManagement.Controllers
             _context = context;
         }
 
-        // GET: api/employees
         [HttpGet]
-        public IActionResult GetTestData()
+        public IActionResult GetEmployeesWithRoles()
         {
-            var items = _context.Employees.ToList();
-            return Ok(items);
-        }
+            var employeesWithRoles = _context.Employees
+                .Include(e => e.Role) // Assuming a navigation property 'Role' exists in Employee model
+                .Select(e => new
+                {
+                    e.EmployeeId,
+                    e.FirstName,
+                    e.LastName,
+                    e.IsActive,
+                    RoleName = e.Role.RoleName // Assuming the Role model has a 'Name' property
+                })
+                .ToList();
 
-        // POST: api/employees
-        [HttpPost]
-        public async Task<IActionResult> PostEmployee([FromBody] Employee employee)
-        {
-            _context.Employees.Add(employee);
-            await _context.SaveChangesAsync();
-            return CreatedAtAction(nameof(PostEmployee), new { id = employee.EmployeeId }, employee);
+            return Ok(employeesWithRoles);
         }
-
         // DELETE: api/employees/{id}
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteEmployee(int id)
