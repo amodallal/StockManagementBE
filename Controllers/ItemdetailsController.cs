@@ -49,11 +49,10 @@ namespace StockManagement.Controllers
             return Ok(new { exists });
         }
 
-
         [HttpGet("GetbyIMEI/{imei1}")]
         public async Task<IActionResult> GetByIMEI(string imei1)
         {
-            // Fetch item details along with supplier name, brand name, item name, capacities, and color
+            // Fetch item details along with supplier name, brand name, item name, capacities, color, and sale price/cost from ItemSupplier
             var itemDetails = await _context.ItemDetails
                 .Where(item => item.Imei1 == imei1)
                 .Join(_context.Items,
@@ -66,22 +65,23 @@ namespace StockManagement.Controllers
                       brand => brand.BrandId,
                       (joined, brand) => new { joined.itemDetails, joined.item, brand }) // Adding Brand data
 
-                .Join(_context.ItemSupplier,
+                .Join(_context.ItemSupplier,  // Join with ItemSupplier table using the ItemId and SupplierId from ItemDetails
                       joined => joined.item.ItemId,
                       itemSupplier => itemSupplier.ItemId,
                       (joined, itemSupplier) => new { joined.itemDetails, joined.item, joined.brand, itemSupplier }) // Joining with ItemSupplier
+                .Where(joined => joined.itemDetails.SupplierId == joined.itemSupplier.SupplierId)  // Filter by SupplierId from ItemDetails
 
-                .Join(_context.Suppliers,
+                .Join(_context.Suppliers,  // Join with Supplier table using SupplierId from ItemSupplier
                       joined => joined.itemSupplier.SupplierId,
                       supplier => supplier.SupplierId,
                       (joined, supplier) => new { joined.itemDetails, joined.item, joined.brand, joined.itemSupplier, supplier }) // Joining with Supplier
 
-                .Join(_context.Colors,  // Join with Colors table
+                .Join(_context.Colors,  // Join with Colors table using ColorId
                       joined => joined.item.ColorId,
                       color => color.ColorId,
                       (joined, color) => new { joined.itemDetails, joined.item, joined.brand, joined.itemSupplier, joined.supplier, color }) // Adding Color data
 
-                // Use the navigation property for the many-to-many relationship
+                // Use the navigation property for the many-to-many relationship with Capacities
                 .SelectMany(joined => joined.item.Capacities,  // Access the Capacities navigation property
                             (joined, capacity) => new
                             {
@@ -90,8 +90,8 @@ namespace StockManagement.Controllers
                                 joined.itemDetails.SerialNumber,
                                 joined.itemDetails.Imei1,
                                 joined.itemDetails.Imei2,
-                                joined.itemDetails.SalePrice,
-                                joined.itemDetails.Cost,
+                                SalePrice = joined.itemSupplier.SalePrice,  // Get SalePrice from ItemSupplier
+                                Cost = joined.itemSupplier.CostPrice,  // Get Cost from ItemSupplier
                                 joined.itemDetails.DateReceived,
                                 SupplierName = joined.supplier.SupplierName,  // Getting Supplier Name
                                 BrandName = joined.brand.BrandName,  // Getting Brand Name from Brands table
