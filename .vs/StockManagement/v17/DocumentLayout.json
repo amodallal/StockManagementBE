@@ -7,8 +7,8 @@
       "RelativeMoniker": "D:0:0:{EF061CC4-749C-4BD4-8124-893A4613BF52}|StockManagement.csproj|solutionrelative:controllers\\itemdetailscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EF061CC4-749C-4BD4-8124-893A4613BF52}|StockManagement.csproj|e:\\stockmanagementbe\\controllers\\employeescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EF061CC4-749C-4BD4-8124-893A4613BF52}|StockManagement.csproj|solutionrelative:controllers\\employeescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{EF061CC4-749C-4BD4-8124-893A4613BF52}|StockManagement.csproj|e:\\stockmanagementbe\\models\\additemcapacitiesrequest2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF061CC4-749C-4BD4-8124-893A4613BF52}|StockManagement.csproj|solutionrelative:models\\additemcapacitiesrequest2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,8 +18,21 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AddItemCapacitiesRequest2.cs",
+              "DocumentMoniker": "E:\\StockManagementBE\\Models\\AddItemCapacitiesRequest2.cs",
+              "RelativeDocumentMoniker": "Models\\AddItemCapacitiesRequest2.cs",
+              "ToolTip": "E:\\StockManagementBE\\Models\\AddItemCapacitiesRequest2.cs",
+              "RelativeToolTip": "Models\\AddItemCapacitiesRequest2.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-29T08:42:09.455Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -28,22 +41,9 @@
               "RelativeDocumentMoniker": "Controllers\\ItemdetailsController.cs",
               "ToolTip": "E:\\StockManagementBE\\Controllers\\ItemdetailsController.cs",
               "RelativeToolTip": "Controllers\\ItemdetailsController.cs",
-              "ViewState": "AQIAACsAAAAAAAAAAAA5wEIAAAAJAAAA",
+              "ViewState": "AQIAAFkAAAAAAAAAAAAAwG8AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-28T14:07:47.081Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "EmployeesController.cs",
-              "DocumentMoniker": "E:\\StockManagementBE\\Controllers\\EmployeesController.cs",
-              "RelativeDocumentMoniker": "Controllers\\EmployeesController.cs",
-              "ToolTip": "E:\\StockManagementBE\\Controllers\\EmployeesController.cs",
-              "RelativeToolTip": "Controllers\\EmployeesController.cs",
-              "ViewState": "AQIAABMAAAAAAAAAAAAQwCIAAAAaAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-28T13:50:04.751Z",
+              "WhenOpened": "2025-01-29T08:40:44.061Z",
               "EditorCaption": ""
             }
           ]

@@ -53,12 +53,64 @@ namespace StockManagement.Controllers
         [HttpGet("GetbyIMEI/{imei1}")]
         public async Task<IActionResult> GetByIMEI(string imei1)
         {
-            // Find the item by IMEI
+            // Fetch item details along with supplier name, brand name, item name, capacities, and color
             var itemDetails = await _context.ItemDetails
-                .FirstOrDefaultAsync(item => item.Imei1 == imei1);
+                .Where(item => item.Imei1 == imei1)
+                .Join(_context.Items,
+                      itemDetails => itemDetails.ItemId,
+                      item => item.ItemId,
+                      (itemDetails, item) => new { itemDetails, item })  // Joining ItemDetails with Items
+
+                .Join(_context.Brands,  // Join with Brands table
+                      joined => joined.item.BrandId,
+                      brand => brand.BrandId,
+                      (joined, brand) => new { joined.itemDetails, joined.item, brand }) // Adding Brand data
+
+                .Join(_context.ItemSupplier,
+                      joined => joined.item.ItemId,
+                      itemSupplier => itemSupplier.ItemId,
+                      (joined, itemSupplier) => new { joined.itemDetails, joined.item, joined.brand, itemSupplier }) // Joining with ItemSupplier
+
+                .Join(_context.Suppliers,
+                      joined => joined.itemSupplier.SupplierId,
+                      supplier => supplier.SupplierId,
+                      (joined, supplier) => new { joined.itemDetails, joined.item, joined.brand, joined.itemSupplier, supplier }) // Joining with Supplier
+
+                .Join(_context.Colors,  // Join with Colors table
+                      joined => joined.item.ColorId,
+                      color => color.ColorId,
+                      (joined, color) => new { joined.itemDetails, joined.item, joined.brand, joined.itemSupplier, joined.supplier, color }) // Adding Color data
+
+                // Use the navigation property for the many-to-many relationship
+                .SelectMany(joined => joined.item.Capacities,  // Access the Capacities navigation property
+                            (joined, capacity) => new
+                            {
+                                joined.itemDetails.ItemDetailsId,
+                                joined.itemDetails.ItemId,
+                                joined.itemDetails.SerialNumber,
+                                joined.itemDetails.Imei1,
+                                joined.itemDetails.Imei2,
+                                joined.itemDetails.SalePrice,
+                                joined.itemDetails.Cost,
+                                joined.itemDetails.DateReceived,
+                                SupplierName = joined.supplier.SupplierName,  // Getting Supplier Name
+                                BrandName = joined.brand.BrandName,  // Getting Brand Name from Brands table
+                                ItemName = joined.item.Name,  // Fetching Item Name from Items table
+                                CapacityName = capacity.CapacityName,  // Fetching Capacity Name from Capacities table
+                                ColorName = joined.color.ColorName  // Fetching Color Name from Colors table
+                            })
+                .FirstOrDefaultAsync();
+
+            // Check if the item exists
+            if (itemDetails == null)
+            {
+                return NotFound("Item not found.");
+            }
 
             return Ok(itemDetails);
         }
+
+
 
         // New POST endpoint to add item details in batches
         [HttpPost("batch")]
