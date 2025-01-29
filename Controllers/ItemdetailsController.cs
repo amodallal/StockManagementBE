@@ -96,6 +96,7 @@ namespace StockManagement.Controllers
                                 SupplierName = joined.supplier.SupplierName,  // Getting Supplier Name
                                 BrandName = joined.brand.BrandName,  // Getting Brand Name from Brands table
                                 ItemName = joined.item.Name,  // Fetching Item Name from Items table
+                                ModelNumber = joined.item.ModelNumber,
                                 CapacityName = capacity.CapacityName,  // Fetching Capacity Name from Capacities table
                                 ColorName = joined.color.ColorName  // Fetching Color Name from Colors table
                             })
