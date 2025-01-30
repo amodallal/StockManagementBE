@@ -249,6 +249,14 @@ namespace StockManagement.Controllers
                 return NotFound("Item or Supplier not found.");
             }
 
+            // Check if this item-supplier entry already exists
+            var existingEntry = await _context.ItemSupplier
+                .FirstOrDefaultAsync(i => i.ItemId == itemSupplier.ItemId && i.SupplierId == itemSupplier.SupplierId);
+
+            if (existingEntry != null)
+            {
+                return Conflict("This supplier already has this item.");
+            }
             _context.ItemSupplier.Add(itemSupplier);
             await _context.SaveChangesAsync();
 

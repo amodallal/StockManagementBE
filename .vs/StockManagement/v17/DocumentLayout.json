@@ -3,12 +3,8 @@
   "WorkspaceRootPath": "E:\\StockManagementBE\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{EF061CC4-749C-4BD4-8124-893A4613BF52}|StockManagement.csproj|e:\\stockmanagementbe\\controllers\\itemdetailscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EF061CC4-749C-4BD4-8124-893A4613BF52}|StockManagement.csproj|solutionrelative:controllers\\itemdetailscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EF061CC4-749C-4BD4-8124-893A4613BF52}|StockManagement.csproj|e:\\stockmanagementbe\\models\\additemcapacitiesrequest2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EF061CC4-749C-4BD4-8124-893A4613BF52}|StockManagement.csproj|solutionrelative:models\\additemcapacitiesrequest2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{EF061CC4-749C-4BD4-8124-893A4613BF52}|StockManagement.csproj|e:\\stockmanagementbe\\controllers\\itemscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF061CC4-749C-4BD4-8124-893A4613BF52}|StockManagement.csproj|solutionrelative:controllers\\itemscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,32 +14,19 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "AddItemCapacitiesRequest2.cs",
-              "DocumentMoniker": "E:\\StockManagementBE\\Models\\AddItemCapacitiesRequest2.cs",
-              "RelativeDocumentMoniker": "Models\\AddItemCapacitiesRequest2.cs",
-              "ToolTip": "E:\\StockManagementBE\\Models\\AddItemCapacitiesRequest2.cs",
-              "RelativeToolTip": "Models\\AddItemCapacitiesRequest2.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAABAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-29T08:42:09.455Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "ItemdetailsController.cs",
-              "DocumentMoniker": "E:\\StockManagementBE\\Controllers\\ItemdetailsController.cs",
-              "RelativeDocumentMoniker": "Controllers\\ItemdetailsController.cs",
-              "ToolTip": "E:\\StockManagementBE\\Controllers\\ItemdetailsController.cs",
-              "RelativeToolTip": "Controllers\\ItemdetailsController.cs",
-              "ViewState": "AQIAAFAAAAAAAAAAAAAAwGIAAAAsAAAA",
+              "Title": "ItemsController.cs",
+              "DocumentMoniker": "E:\\StockManagementBE\\Controllers\\ItemsController.cs",
+              "RelativeDocumentMoniker": "Controllers\\ItemsController.cs",
+              "ToolTip": "E:\\StockManagementBE\\Controllers\\ItemsController.cs",
+              "RelativeToolTip": "Controllers\\ItemsController.cs",
+              "ViewState": "AQIAAOwAAAAAAAAAAAAAwPsAAAA/AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-29T08:40:44.061Z",
+              "WhenOpened": "2025-01-30T10:25:18.898Z",
               "EditorCaption": ""
             }
           ]
