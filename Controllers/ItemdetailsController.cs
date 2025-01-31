@@ -90,7 +90,8 @@ namespace StockManagement.Controllers
                                 joined.itemDetails.SerialNumber,
                                 joined.itemDetails.Imei1,
                                 joined.itemDetails.Imei2,
-                                SalePrice = joined.itemSupplier.SalePrice,  // Get SalePrice from ItemSupplier
+                                joined.itemDetails.Barcode,
+                                joined.itemDetails.Quantity,                                SalePrice = joined.itemSupplier.SalePrice,  // Get SalePrice from ItemSupplier
                                 Cost = joined.itemSupplier.CostPrice,  // Get Cost from ItemSupplier
                                 joined.itemDetails.DateReceived,
                                 SupplierName = joined.supplier.SupplierName,  // Getting Supplier Name

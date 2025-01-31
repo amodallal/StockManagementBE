@@ -21,7 +21,7 @@ public partial class ItemDetail
 
     public DateOnly? DateReceived { get; set; }
 
-
+    public string? Barcode { get; set; }
     public int? SupplierId { get; set; }
 
     public int? Quantity { get; set; }

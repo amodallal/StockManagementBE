@@ -24,7 +24,6 @@ public partial class StockManagementContext : DbContext
 
     public virtual DbSet<Delivery> Deliveries { get; set; }
 
-    public virtual DbSet<Description> Descriptions { get; set; }
 
     public virtual DbSet<Employee> Employees { get; set; }
 
@@ -167,17 +166,7 @@ public partial class StockManagementContext : DbContext
     .HasConstraintName("FK__deliverie__statu__6B24EA82");
         });
 
-        modelBuilder.Entity<Description>(entity =>
-        {
-            entity.HasKey(e => e.DescriptionId).HasName("PK__descript__DF380AEACC0A86AA");
-
-            entity.ToTable("description");
-
-            entity.Property(e => e.DescriptionId).HasColumnName("description_id");
-            entity.Property(e => e.DescriptionText)
-                .HasMaxLength(255)
-                .HasColumnName("description_text");
-        });
+        
 
         modelBuilder.Entity<Employee>(entity =>
         {
@@ -212,10 +201,7 @@ public partial class StockManagementContext : DbContext
             entity.ToTable("items");
 
             entity.Property(e => e.ItemId).HasColumnName("item_id");
-            entity.Property(e => e.Barcode)
-                .HasMaxLength(100)
-                .IsUnicode(false)
-                .HasColumnName("barcode");
+           
             entity.Property(e => e.BrandId).HasColumnName("brand_id");
             entity.Property(e => e.CategoryId).HasColumnName("category_id");
             entity.Property(e => e.ModelNumber)
@@ -273,6 +259,10 @@ public partial class StockManagementContext : DbContext
                 .HasMaxLength(100)
                 .IsUnicode(false)
                 .HasColumnName("imei_2");
+            entity.Property(e => e.Barcode)
+               .HasMaxLength(100)
+               .IsUnicode(false)
+               .HasColumnName("barcode");
             entity.Property(e => e.ItemId).HasColumnName("item_id");
             entity.Property(e => e.Quantity).HasColumnName("quantity");
             entity.Property(e => e.SalePrice)

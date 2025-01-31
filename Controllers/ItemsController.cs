@@ -35,7 +35,6 @@ namespace StockManagement.Controllers
                 i.ModelNumber,
                 i.BrandId,
                 i.CategoryId,
-                i.Barcode,
                 i.IsImeiId,
                 i.ColorId,
                 i.Description,

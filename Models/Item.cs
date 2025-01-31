@@ -18,7 +18,6 @@ public partial class Item
 
     public int CategoryId { get; set; }
 
-    public string Barcode { get; set; }
 
     public bool IsImeiId { get; set; }
 
