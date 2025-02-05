@@ -12,8 +12,8 @@ using StockManagement.Data;
 namespace StockManagement.Migrations
 {
     [DbContext(typeof(StockManagementContext))]
-    [Migration("20250131130213_barcode")]
-    partial class barcode
+    [Migration("20250205084026_SSID")]
+    partial class SSID
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -95,6 +95,13 @@ namespace StockManagement.Migrations
                         .IsUnicode(false)
                         .HasColumnType("varchar(255)")
                         .HasColumnName("category_name");
+
+                    b.Property<string>("Identifier")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(10)")
+                        .HasColumnName("Identifier");
 
                     b.HasKey("CategoryId")
                         .HasName("PK__category__D54EE9B4F809BF32");
@@ -275,11 +282,6 @@ namespace StockManagement.Migrations
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
-                    b.Property<bool>("IsImeiId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
-
                     b.Property<string>("ModelNumber")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -316,7 +318,6 @@ namespace StockManagement.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ItemDetailsId"));
 
                     b.Property<string>("Barcode")
-                        .IsRequired()
                         .HasMaxLength(100)
                         .IsUnicode(false)
                         .HasColumnType("varchar(100)")
@@ -507,9 +508,11 @@ namespace StockManagement.Migrations
 
             modelBuilder.Entity("StockManagement.Models.SalesmanStock", b =>
                 {
-                    b.Property<int>("ItemDetailsId")
-                        .HasColumnType("int")
-                        .HasColumnName("item_details_id");
+                    b.Property<int>("SalesmanStockId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SalesmanStockId"));
 
                     b.Property<decimal?>("Cost")
                         .HasColumnType("decimal(10, 2)")
@@ -533,9 +536,17 @@ namespace StockManagement.Migrations
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("imei_2");
 
+                    b.Property<int>("ItemDetailsId")
+                        .HasColumnType("int")
+                        .HasColumnName("item_details_id");
+
                     b.Property<int>("ItemId")
                         .HasColumnType("int")
                         .HasColumnName("item_id");
+
+                    b.Property<int?>("Quantity")
+                        .HasColumnType("int")
+                        .HasColumnName("quantity");
 
                     b.Property<decimal?>("SalePrice")
                         .HasColumnType("decimal(10, 2)")
@@ -550,7 +561,11 @@ namespace StockManagement.Migrations
                         .HasColumnType("int")
                         .HasColumnName("status_id");
 
-                    b.HasKey("ItemDetailsId")
+                    b.Property<DateOnly>("TransferDate")
+                        .HasColumnType("date")
+                        .HasColumnName("transfer_date");
+
+                    b.HasKey("SalesmanStockId")
                         .HasName("PK__salesman__7D6D00AEBDF35074");
 
                     b.HasIndex("ItemId");

@@ -101,6 +101,10 @@ public partial class StockManagementContext : DbContext
                 .HasMaxLength(255)
                 .IsUnicode(false)
                 .HasColumnName("category_name");
+            entity.Property(e => e.Identifier)
+               .HasMaxLength(10)
+               .IsUnicode(false)
+               .HasColumnName("Identifier");
         });
 
         modelBuilder.Entity<Customer>(entity =>
@@ -225,10 +229,6 @@ public partial class StockManagementContext : DbContext
             entity.HasMany(i => i.Capacities)
                   .WithMany(c => c.Items)
                   .UsingEntity(j => j.ToTable("ItemCapacity")); // Optional: Customize join table name
-
-            entity.Property(e => e.IsImeiId)
-                .IsRequired() // Ensure it's required (not nullable)
-                .HasDefaultValue(false); // Set default value as false
 
             entity.Property(e => e.Description)
               .HasMaxLength(500);
@@ -368,18 +368,17 @@ public partial class StockManagementContext : DbContext
 
         modelBuilder.Entity<SalesmanStock>(entity =>
         {
-            entity.HasKey(e => e.ItemDetailsId).HasName("PK__salesman__7D6D00AEBDF35074");
+            entity.HasKey(e => e.SalesmanStockId).HasName("PK__salesman__7D6D00AEBDF35074");
 
             entity.ToTable("salesman_stock");
 
-            entity.Property(e => e.ItemDetailsId)
-                .ValueGeneratedNever()
-                .HasColumnName("item_details_id");
+            
             entity.Property(e => e.Cost)
                 .HasColumnType("decimal(10, 2)")
                 .HasColumnName("cost");
             entity.Property(e => e.DateReceived).HasColumnName("date_received");
-            
+            entity.Property(e => e.TransferDate).HasColumnName("transfer_date");
+
             entity.Property(e => e.EmployeeId).HasColumnName("employee_id");
             entity.Property(e => e.StatusId).HasColumnName("status_id");
             entity.Property(e => e.Imei1)
@@ -395,8 +394,11 @@ public partial class StockManagementContext : DbContext
             entity.Property(e => e.SerialNumber)
                 .HasMaxLength(50)
                 .HasColumnName("serial_number");
+            entity.Property(e => e.Barcode)
+                .HasMaxLength(50)
+                .HasColumnName("Barcode");
             entity.Property(e => e.StatusId).HasColumnName("status_id");
-            
+            entity.Property(e => e.Quantity).HasColumnName("quantity");
 
             entity.HasOne(d => d.Item).WithMany(p => p.SalesmanStocks)
                 .HasForeignKey(d => d.ItemId)

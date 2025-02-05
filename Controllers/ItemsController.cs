@@ -35,10 +35,10 @@ namespace StockManagement.Controllers
                 i.ModelNumber,
                 i.BrandId,
                 i.CategoryId,
-                i.IsImeiId,
                 i.ColorId,
                 i.Description,
                 CategoryName = i.Category != null ? i.Category.CategoryName : null,
+                Identifier = i.Category != null ? i.Category.Identifier : null,
                 BrandName = i.Brand != null ? i.Brand.BrandName : null,
                 i.ItemDetails,
                 i.SalesmanStocks

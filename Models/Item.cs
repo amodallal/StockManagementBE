@@ -19,8 +19,6 @@ public partial class Item
     public int CategoryId { get; set; }
 
 
-    public bool IsImeiId { get; set; }
-
     public int? ColorId { get; set; }
 
     public virtual Brand? Brand { get; set; }

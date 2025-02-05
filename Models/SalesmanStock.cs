@@ -5,15 +5,17 @@ namespace StockManagement.Models;
 
 public partial class SalesmanStock
 {
-    public int ItemDetailsId { get; set; }
 
+    public int SalesmanStockId { get; set; }
+   
     public int EmployeeId { get; set; }
 
     public int ItemId { get; set; }
 
-
+    public int? Quantity { get; set; }
     public string? SerialNumber { get; set; }
 
+    public string? Barcode { get; set; }
     public string? Imei1 { get; set; }
 
     public string? Imei2 { get; set; }
@@ -24,6 +26,7 @@ public partial class SalesmanStock
 
     public DateOnly DateReceived { get; set; }
 
+    public DateOnly TransferDate { get; set; }
 
     public int? StatusId { get; set; }
 
