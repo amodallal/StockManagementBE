@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using StockManagement.Models;
 
 namespace StockManagement.Data;
 
 public partial class StockManagementContext : DbContext
 {
-    public StockManagementContext()
-    {
-    }
+     private readonly IConfiguration _configuration;
+    
 
     public StockManagementContext(DbContextOptions<StockManagementContext> options)
         : base(options)
@@ -53,9 +53,13 @@ public partial class StockManagementContext : DbContext
     public virtual DbSet<ItemSupplier> ItemSupplier { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Server=localhost;Database=StockManagement;Trusted_Connection=True;TrustServerCertificate=True;");
-
+    {
+        if (!optionsBuilder.IsConfigured)
+        {
+            var connectionString = _configuration.GetConnectionString("DefaultConnection");
+            optionsBuilder.UseSqlServer(connectionString);
+        }
+    }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<ItemSupplier>(entity =>
@@ -473,6 +477,7 @@ public partial class StockManagementContext : DbContext
             entity.Property(e => e.DateTransfered).HasColumnName("date_transfered").HasColumnType("datetime");
             entity.Property(e => e.Source).HasColumnName("source").HasMaxLength(255);
             entity.Property(e => e.Destination).HasColumnName("destination").HasMaxLength(255);
+            entity.Property(e => e.quantity).HasColumnName("quantity");
             entity.Property(e => e.Note).HasColumnName("note").HasMaxLength(500);
 
             entity.HasOne(d => d.Item)

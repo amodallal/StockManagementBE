@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StockManagement.Data;
 
@@ -11,9 +12,11 @@ using StockManagement.Data;
 namespace StockManagement.Migrations
 {
     [DbContext(typeof(StockManagementContext))]
-    partial class StockManagementContextModelSnapshot : ModelSnapshot
+    [Migration("20250207110412_quantity")]
+    partial class quantity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -680,8 +683,9 @@ namespace StockManagement.Migrations
                         .HasColumnType("nvarchar(255)")
                         .HasColumnName("source");
 
-                    b.Property<int>("quantity")
-                        .HasColumnType("int")
+                    b.Property<string>("quantity")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
                         .HasColumnName("quantity");
 
                     b.HasKey("TransferHistoryId")

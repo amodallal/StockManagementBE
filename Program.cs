@@ -13,7 +13,8 @@ builder.Services.AddCors(options =>
 });
 
 builder.Services.AddControllers();
-builder.Services.AddDbContext<StockManagementContext>();
+builder.Services.AddDbContext<StockManagementContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 var app = builder.Build();
 
 app.MapControllers();

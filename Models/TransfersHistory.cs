@@ -29,6 +29,9 @@ public partial class TransfersHistory
     
     public string Destination { get; set; } = null!;
 
+
+    public int quantity { get; set; }
+
     
     public string? Note { get; set; }
 
