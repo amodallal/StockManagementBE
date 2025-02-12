@@ -30,6 +30,8 @@ public partial class SalesmanStock
 
     public int? StatusId { get; set; }
 
+    public int SuppplierId {get; set; }
+
 
     public virtual Item Item { get; set; } = null!;
 

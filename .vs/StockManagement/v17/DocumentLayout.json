@@ -7,20 +7,16 @@
       "RelativeMoniker": "D:0:0:{EF061CC4-749C-4BD4-8124-893A4613BF52}|StockManagement.csproj|solutionrelative:controllers\\transferstockcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EF061CC4-749C-4BD4-8124-893A4613BF52}|StockManagement.csproj|e:\\stockmanagementbe\\models\\transferstockrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EF061CC4-749C-4BD4-8124-893A4613BF52}|StockManagement.csproj|solutionrelative:models\\transferstockrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EF061CC4-749C-4BD4-8124-893A4613BF52}|StockManagement.csproj|e:\\stockmanagementbe\\models\\transfershistory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EF061CC4-749C-4BD4-8124-893A4613BF52}|StockManagement.csproj|solutionrelative:models\\transfershistory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{EF061CC4-749C-4BD4-8124-893A4613BF52}|StockManagement.csproj|e:\\stockmanagementbe\\controllers\\itemscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF061CC4-749C-4BD4-8124-893A4613BF52}|StockManagement.csproj|solutionrelative:controllers\\itemscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{EF061CC4-749C-4BD4-8124-893A4613BF52}|StockManagement.csproj|e:\\stockmanagementbe\\controllers\\itemdetailscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{EF061CC4-749C-4BD4-8124-893A4613BF52}|StockManagement.csproj|solutionrelative:controllers\\itemdetailscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EF061CC4-749C-4BD4-8124-893A4613BF52}|StockManagement.csproj|e:\\stockmanagementbe\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EF061CC4-749C-4BD4-8124-893A4613BF52}|StockManagement.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{EF061CC4-749C-4BD4-8124-893A4613BF52}|StockManagement.csproj|e:\\stockmanagementbe\\models\\salesmanstock.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF061CC4-749C-4BD4-8124-893A4613BF52}|StockManagement.csproj|solutionrelative:models\\salesmanstock.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,56 +26,43 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "TransferStockRequest.cs",
-              "DocumentMoniker": "E:\\StockManagementBE\\Models\\TransferStockRequest.cs",
-              "RelativeDocumentMoniker": "Models\\TransferStockRequest.cs",
-              "ToolTip": "E:\\StockManagementBE\\Models\\TransferStockRequest.cs",
-              "RelativeToolTip": "Models\\TransferStockRequest.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAARAAAA",
+              "Title": "ItemsController.cs",
+              "DocumentMoniker": "E:\\StockManagementBE\\Controllers\\ItemsController.cs",
+              "RelativeDocumentMoniker": "Controllers\\ItemsController.cs",
+              "ToolTip": "E:\\StockManagementBE\\Controllers\\ItemsController.cs",
+              "RelativeToolTip": "Controllers\\ItemsController.cs",
+              "ViewState": "AQIAACgBAAAAAAAAAAAAwDQBAABHAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-07T11:41:55.776Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "TransfersHistory.cs",
-              "DocumentMoniker": "E:\\StockManagementBE\\Models\\TransfersHistory.cs",
-              "RelativeDocumentMoniker": "Models\\TransfersHistory.cs",
-              "ToolTip": "E:\\StockManagementBE\\Models\\TransfersHistory.cs",
-              "RelativeToolTip": "Models\\TransfersHistory.cs",
-              "ViewState": "AQIAABUAAAAAAAAAAAA7wCIAAAAEAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-07T11:02:40.716Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Program.cs",
-              "DocumentMoniker": "E:\\StockManagementBE\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "E:\\StockManagementBE\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAfAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-06T07:26:57.082Z",
+              "WhenOpened": "2025-02-12T08:23:17.317Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
+              "Title": "SalesmanStock.cs",
+              "DocumentMoniker": "E:\\StockManagementBE\\Models\\SalesmanStock.cs",
+              "RelativeDocumentMoniker": "Models\\SalesmanStock.cs",
+              "ToolTip": "E:\\StockManagementBE\\Models\\SalesmanStock.cs",
+              "RelativeToolTip": "Models\\SalesmanStock.cs",
+              "ViewState": "AQIAABYAAAAAAAAAAADwvyAAAAAbAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-12T07:16:42.099Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "ItemdetailsController.cs",
               "DocumentMoniker": "E:\\StockManagementBE\\Controllers\\ItemdetailsController.cs",
               "RelativeDocumentMoniker": "Controllers\\ItemdetailsController.cs",
               "ToolTip": "E:\\StockManagementBE\\Controllers\\ItemdetailsController.cs",
               "RelativeToolTip": "Controllers\\ItemdetailsController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAlAAAA",
+              "ViewState": "AQIAAPUAAAAAAAAAAAAAwAUBAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-06T07:02:03.488Z",
               "EditorCaption": ""
@@ -92,7 +75,7 @@
               "RelativeDocumentMoniker": "Controllers\\TransferStockController.cs",
               "ToolTip": "E:\\StockManagementBE\\Controllers\\TransferStockController.cs",
               "RelativeToolTip": "Controllers\\TransferStockController.cs",
-              "ViewState": "AQIAAD0AAAAAAAAAAAAAwEkAAABVAAAA",
+              "ViewState": "AQIAAGQAAAAAAAAAAAAkwHEAAABKAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-05T13:58:49.385Z",
               "EditorCaption": ""

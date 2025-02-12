@@ -403,7 +403,7 @@ public partial class StockManagementContext : DbContext
                 .HasColumnName("Barcode");
             entity.Property(e => e.StatusId).HasColumnName("status_id");
             entity.Property(e => e.Quantity).HasColumnName("quantity");
-
+            entity.Property(e => e.SuppplierId).HasColumnName("supplier_id");
             entity.HasOne(d => d.Item).WithMany(p => p.SalesmanStocks)
                 .HasForeignKey(d => d.ItemId)
                 .OnDelete(DeleteBehavior.ClientSetNull)

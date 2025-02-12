@@ -298,6 +298,34 @@ namespace StockManagement.Controllers
 
             return Ok(itemSuppliers);
         }
+        [HttpGet("get-identifier/{barcode}")]
+        public async Task<IActionResult> GetIdentifierByBarcode(string barcode)
+        {
+            try
+            {
+                var result = await (from itemDetails in _context.ItemDetails
+                                    join item in _context.Items on itemDetails.ItemId equals item.ItemId
+                                    join category in _context.Categories on item.CategoryId equals category.CategoryId
+                                    where itemDetails.Barcode == barcode
+                                    select new
+                                    {
+                                        itemDetails.ItemId,  // Fetching ItemId from ItemDetails
+                                        category.Identifier  // Fetching Identifier from Categories via Items
+                                    })
+                                   .FirstOrDefaultAsync();
+
+                if (result == null)
+                {
+                    return NotFound(new { message = "Identifier or ItemId not found for this barcode." });
+                }
+
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = "Internal server error.", error = ex.Message });
+            }
+        }
 
 
 

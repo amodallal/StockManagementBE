@@ -34,6 +34,9 @@ public class TransferStockController : ControllerBase
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@Employee_id", request.Employee_id);
                     cmd.Parameters.AddWithValue("@imei_1", request.IMEI_1);
+                    cmd.Parameters.AddWithValue("source", request.Source);
+                    cmd.Parameters.AddWithValue("destination", request.Destination);
+                    
 
                     int rowsAffected = await cmd.ExecuteNonQueryAsync();
 
@@ -49,6 +52,46 @@ public class TransferStockController : ControllerBase
             return StatusCode(500, new { message = "Internal server error.", error = ex.Message });
         }
     }
+
+
+
+
+    [HttpPost("transfer-serial-stock")]
+    public async Task<IActionResult> TransferSerialStockToSalesman([FromBody] TransferSerialStockRequest request)
+    {
+        if (string.IsNullOrEmpty(request.SerialNumber) || request.Employee_id <= 0)
+        {
+            return BadRequest("Invalid input.");
+        }
+
+        try
+        {
+            using (SqlConnection conn = new SqlConnection(_configuration.GetConnectionString("DefaultConnection")))
+            {
+                await conn.OpenAsync();
+                using (SqlCommand cmd = new SqlCommand("TransferSerialStockToSalesman", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@Employee_id", request.Employee_id);
+                    cmd.Parameters.AddWithValue("@serial_number", request.SerialNumber);
+                    cmd.Parameters.AddWithValue("@source", request.Source);
+                    cmd.Parameters.AddWithValue("@destination", request.Destination);
+
+                    int rowsAffected = await cmd.ExecuteNonQueryAsync();
+
+                    if (rowsAffected > 0)
+                        return Ok(new { message = "Stock transferred successfully." });
+                    else
+                        return NotFound(new { message = "Serial number not found or already transferred." });
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, new { message = "Internal server error.", error = ex.Message });
+        }
+    }
+
 
     // New method for quantity-based stock transfer
     [HttpPost("transfer-stock")]
