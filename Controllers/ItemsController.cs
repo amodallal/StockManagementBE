@@ -306,9 +306,10 @@ namespace StockManagement.Controllers
                 var result = await (from itemDetails in _context.ItemDetails
                                     join item in _context.Items on itemDetails.ItemId equals item.ItemId
                                     join category in _context.Categories on item.CategoryId equals category.CategoryId
-                                    where itemDetails.Barcode == barcode
+                                    where (itemDetails.Barcode == barcode || itemDetails.Imei1 == barcode || itemDetails.SerialNumber == barcode)
                                     select new
                                     {
+                                        item.Name,
                                         itemDetails.ItemId,  // Fetching ItemId from ItemDetails
                                         category.Identifier  // Fetching Identifier from Categories via Items
                                     })

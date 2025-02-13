@@ -99,7 +99,7 @@ public class TransferStockController : ControllerBase
     {
         if (request.Employee_id <= 0 || request.ItemId <= 0 || request.TransferQuantity <= 0)
         {
-            return BadRequest("Invalid input.");
+            return BadRequest(new { message = "Invalid input. Please check the provided data." });
         }
 
         try
@@ -115,12 +115,29 @@ public class TransferStockController : ControllerBase
                     cmd.Parameters.AddWithValue("@transfer_quantity", request.TransferQuantity);
                     cmd.Parameters.AddWithValue("@source", request.Source);
                     cmd.Parameters.AddWithValue("@destination", request.Destination);
-                    int rowsAffected = await cmd.ExecuteNonQueryAsync();
 
-                    if (rowsAffected > 0)
-                        return Ok(new { message = "Stock transferred successfully." });
-                    else
-                        return NotFound(new { message = "Stock transfer failed. Check item availability." });
+                    using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
+                    {
+                        if (await reader.ReadAsync())
+                        {
+                            var transferredStock = new
+                            {
+                                SalesmanStockId = reader["SalesmanStockId"],
+                                Barcode = reader["Barcode"],
+                                Cost = reader["Cost"],
+                                SalePrice = reader["SalePrice"],
+                                Quantity = reader["Quantity"],
+                                DateReceived = reader["DateReceived"],
+                                StatusId = reader["StatusId"]
+                            };
+
+                            return Ok(new { message = "Stock transferred successfully.", stock = transferredStock });
+                        }
+                        else
+                        {
+                            return NotFound(new { message = "Stock transfer failed. Check item availability." });
+                        }
+                    }
                 }
             }
         }
@@ -129,4 +146,5 @@ public class TransferStockController : ControllerBase
             return StatusCode(500, new { message = "Internal server error.", error = ex.Message });
         }
     }
+
 }
