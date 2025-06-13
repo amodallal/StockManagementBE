@@ -49,6 +49,16 @@ namespace StockManagement.Controllers
             return Ok(new { exists });
         }
 
+
+        [HttpGet("CheckSN/{SerialNumber}")]
+        public async Task<IActionResult> CheckSN(string SerialNumber)
+        {
+            var exists = await _context.ItemDetails
+                .AnyAsync(item => item.SerialNumber == SerialNumber);
+
+            return Ok(new { exists });
+        }
+
         [HttpGet("GetbyIMEI/{imei1}")]
         public async Task<IActionResult> GetByIMEI(string imei1)
         {
