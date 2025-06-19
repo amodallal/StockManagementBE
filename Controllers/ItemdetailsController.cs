@@ -239,8 +239,10 @@ namespace StockManagement.Controllers
         [HttpGet("GetByBarcode/{barcode}")]
         public async Task<IActionResult> GetByBarcode(string barcode)
         {
+            // This query is rewritten with LEFT JOINs to prevent data loss from missing relational info.
             var itemDetailsQuery = _context.ItemDetails
                 .Where(item => item.Barcode == barcode)
+                // LEFT JOIN to Items
                 .GroupJoin(_context.Items,
                     id => id.ItemId,
                     i => i.ItemId,
@@ -248,6 +250,7 @@ namespace StockManagement.Controllers
                 .SelectMany(
                     x => x.items.DefaultIfEmpty(),
                     (x, item) => new { x.itemDetail, item })
+                // LEFT JOIN to Brands
                 .GroupJoin(_context.Brands,
                     prev => prev.item.BrandId,
                     b => b.BrandId,
@@ -255,6 +258,7 @@ namespace StockManagement.Controllers
                 .SelectMany(
                     x => x.brands.DefaultIfEmpty(),
                     (x, brand) => new { x.prev.itemDetail, x.prev.item, brand })
+                // LEFT JOIN to ItemSupplier
                 .GroupJoin(_context.ItemSupplier,
                     prev => prev.item.ItemId,
                     itemsup => itemsup.ItemId,
@@ -267,6 +271,7 @@ namespace StockManagement.Controllers
                         brand = x.prev.brand,
                         itemSupplier
                     })
+                // LEFT JOIN to Suppliers
                 .GroupJoin(_context.Suppliers,
                     prev => prev.itemSupplier.SupplierId,
                     s => s.SupplierId,
@@ -280,6 +285,7 @@ namespace StockManagement.Controllers
                         itemSupplier = x.prev.itemSupplier,
                         supplier
                     })
+                // LEFT JOIN to Colors
                 .GroupJoin(_context.Colors,
                     prev => prev.item.ColorId,
                     c => c.ColorId,
@@ -294,6 +300,7 @@ namespace StockManagement.Controllers
                         supplier = x.prev.supplier,
                         color
                     })
+                // LEFT JOIN to Categories
                 .GroupJoin(_context.Categories,
                     prev => prev.item.CategoryId,
                     cat => cat.CategoryId,
@@ -311,7 +318,7 @@ namespace StockManagement.Controllers
                         category
                     })
                 .Select(joined => new
-                {
+                {   
                     joined.itemDetail.ItemDetailsId,
                     joined.itemDetail.ItemId,
                     joined.itemDetail.SerialNumber,
@@ -322,25 +329,26 @@ namespace StockManagement.Controllers
                     joined.itemDetail.SalePrice,
                     joined.itemDetail.Cost,
                     joined.itemDetail.DateReceived,
+                    // Safely access potentially null joined data
                     SupplierName = joined.supplier != null ? joined.supplier.SupplierName : "N/A",
                     BrandName = joined.brand != null ? joined.brand.BrandName : "N/A",
                     ItemName = joined.item != null ? joined.item.Name : "N/A",
                     ModelNumber = joined.item != null ? joined.item.ModelNumber : "N/A",
                     ColorName = joined.color != null ? joined.color.ColorName : "N/A",
                     CategoryIdentifier = joined.category != null ? joined.category.Identifier : "N/A",
+                    // Safely get the first capacity name or a default value
                     CapacityName = joined.item != null && joined.item.Capacities.Any() ? joined.item.Capacities.First().CapacityName : "N/A"
                 });
 
-            var itemDetails = await itemDetailsQuery.FirstOrDefaultAsync();
+            var itemDetailsList = await itemDetailsQuery.ToListAsync();
 
-            if (itemDetails == null)
+            if (itemDetailsList == null || !itemDetailsList.Any())
             {
-                return NotFound(new { message = "No item found for this barcode." });
+                return NotFound(new { message = "No items found for this barcode." });
             }
 
-            return Ok(itemDetails);
+            return Ok(itemDetailsList);
         }
-
 
 
 
