@@ -77,7 +77,7 @@ namespace StockManagement.Controllers
         [HttpGet("test")]
         public IActionResult GetTestData()
         {
-            var items = _context.Roles.ToList();
+            var items = _context.Orders.ToList();
             return Ok(items);
         }
     }

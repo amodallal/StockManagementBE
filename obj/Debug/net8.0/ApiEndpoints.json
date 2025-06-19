@@ -189,39 +189,13 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "StockManagement.Controllers.DescriptionController",
-    "Method": "GetTestData",
-    "RelativePath": "api/Description",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
     "ContainingType": "StockManagement.Controllers.EmployeesController",
-    "Method": "GetTestData",
+    "Method": "GetEmployeesWithRoles",
     "RelativePath": "api/Employees",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "StockManagement.Controllers.EmployeesController",
-    "Method": "PostEmployee",
-    "RelativePath": "api/Employees",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "employee",
-        "Type": "StockManagement.Models.Employee",
-        "IsRequired": true
-      }
-    ],
     "ReturnTypes": []
   },
   {
@@ -313,6 +287,70 @@
     "Parameters": [
       {
         "Name": "imei1",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "StockManagement.Controllers.ItemdetailsController",
+    "Method": "CheckSN",
+    "RelativePath": "api/Itemdetails/CheckSN/{SerialNumber}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "SerialNumber",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "StockManagement.Controllers.ItemdetailsController",
+    "Method": "GetByBarcode",
+    "RelativePath": "api/Itemdetails/GetByBarcode/{barcode}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "barcode",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "StockManagement.Controllers.ItemdetailsController",
+    "Method": "GetByIMEI",
+    "RelativePath": "api/Itemdetails/GetbyIMEI/{imei1}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "imei1",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "StockManagement.Controllers.ItemdetailsController",
+    "Method": "GetBySerialNumber",
+    "RelativePath": "api/Itemdetails/GetBySerialNumber/{serialNumber}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "serialNumber",
         "Type": "System.String",
         "IsRequired": true
       }
@@ -441,6 +479,22 @@
   },
   {
     "ContainingType": "StockManagement.Controllers.ItemsController",
+    "Method": "GetIdentifierByBarcode",
+    "RelativePath": "api/Items/get-identifier/{barcode}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "barcode",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "StockManagement.Controllers.ItemsController",
     "Method": "AddItemCapacities",
     "RelativePath": "api/Items/item-capacities",
     "HttpMethod": "POST",
@@ -503,9 +557,71 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "StockManagement.Controllers.OrdersController",
+    "Method": "PlaceOrder",
+    "RelativePath": "api/Orders/place",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "data",
+        "Type": "System.Text.Json.JsonElement",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "StockManagement.Controllers.OrdersController",
+    "Method": "GetTestData",
+    "RelativePath": "api/Orders/test",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "StockManagement.Controllers.RoleController",
     "Method": "GetTestData",
     "RelativePath": "api/Role",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "StockManagement.Controllers.SalesmanController",
+    "Method": "GetItemsBySalesmanId",
+    "RelativePath": "api/Salesman/{employeeId}/items",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "employeeId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[System.Object, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "StockManagement.Controllers.StatusController",
+    "Method": "GetTestData",
+    "RelativePath": "api/Status",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -520,6 +636,54 @@
     "IsController": true,
     "Order": 0,
     "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TransferStockController",
+    "Method": "TransferIMEIStockToSalesman",
+    "RelativePath": "api/TransferStock/transfer-imei-stock",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "StockManagement.Models.TransferIMEIStockRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TransferStockController",
+    "Method": "TransferSerialStockToSalesman",
+    "RelativePath": "api/TransferStock/transfer-serial-stock",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "StockManagement.Models.TransferSerialStockRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TransferStockController",
+    "Method": "TransferStockToSalesman",
+    "RelativePath": "api/TransferStock/transfer-stock",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "TransferStockRequest",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": []
   }
 ]
