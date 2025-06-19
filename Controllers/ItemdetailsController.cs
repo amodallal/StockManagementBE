@@ -62,135 +62,172 @@ namespace StockManagement.Controllers
         [HttpGet("GetbyIMEI/{imei1}")]
         public async Task<IActionResult> GetByIMEI(string imei1)
         {
-            // Fetch item details along with supplier name, brand name, item name, capacities, color, and sale price/cost from ItemSupplier
-            var itemDetails = await _context.ItemDetails
+            var itemDetailsQuery = _context.ItemDetails
                 .Where(item => item.Imei1 == imei1)
-                .Join(_context.Items,
-                      itemDetails => itemDetails.ItemId,
-                      item => item.ItemId,
-                      (itemDetails, item) => new { itemDetails, item })  // Joining ItemDetails with Items
-                .Join(_context.Categories,  // Join with Category table using CategoryId
-                      joined => joined.item.CategoryId,
-                      category => category.CategoryId,
-                      (joined, category) => new { joined.itemDetails, joined.item, category }) // Adding Category
-
-                .Join(_context.Brands,  // Join with Brands table
-                      joined => joined.item.BrandId,
-                      brand => brand.BrandId,
-                      (joined, brand) => new { joined.itemDetails, joined.item, brand }) // Adding Brand data
-
-
-                .Join(_context.ItemSupplier,  // Join with ItemSupplier table using the ItemId and SupplierId from ItemDetails
-                      joined => joined.item.ItemId,
-                      itemSupplier => itemSupplier.ItemId,
-                      (joined, itemSupplier) => new { joined.itemDetails, joined.item, joined.brand, itemSupplier }) // Joining with ItemSupplier
-                .Where(joined => joined.itemDetails.SupplierId == joined.itemSupplier.SupplierId)  // Filter by SupplierId from ItemDetails
-
-                .Join(_context.Suppliers,  // Join with Supplier table using SupplierId from ItemSupplier
-                      joined => joined.itemSupplier.SupplierId,
-                      supplier => supplier.SupplierId,
-                      (joined, supplier) => new { joined.itemDetails, joined.item, joined.brand, joined.itemSupplier, supplier }) // Joining with Supplier
-
-                .Join(_context.Colors,  // Join with Colors table using ColorId
-                      joined => joined.item.ColorId,
-                      color => color.ColorId,
-                      (joined, color) => new { joined.itemDetails, joined.item, joined.brand, joined.itemSupplier, joined.supplier, color }) // Adding Color data
-
-                // Use the navigation property for the many-to-many relationship with Capacities
-                .SelectMany(joined => joined.item.Capacities,  // Access the Capacities navigation property
-                            (joined, capacity) => new
-                            {
-                                joined.itemDetails.ItemDetailsId,
-                                joined.itemDetails.ItemId,
-                                joined.itemDetails.SerialNumber,
-                                joined.itemDetails.Imei1,
-                                joined.itemDetails.Imei2,
-                                joined.itemDetails.Barcode,
-                                joined.itemDetails.Quantity,                                SalePrice = joined.itemSupplier.SalePrice,  // Get SalePrice from ItemSupplier
-                                Cost = joined.itemSupplier.CostPrice,  // Get Cost from ItemSupplier
-                                joined.itemDetails.DateReceived,
-                                SupplierName = joined.supplier.SupplierName,  // Getting Supplier Name
-                                BrandName = joined.brand.BrandName,  // Getting Brand Name from Brands table
-                                ItemName = joined.item.Name,  // Fetching Item Name from Items table
-                                ModelNumber = joined.item.ModelNumber,
-                                CapacityName = capacity.CapacityName,  // Fetching Capacity Name from Capacities table
-                                ColorName = joined.color.ColorName,  // Fetching Color Name from Colors table
-                                
-          
-                            })
+                // LEFT JOIN to Items
+                .GroupJoin(_context.Items,
+                    id => id.ItemId,
+                    i => i.ItemId,
+                    (itemDetail, items) => new { itemDetail, items })
+                .SelectMany(
+                    x => x.items.DefaultIfEmpty(),
+                    (x, item) => new { x.itemDetail, item })
+                // LEFT JOIN to Brands
+                .GroupJoin(_context.Brands,
+                    prev => prev.item.BrandId,
+                    b => b.BrandId,
+                    (prev, brands) => new { prev.itemDetail, prev.item, brands })
+                .SelectMany(
+                    x => x.brands.DefaultIfEmpty(),
+                    (x, brand) => new { x.itemDetail, x.item, brand })
+                // LEFT JOIN to Colors
+                .GroupJoin(_context.Colors,
+                    prev => prev.item.ColorId,
+                    c => c.ColorId,
+                    (prev, colors) => new { prev.itemDetail, prev.item, prev.brand, colors })
+                .SelectMany(
+                    x => x.colors.DefaultIfEmpty(),
+                    (x, color) => new { x.itemDetail, x.item, x.brand, color })
+                // LEFT JOIN to ItemSupplier (this logic seems complex, ensuring it handles nulls)
+                .GroupJoin(_context.ItemSupplier,
+                    prev => prev.item.ItemId,
+                    itemsup => itemsup.ItemId,
+                    (prev, itemSuppliers) => new { prev.itemDetail, prev.item, prev.brand, prev.color, itemSuppliers })
+                .SelectMany(
+                    x => x.itemSuppliers.Where(itemsup => itemsup.SupplierId == x.itemDetail.SupplierId).DefaultIfEmpty(),
+                    (x, itemSupplier) => new { x.itemDetail, x.item, x.brand, x.color, itemSupplier })
+                // LEFT JOIN to Suppliers
+                .GroupJoin(_context.Suppliers,
+                    prev => prev.itemSupplier.SupplierId,
+                    s => s.SupplierId,
+                    (prev, suppliers) => new { prev.itemDetail, prev.item, prev.brand, prev.color, prev.itemSupplier, suppliers })
+                .SelectMany(
+                    x => x.suppliers.DefaultIfEmpty(),
+                    (x, supplier) => new { x.itemDetail, x.item, x.brand, x.color, x.itemSupplier, supplier })
+                .Select(joined => new
+                {
+                    joined.itemDetail.ItemDetailsId,
+                    joined.itemDetail.ItemId,
+                    joined.itemDetail.SerialNumber,
+                    joined.itemDetail.Imei1,
+                    joined.itemDetail.Imei2,
+                    joined.itemDetail.Barcode,
+                    joined.itemDetail.Quantity,
+                    joined.itemDetail.Cost,
+                    joined.itemDetail.SalePrice,
+                    joined.itemDetail.DateReceived,
+                    // Use null-conditional operator to prevent errors if a join failed
+                    SupplierName = joined.supplier != null ? joined.supplier.SupplierName : "N/A",
+                    BrandName = joined.brand != null ? joined.brand.BrandName : "N/A",
+                    ItemName = joined.item != null ? joined.item.Name : "N/A",
+                    ModelNumber = joined.item != null ? joined.item.ModelNumber : "N/A",
+                    ColorName = joined.color != null ? joined.color.ColorName : "N/A",
+                    // Handling many-to-many for capacities would require a separate query or sub-select for robustness
+                    // For simplicity, this part is omitted but should also be handled carefully.
+                    CapacityName = joined.item.Capacities.FirstOrDefault().CapacityName ?? "N/A"
+                })
                 .FirstOrDefaultAsync();
 
-            // Check if the item exists
-            if (itemDetails == null)
+            var result = await itemDetailsQuery;
+
+            if (result == null)
             {
                 return NotFound("Item not found.");
             }
 
-            return Ok(itemDetails);
+            return Ok(result);
         }
+
 
         [HttpGet("GetBySerialNumber/{serialNumber}")]
         public async Task<IActionResult> GetBySerialNumber(string serialNumber)
         {
-            // Fetch item details along with category identifier, supplier name, brand name, item name, capacities, color, and sale price/cost from ItemSupplier
-            var itemDetails = await _context.ItemDetails
+            // The query is now structured with LEFT JOINs to be more robust.
+            var itemDetailsQuery = _context.ItemDetails
                 .Where(item => item.SerialNumber == serialNumber)
-
-                .Join(_context.Items,  // Join with Items table
-                      itemDetails => itemDetails.ItemId,
-                      item => item.ItemId,
-                      (itemDetails, item) => new { itemDetails, item })
-
-                .Join(_context.Categories,  // Join with Category table using CategoryId
-                      joined => joined.item.CategoryId,
-                      category => category.CategoryId,
-                      (joined, category) => new { joined.itemDetails, joined.item, category }) // Adding Category
-
-                .Join(_context.Brands,  // Join with Brands table
-                      joined => joined.item.BrandId,
-                      brand => brand.BrandId,
-                      (joined, brand) => new { joined.itemDetails, joined.item, joined.category, brand }) // Adding Brand
-
-                .Join(_context.ItemSupplier,  // Join with ItemSupplier table
-                      joined => joined.item.ItemId,
-                      itemSupplier => itemSupplier.ItemId,
-                      (joined, itemSupplier) => new { joined.itemDetails, joined.item, joined.category, joined.brand, itemSupplier })
-
-                .Join(_context.Suppliers,  // Join with Supplier table using SupplierId from ItemSupplier
-                      joined => joined.itemSupplier.SupplierId,
-                      supplier => supplier.SupplierId,
-                      (joined, supplier) => new { joined.itemDetails, joined.item, joined.category, joined.brand, joined.itemSupplier, supplier })
-
-                .Join(_context.Colors,  // Join with Colors table using ColorId
-                      joined => joined.item.ColorId,
-                      color => color.ColorId,
-                      (joined, color) => new { joined.itemDetails, joined.item, joined.category, joined.brand, joined.itemSupplier, joined.supplier, color })
-
-                // Use navigation property for the many-to-many relationship with Capacities
-                .SelectMany(joined => joined.item.Capacities,
-                            (joined, capacity) => new
-                            {
-                                joined.itemDetails.ItemDetailsId,
-                                joined.itemDetails.ItemId,
-                                joined.itemDetails.SerialNumber,
-                                joined.itemDetails.Imei1,
-                                joined.itemDetails.Imei2,
-                                joined.itemDetails.Barcode,
-                                joined.itemDetails.Quantity,
-                                SalePrice = joined.itemSupplier.SalePrice,
-                                Cost = joined.itemSupplier.CostPrice,
-                                joined.itemDetails.DateReceived,
-                                SupplierName = joined.supplier.SupplierName,
-                                BrandName = joined.brand.BrandName,
-                                ItemName = joined.item.Name,
-                                ModelNumber = joined.item.ModelNumber,
-                                CapacityName = capacity.CapacityName,
-                                ColorName = joined.color.ColorName,
-                                Identifier = joined.category.Identifier  // Fetching Category Identifier
-                            })
+                // LEFT JOIN to Items
+                .GroupJoin(_context.Items,
+                    id => id.ItemId,
+                    i => i.ItemId,
+                    (itemDetail, items) => new { itemDetail, items })
+                .SelectMany(
+                    x => x.items.DefaultIfEmpty(),
+                    (x, item) => new { x.itemDetail, item })
+                // LEFT JOIN to Categories
+                .GroupJoin(_context.Categories,
+                    prev => prev.item.CategoryId,
+                    cat => cat.CategoryId,
+                    (prev, categories) => new { prev.itemDetail, prev.item, categories })
+                .SelectMany(
+                    x => x.categories.DefaultIfEmpty(),
+                    (x, category) => new { x.itemDetail, x.item, category })
+                // LEFT JOIN to Brands
+                .GroupJoin(_context.Brands,
+                    prev => prev.item.BrandId,
+                    b => b.BrandId,
+                    (prev, brands) => new { prev.itemDetail, prev.item, prev.category, brands })
+                .SelectMany(
+                    x => x.brands.DefaultIfEmpty(),
+                    (x, brand) => new { x.itemDetail, x.item, x.category, brand })
+                // LEFT JOIN to ItemSupplier
+                .GroupJoin(_context.ItemSupplier,
+                    prev => prev.item.ItemId,
+                    itemsup => itemsup.ItemId,
+                    (prev, itemSuppliers) => new { prev.itemDetail, prev.item, prev.category, prev.brand, itemSuppliers })
+                .SelectMany(
+                    x => x.itemSuppliers.Where(itemsup => itemsup.SupplierId == x.itemDetail.SupplierId).DefaultIfEmpty(),
+                    (x, itemSupplier) => new { x.itemDetail, x.item, x.category, x.brand, itemSupplier })
+                // LEFT JOIN to Suppliers
+                .GroupJoin(_context.Suppliers,
+                    prev => prev.itemSupplier.SupplierId,
+                    s => s.SupplierId,
+                    (prev, suppliers) => new { prev, suppliers })
+                .SelectMany(
+                    x => x.suppliers.DefaultIfEmpty(),
+                    (x, supplier) => new { x.prev.itemDetail, x.prev.item, x.prev.category, x.prev.brand, x.prev.itemSupplier, supplier })
+                // LEFT JOIN to Colors
+                .GroupJoin(_context.Colors,
+                    prev => prev.item.ColorId,
+                    c => c.ColorId,
+                    (prev, colors) => new { prev, colors })
+                .SelectMany(
+                    x => x.colors.DefaultIfEmpty(),
+                    (x, color) => new
+                    {
+                        x.prev.itemDetail,
+                        x.prev.item,
+                        x.prev.category,
+                        x.prev.brand,
+                        x.prev.itemSupplier,
+                        x.prev.supplier,
+                        color
+                    })
+                .Select(joined => new
+                {
+                    joined.itemDetail.ItemDetailsId,
+                    joined.itemDetail.ItemId,
+                    joined.itemDetail.SerialNumber,
+                    joined.itemDetail.Imei1,
+                    joined.itemDetail.Imei2,
+                    joined.itemDetail.Barcode,
+                    joined.itemDetail.Quantity,
+                    joined.itemDetail.SalePrice,
+                    joined.itemDetail.Cost,
+                    joined.itemDetail.DateReceived,
+                    // Use null-conditional operators to safely access joined data
+                    SupplierName = joined.supplier != null ? joined.supplier.SupplierName : "N/A",
+                    BrandName = joined.brand != null ? joined.brand.BrandName : "N/A",
+                    ItemName = joined.item != null ? joined.item.Name : "N/A",
+                    ModelNumber = joined.item != null ? joined.item.ModelNumber : "N/A",
+                    ColorName = joined.color != null ? joined.color.ColorName : "N/A",
+                    Identifier = joined.category != null ? joined.category.Identifier : "N/A",
+                    // Safely get the first capacity or a default value
+                    CapacityName = joined.item.Capacities.FirstOrDefault() != null ? joined.item.Capacities.First().CapacityName : "N/A"
+                })
                 .FirstOrDefaultAsync();
 
-            // Check if the item exists
+            var itemDetails = await itemDetailsQuery;
+
             if (itemDetails == null)
             {
                 return NotFound("Item not found.");
@@ -199,75 +236,111 @@ namespace StockManagement.Controllers
             return Ok(itemDetails);
         }
 
-
         [HttpGet("GetByBarcode/{barcode}")]
         public async Task<IActionResult> GetByBarcode(string barcode)
         {
-            var itemDetailsList = await _context.ItemDetails
+            var itemDetailsQuery = _context.ItemDetails
                 .Where(item => item.Barcode == barcode)
-                .Join(_context.Items,
-                      itemDetails => itemDetails.ItemId,
-                      item => item.ItemId,
-                      (itemDetails, item) => new { itemDetails, item }) // Joining ItemDetails with Items
+                .GroupJoin(_context.Items,
+                    id => id.ItemId,
+                    i => i.ItemId,
+                    (itemDetail, items) => new { itemDetail, items })
+                .SelectMany(
+                    x => x.items.DefaultIfEmpty(),
+                    (x, item) => new { x.itemDetail, item })
+                .GroupJoin(_context.Brands,
+                    prev => prev.item.BrandId,
+                    b => b.BrandId,
+                    (prev, brands) => new { prev, brands })
+                .SelectMany(
+                    x => x.brands.DefaultIfEmpty(),
+                    (x, brand) => new { x.prev.itemDetail, x.prev.item, brand })
+                .GroupJoin(_context.ItemSupplier,
+                    prev => prev.item.ItemId,
+                    itemsup => itemsup.ItemId,
+                    (prev, itemSuppliers) => new { prev, itemSuppliers })
+                .SelectMany(
+                    x => x.itemSuppliers.Where(itemsup => itemsup.SupplierId == x.prev.itemDetail.SupplierId).DefaultIfEmpty(),
+                    (x, itemSupplier) => new {
+                        itemDetail = x.prev.itemDetail,
+                        item = x.prev.item,
+                        brand = x.prev.brand,
+                        itemSupplier
+                    })
+                .GroupJoin(_context.Suppliers,
+                    prev => prev.itemSupplier.SupplierId,
+                    s => s.SupplierId,
+                    (prev, suppliers) => new { prev, suppliers })
+                .SelectMany(
+                    x => x.suppliers.DefaultIfEmpty(),
+                    (x, supplier) => new {
+                        itemDetail = x.prev.itemDetail,
+                        item = x.prev.item,
+                        brand = x.prev.brand,
+                        itemSupplier = x.prev.itemSupplier,
+                        supplier
+                    })
+                .GroupJoin(_context.Colors,
+                    prev => prev.item.ColorId,
+                    c => c.ColorId,
+                    (prev, colors) => new { prev, colors })
+                .SelectMany(
+                    x => x.colors.DefaultIfEmpty(),
+                    (x, color) => new {
+                        itemDetail = x.prev.itemDetail,
+                        item = x.prev.item,
+                        brand = x.prev.brand,
+                        itemSupplier = x.prev.itemSupplier,
+                        supplier = x.prev.supplier,
+                        color
+                    })
+                .GroupJoin(_context.Categories,
+                    prev => prev.item.CategoryId,
+                    cat => cat.CategoryId,
+                    (prev, categories) => new { prev, categories })
+                .SelectMany(
+                    x => x.categories.DefaultIfEmpty(),
+                    (x, category) => new
+                    {
+                        itemDetail = x.prev.itemDetail,
+                        item = x.prev.item,
+                        brand = x.prev.brand,
+                        itemSupplier = x.prev.itemSupplier,
+                        supplier = x.prev.supplier,
+                        color = x.prev.color,
+                        category
+                    })
+                .Select(joined => new
+                {
+                    joined.itemDetail.ItemDetailsId,
+                    joined.itemDetail.ItemId,
+                    joined.itemDetail.SerialNumber,
+                    joined.itemDetail.Imei1,
+                    joined.itemDetail.Imei2,
+                    joined.itemDetail.Barcode,
+                    joined.itemDetail.Quantity,
+                    joined.itemDetail.SalePrice,
+                    joined.itemDetail.Cost,
+                    joined.itemDetail.DateReceived,
+                    SupplierName = joined.supplier != null ? joined.supplier.SupplierName : "N/A",
+                    BrandName = joined.brand != null ? joined.brand.BrandName : "N/A",
+                    ItemName = joined.item != null ? joined.item.Name : "N/A",
+                    ModelNumber = joined.item != null ? joined.item.ModelNumber : "N/A",
+                    ColorName = joined.color != null ? joined.color.ColorName : "N/A",
+                    CategoryIdentifier = joined.category != null ? joined.category.Identifier : "N/A",
+                    CapacityName = joined.item != null && joined.item.Capacities.Any() ? joined.item.Capacities.First().CapacityName : "N/A"
+                });
 
-                .Join(_context.Brands,  // Join with Brands table
-                      joined => joined.item.BrandId,
-                      brand => brand.BrandId,
-                      (joined, brand) => new { joined.itemDetails, joined.item, brand }) // Adding Brand data
+            var itemDetails = await itemDetailsQuery.FirstOrDefaultAsync();
 
-                .Join(_context.ItemSupplier,  // Join with ItemSupplier table
-                      joined => joined.item.ItemId,
-                      itemSupplier => itemSupplier.ItemId,
-                      (joined, itemSupplier) => new { joined.itemDetails, joined.item, joined.brand, itemSupplier }) // Joining with ItemSupplier
-                .Where(joined => joined.itemDetails.SupplierId == joined.itemSupplier.SupplierId)  // Filter by SupplierId from ItemDetails
-
-                .Join(_context.Suppliers,  // Join with Supplier table
-                      joined => joined.itemSupplier.SupplierId,
-                      supplier => supplier.SupplierId,
-                      (joined, supplier) => new { joined.itemDetails, joined.item, joined.brand, joined.itemSupplier, supplier }) // Joining with Supplier
-
-                .Join(_context.Colors,  // Join with Colors table
-                      joined => joined.item.ColorId,
-                      color => color.ColorId,
-                      (joined, color) => new { joined.itemDetails, joined.item, joined.brand, joined.itemSupplier, joined.supplier, color }) // Adding Color data
-
-                .Join(_context.Categories,  // Join with Category table
-                      joined => joined.item.CategoryId,
-                      category => category.CategoryId,
-                      (joined, category) => new { joined.itemDetails, joined.item, joined.brand, joined.itemSupplier, joined.supplier, joined.color, category }) // Adding Category data
-
-                // Use the navigation property for the many-to-many relationship with Capacities
-                .SelectMany(joined => joined.item.Capacities,  // Access the Capacities navigation property
-                            (joined, capacity) => new
-                            {
-                                
-                                joined.itemDetails.ItemId,
-                                joined.itemDetails.SerialNumber,
-                                joined.itemDetails.Imei1,
-                                joined.itemDetails.Imei2,
-                                joined.itemDetails.Barcode,
-                                joined.itemDetails.Quantity,
-                                joined.itemDetails.SalePrice,  // Get SalePrice from ItemSupplier
-                                joined.itemDetails.Cost, 
-                                joined.itemDetails.DateReceived,
-                                SupplierName = joined.supplier.SupplierName,  // Getting Supplier Name
-                                BrandName = joined.brand.BrandName,  // Getting Brand Name from Brands table
-                                ItemName = joined.item.Name,  // Fetching Item Name from Items table
-                                ModelNumber = joined.item.ModelNumber,
-                                CapacityName = capacity.CapacityName,  // Fetching Capacity Name from Capacities table
-                                ColorName = joined.color.ColorName,  // Fetching Color Name from Colors table
-                                CategoryIdentifier = joined.category.Identifier  // Fetching Category Identifier from Category table
-                            })
-                .ToListAsync();
-
-            // Check if any items exist
-            if (itemDetailsList == null || itemDetailsList.Count == 0)
+            if (itemDetails == null)
             {
-                return NotFound(new { message = "No items found for this barcode." });
+                return NotFound(new { message = "No item found for this barcode." });
             }
 
-            return Ok(itemDetailsList);
+            return Ok(itemDetails);
         }
+
 
 
 
