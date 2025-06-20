@@ -315,6 +315,9 @@ public partial class StockManagementContext : DbContext
             entity.Property(e => e.TotalAmount)
                 .HasColumnType("decimal(10, 2)")
                 .HasColumnName("total amount");
+            entity.Property(e => e.vat)
+                .HasColumnType("decimal(10, 2)")
+                .HasColumnName("vat");
 
             entity.HasOne(d => d.Customer).WithMany(p => p.Orders)
                 .HasForeignKey(d => d.CustomerId)

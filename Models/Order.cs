@@ -13,6 +13,9 @@ public partial class Order
 
     public DateOnly? OrderDate { get; set; }
 
+
+    public decimal? vat { get; set; }
+
     public decimal? TotalAmount { get; set; }
 
     public int? Status_Id { get; set; }
