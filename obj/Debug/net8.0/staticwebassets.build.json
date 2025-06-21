@@ -1,11 +1,12 @@
 {
   "Version": 1,
-  "Hash": "W8MgC1uEpsKiBEypc0766xmjviem2gnUuL+iQJ/xgK8=",
+  "Hash": "CDk+N+UytCzz1FPh0fuI8CynxNArYomAE5/2ZHcGEI4=",
   "Source": "StockManagement",
   "BasePath": "_content/StockManagement",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
   "DiscoveryPatterns": [],
-  "Assets": []
+  "Assets": [],
+  "Endpoints": []
 }

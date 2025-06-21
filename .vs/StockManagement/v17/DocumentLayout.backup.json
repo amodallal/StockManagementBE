@@ -3,20 +3,32 @@
   "WorkspaceRootPath": "D:\\StockManagementBE\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{EF061CC4-749C-4BD4-8124-893A4613BF52}|StockManagement.csproj|d:\\stockmanagementbe\\controllers\\transferstockcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EF061CC4-749C-4BD4-8124-893A4613BF52}|StockManagement.csproj|solutionrelative:controllers\\transferstockcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{EF061CC4-749C-4BD4-8124-893A4613BF52}|StockManagement.csproj|d:\\stockmanagementbe\\controllers\\returnscontroller.cs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF061CC4-749C-4BD4-8124-893A4613BF52}|StockManagement.csproj|solutionrelative:controllers\\returnscontroller.cs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EF061CC4-749C-4BD4-8124-893A4613BF52}|StockManagement.csproj|d:\\stockmanagementbe\\models\\itemsupplier.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EF061CC4-749C-4BD4-8124-893A4613BF52}|StockManagement.csproj|solutionrelative:models\\itemsupplier.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{EF061CC4-749C-4BD4-8124-893A4613BF52}|StockManagement.csproj|d:\\stockmanagementbe\\controllers\\orderscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF061CC4-749C-4BD4-8124-893A4613BF52}|StockManagement.csproj|solutionrelative:controllers\\orderscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF061CC4-749C-4BD4-8124-893A4613BF52}|StockManagement.csproj|d:\\stockmanagementbe\\data\\stockmanagementcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF061CC4-749C-4BD4-8124-893A4613BF52}|StockManagement.csproj|solutionrelative:data\\stockmanagementcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF061CC4-749C-4BD4-8124-893A4613BF52}|StockManagement.csproj|d:\\stockmanagementbe\\controllers\\capacitiescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF061CC4-749C-4BD4-8124-893A4613BF52}|StockManagement.csproj|solutionrelative:controllers\\capacitiescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{EF061CC4-749C-4BD4-8124-893A4613BF52}|StockManagement.csproj|d:\\stockmanagementbe\\controllers\\itemscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{EF061CC4-749C-4BD4-8124-893A4613BF52}|StockManagement.csproj|solutionrelative:controllers\\itemscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EF061CC4-749C-4BD4-8124-893A4613BF52}|StockManagement.csproj|d:\\stockmanagementbe\\data\\stockmanagementcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EF061CC4-749C-4BD4-8124-893A4613BF52}|StockManagement.csproj|solutionrelative:data\\stockmanagementcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{EF061CC4-749C-4BD4-8124-893A4613BF52}|StockManagement.csproj|d:\\stockmanagementbe\\controllers\\transferstockcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF061CC4-749C-4BD4-8124-893A4613BF52}|StockManagement.csproj|solutionrelative:controllers\\transferstockcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF061CC4-749C-4BD4-8124-893A4613BF52}|StockManagement.csproj|d:\\stockmanagementbe\\models\\itemsupplier.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF061CC4-749C-4BD4-8124-893A4613BF52}|StockManagement.csproj|solutionrelative:models\\itemsupplier.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{EF061CC4-749C-4BD4-8124-893A4613BF52}|StockManagement.csproj|d:\\stockmanagementbe\\models\\status.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -51,31 +63,56 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "TransferStockController.cs",
-              "DocumentMoniker": "D:\\StockManagementBE\\Controllers\\TransferStockController.cs",
-              "RelativeDocumentMoniker": "Controllers\\TransferStockController.cs",
-              "ToolTip": "D:\\StockManagementBE\\Controllers\\TransferStockController.cs",
-              "RelativeToolTip": "Controllers\\TransferStockController.cs",
-              "ViewState": "AgIAADMAAAAAAAAAAAAowGwAAAAQAAAAAAAAAA==",
+              "Title": "ReturnsController.cs.cs",
+              "DocumentMoniker": "D:\\StockManagementBE\\Controllers\\ReturnsController.cs.cs",
+              "RelativeDocumentMoniker": "Controllers\\ReturnsController.cs.cs",
+              "ToolTip": "D:\\StockManagementBE\\Controllers\\ReturnsController.cs.cs",
+              "RelativeToolTip": "Controllers\\ReturnsController.cs.cs",
+              "ViewState": "AgIAAE4AAAAAAAAAAAAgwGEAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-09T16:11:58.204Z",
+              "WhenOpened": "2025-06-21T06:29:37.009Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
+              "Title": "CapacitiesController.cs",
+              "DocumentMoniker": "D:\\StockManagementBE\\Controllers\\CapacitiesController.cs",
+              "RelativeDocumentMoniker": "Controllers\\CapacitiesController.cs",
+              "ToolTip": "D:\\StockManagementBE\\Controllers\\CapacitiesController.cs",
+              "RelativeToolTip": "Controllers\\CapacitiesController.cs",
+              "ViewState": "AgIAACMAAAAAAAAAAAAwwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-19T18:41:17.284Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "OrdersController.cs",
+              "DocumentMoniker": "D:\\StockManagementBE\\Controllers\\OrdersController.cs",
+              "RelativeDocumentMoniker": "Controllers\\OrdersController.cs",
+              "ToolTip": "D:\\StockManagementBE\\Controllers\\OrdersController.cs",
+              "RelativeToolTip": "Controllers\\OrdersController.cs",
+              "ViewState": "AgIAAEgAAAAAAAAAAAAowK0AAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-19T17:30:06.531Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "ItemsController.cs",
               "DocumentMoniker": "D:\\StockManagementBE\\Controllers\\ItemsController.cs",
               "RelativeDocumentMoniker": "Controllers\\ItemsController.cs",
               "ToolTip": "D:\\StockManagementBE\\Controllers\\ItemsController.cs",
               "RelativeToolTip": "Controllers\\ItemsController.cs",
-              "ViewState": "AgIAAPAAAAAAAAAAAAAkwAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAIEAAAAAAAAAAAAAAJIAAAAXAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-30T17:02:14.865Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 11,
               "Title": "Item.cs",
               "DocumentMoniker": "D:\\StockManagementBE\\Models\\Item.cs",
               "RelativeDocumentMoniker": "Models\\Item.cs",
@@ -87,7 +124,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 6,
               "Title": "ItemSupplier.cs",
               "DocumentMoniker": "D:\\StockManagementBE\\Models\\ItemSupplier.cs",
               "RelativeDocumentMoniker": "Models\\ItemSupplier.cs",
@@ -99,7 +136,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 8,
               "Title": "Order.cs",
               "DocumentMoniker": "D:\\StockManagementBE\\Models\\Order.cs",
               "RelativeDocumentMoniker": "Models\\Order.cs",
@@ -111,7 +148,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 10,
               "Title": "SalesmanStock.cs",
               "DocumentMoniker": "D:\\StockManagementBE\\Models\\SalesmanStock.cs",
               "RelativeDocumentMoniker": "Models\\SalesmanStock.cs",
@@ -123,7 +160,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 9,
               "Title": "Delivery.cs",
               "DocumentMoniker": "D:\\StockManagementBE\\Models\\Delivery.cs",
               "RelativeDocumentMoniker": "Models\\Delivery.cs",
@@ -135,7 +172,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 7,
               "Title": "Status.cs",
               "DocumentMoniker": "D:\\StockManagementBE\\Models\\Status.cs",
               "RelativeDocumentMoniker": "Models\\Status.cs",
@@ -147,15 +184,28 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "StockManagementContext.cs",
               "DocumentMoniker": "D:\\StockManagementBE\\Data\\StockManagementContext.cs",
               "RelativeDocumentMoniker": "Data\\StockManagementContext.cs",
               "ToolTip": "D:\\StockManagementBE\\Data\\StockManagementContext.cs",
               "RelativeToolTip": "Data\\StockManagementContext.cs",
-              "ViewState": "AgIAAIAAAAAAAAAAAAAcwI0AAAArAAAAAAAAAA==",
+              "ViewState": "AgIAAN8AAAAAAAAAAAAAAOoAAAA7AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-22T19:59:25.902Z"
+              "WhenOpened": "2025-01-22T19:59:25.902Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "TransferStockController.cs",
+              "DocumentMoniker": "D:\\StockManagementBE\\Controllers\\TransferStockController.cs",
+              "RelativeDocumentMoniker": "Controllers\\TransferStockController.cs",
+              "ToolTip": "D:\\StockManagementBE\\Controllers\\TransferStockController.cs",
+              "RelativeToolTip": "Controllers\\TransferStockController.cs",
+              "ViewState": "AgIAAFAAAAAAAAAAAAAwwGwAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-09T16:11:58.204Z"
             }
           ]
         }
