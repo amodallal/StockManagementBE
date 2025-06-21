@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using StockManagement.Data;
+using StockManagement.Models;
 using System.Data;
 using System.Text.Json;
 
@@ -12,10 +14,12 @@ namespace StockManagement.Controllers
     public class OrdersController : ControllerBase
     {
         private readonly StockManagementContext _context;
+        private readonly IConfiguration _configuration;
 
-        public OrdersController(StockManagementContext context)
+        public OrdersController(StockManagementContext context, IConfiguration configuration)
         {
             _context = context;
+            _configuration = configuration;
         }
 
         [HttpPost("place")]
@@ -48,7 +52,6 @@ namespace StockManagement.Controllers
 
                 int orderId = 0;
 
-                // Use ADO.NET to read the returned @OrderId from SELECT
                 using var conn = _context.Database.GetDbConnection();
                 await conn.OpenAsync();
 
@@ -84,6 +87,7 @@ namespace StockManagement.Controllers
                 return BadRequest(new { message = "Error placing order", error = ex.Message });
             }
         }
+
         [HttpPost("cancel")]
         public async Task<IActionResult> CancelOrder([FromBody] JsonElement data)
         {
@@ -115,7 +119,6 @@ namespace StockManagement.Controllers
             }
             catch (SqlException sqlEx)
             {
-                // This captures RAISERROR messages from your SP
                 return BadRequest(new { message = sqlEx.Message });
             }
             catch (Exception ex)
@@ -128,6 +131,47 @@ namespace StockManagement.Controllers
             }
         }
 
+        [HttpGet("get-order-items/{orderId}")]
+        public async Task<IActionResult> GetOrderedItems(int orderId)
+        {
+            var result = new List<object>();
+            try
+            {
+                using var conn = new SqlConnection(_configuration.GetConnectionString("DefaultConnection"));
+                await conn.OpenAsync();
+
+                using var cmd = new SqlCommand("sp_GetOrderedItemsByOrderId", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@OrderId", orderId);
+
+                using var reader = await cmd.ExecuteReaderAsync();
+                while (await reader.ReadAsync())
+                {
+                    result.Add(new
+                    {
+                        orderedItemId = reader["ordered_item_id"],
+                        itemDetailsId = reader["item_details_id"],
+                        quantity = reader["quantity"],
+                        amount = reader["amount"],
+                        itemName = reader["item_name"],
+                        modelNumber = reader["model_number"],
+                        barcode = reader["barcode"],
+                        serialNumber = reader["serial_number"],
+                        imei1 = reader["imei_1"],
+                        dateReceived = reader["date_received"]
+                    });
+                }
+
+                if (result.Count == 0)
+                    return NotFound(new { message = "No items found for this order." });
+
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = "Failed to fetch order items", error = ex.Message });
+            }
+        }
 
         [HttpGet("test")]
         public IActionResult GetTestData()
