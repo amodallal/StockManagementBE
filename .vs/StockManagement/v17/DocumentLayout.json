@@ -68,7 +68,7 @@
               "RelativeDocumentMoniker": "Controllers\\ReturnsController.cs.cs",
               "ToolTip": "D:\\StockManagementBE\\Controllers\\ReturnsController.cs.cs",
               "RelativeToolTip": "Controllers\\ReturnsController.cs.cs",
-              "ViewState": "AgIAAE4AAAAAAAAAAAAgwFMAAAAZAAAAAAAAAA==",
+              "ViewState": "AgIAADIAAAAAAAAAAAAAAEcAAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-21T06:29:37.009Z",
               "EditorCaption": ""
@@ -95,8 +95,7 @@
               "RelativeToolTip": "Controllers\\OrdersController.cs",
               "ViewState": "AgIAAEgAAAAAAAAAAAAowK0AAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-19T17:30:06.531Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-19T17:30:06.531Z"
             },
             {
               "$type": "Document",
@@ -192,8 +191,7 @@
               "RelativeToolTip": "Data\\StockManagementContext.cs",
               "ViewState": "AgIAAN8AAAAAAAAAAAAAAOoAAAA7AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-22T19:59:25.902Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-22T19:59:25.902Z"
             },
             {
               "$type": "Document",
