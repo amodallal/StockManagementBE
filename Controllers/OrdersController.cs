@@ -39,10 +39,19 @@ namespace StockManagement.Controllers
 
                 foreach (var item in items)
                 {
-                    itemDetailsIds.Add(item.GetProperty("itemDetailsId").GetInt32());
-                    quantities.Add(item.GetProperty("quantity").GetInt32());
-                    discounts.Add(item.GetProperty("discount").GetDecimal());
-                    amounts.Add(item.GetProperty("salePrice").GetDecimal());
+                    int itemDetailsId = item.GetProperty("itemDetailsId").GetInt32();
+                    int quantity = item.GetProperty("quantity").GetInt32();
+                    decimal discount = item.GetProperty("discount").GetDecimal();
+                    decimal salePrice = item.GetProperty("salePrice").GetDecimal();
+
+                    // Optional validation: discount must not exceed sale price
+                    if (salePrice < discount)
+                        throw new Exception($"Item discount cannot exceed sale price. Item ID: {itemDetailsId}");
+
+                    itemDetailsIds.Add(itemDetailsId);
+                    quantities.Add(quantity);
+                    discounts.Add(discount);
+                    amounts.Add(salePrice);
                 }
 
                 var itemIdsCsv = string.Join(",", itemDetailsIds);
@@ -84,7 +93,11 @@ namespace StockManagement.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(new { message = "Error placing order", error = ex.Message });
+                return BadRequest(new
+                {
+                    message = "Error placing order",
+                    error = ex.Message
+                });
             }
         }
 

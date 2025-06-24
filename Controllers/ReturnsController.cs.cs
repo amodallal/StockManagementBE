@@ -81,22 +81,7 @@ namespace StockManagement.Controllers
         }
 
 
-        [HttpPost("create-credit-note/{returnId}")]
-        public async Task<IActionResult> CreateCreditNote(int returnId, [FromBody] string note)
-        {
-            try
-            {
-                var result = await _context.Database.ExecuteSqlRawAsync(@"
-            EXEC sp_IssueCreditNote @ReturnId = {0}, @Note = {1}
-        ", returnId, note ?? "");
-
-                return Ok(new { message = "Credit note issued successfully", returnId });
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(new { message = "Failed to issue credit note", error = ex.Message });
-            }
-        }
+    
 
     }
 }
