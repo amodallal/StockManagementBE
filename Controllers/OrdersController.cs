@@ -61,6 +61,10 @@ namespace StockManagement.Controllers
 
                 int orderId = 0;
 
+                // 🔐 Replace with actual logic to get the logged-in employee ID
+                // Example: int employeeId = int.Parse(User.FindFirst("employee_id").Value);
+                int employeeId = data.GetProperty("employeeId").GetInt32();
+
                 using var conn = _context.Database.GetDbConnection();
                 await conn.OpenAsync();
 
@@ -68,7 +72,7 @@ namespace StockManagement.Controllers
                 cmd.CommandText = @"
             EXEC sp_PlaceOrder 
                 @CustomerId, @StatusId, @OrderDiscount, 
-                @ItemDetailsIds, @Quantities, @Discounts, @Amounts";
+                @ItemDetailsIds, @Quantities, @Discounts, @Amounts, @EmployeeId";
                 cmd.CommandType = CommandType.Text;
 
                 cmd.Parameters.Add(new SqlParameter("@CustomerId", customerId));
@@ -78,6 +82,7 @@ namespace StockManagement.Controllers
                 cmd.Parameters.Add(new SqlParameter("@Quantities", quantitiesCsv));
                 cmd.Parameters.Add(new SqlParameter("@Discounts", discountsCsv));
                 cmd.Parameters.Add(new SqlParameter("@Amounts", amountsCsv));
+                cmd.Parameters.Add(new SqlParameter("@EmployeeId", employeeId));
 
                 using var reader = await cmd.ExecuteReaderAsync();
                 if (await reader.ReadAsync())

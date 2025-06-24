@@ -657,3 +657,4 @@ E:\StockManagementBE\obj\Debug\net8.0\refint\StockManagement.dll
 E:\StockManagementBE\obj\Debug\net8.0\StockManagement.pdb
 E:\StockManagementBE\obj\Debug\net8.0\StockManagement.genruntimeconfig.cache
 E:\StockManagementBE\obj\Debug\net8.0\ref\StockManagement.dll
+E:\StockManagementBE\bin\Debug\net8.0\BCrypt.Net-Next.dll
