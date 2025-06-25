@@ -241,6 +241,10 @@ public partial class StockManagementContext : DbContext
                  .WithMany(c => c.Items)
                  .HasForeignKey(e => e.ColorId)
                  .OnDelete(DeleteBehavior.SetNull);
+            entity.Property(e => e.Barcode)
+              .HasMaxLength(100)
+              .IsUnicode(false)
+              .HasColumnName("barcode");
 
         });
 

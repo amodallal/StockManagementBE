@@ -41,7 +41,8 @@ namespace StockManagement.Controllers
                 Identifier = i.Category != null ? i.Category.Identifier : null,
                 BrandName = i.Brand != null ? i.Brand.BrandName : null,
                 i.ItemDetails,
-                i.SalesmanStocks
+                i.SalesmanStocks,
+                i.Barcode
             });
 
             return Ok(result);
