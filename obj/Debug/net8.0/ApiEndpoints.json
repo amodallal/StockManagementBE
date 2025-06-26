@@ -189,6 +189,16 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "StockManagement.Controllers.CustomersController",
+    "Method": "GetCustomers",
+    "RelativePath": "api/Customers",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "StockManagement.Controllers.EmployeesController",
     "Method": "GetEmployeesWithRoles",
     "RelativePath": "api/Employees",
@@ -196,6 +206,27 @@
     "IsController": true,
     "Order": 0,
     "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "StockManagement.Controllers.EmployeesController",
+    "Method": "ResetPassword",
+    "RelativePath": "api/Employees/{employeeId}/reset-password",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "employeeId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "data",
+        "Type": "System.Text.Json.JsonElement",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": []
   },
   {
@@ -230,6 +261,38 @@
       {
         "Name": "isActive",
         "Type": "System.Boolean",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "StockManagement.Controllers.EmployeesController",
+    "Method": "CreateWithLogin",
+    "RelativePath": "api/Employees/create-with-login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "data",
+        "Type": "System.Text.Json.JsonElement",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "StockManagement.Controllers.EmployeesController",
+    "Method": "Login",
+    "RelativePath": "api/Employees/login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "data",
+        "Type": "System.Text.Json.JsonElement",
         "IsRequired": true
       }
     ],
@@ -625,27 +688,6 @@
       {
         "Name": "data",
         "Type": "System.Text.Json.JsonElement",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "StockManagement.Controllers.ReturnsController",
-    "Method": "CreateCreditNote",
-    "RelativePath": "api/Returns/create-credit-note/{returnId}",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "returnId",
-        "Type": "System.Int32",
-        "IsRequired": true
-      },
-      {
-        "Name": "note",
-        "Type": "System.String",
         "IsRequired": true
       }
     ],
