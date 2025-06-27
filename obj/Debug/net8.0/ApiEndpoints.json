@@ -374,6 +374,22 @@
   },
   {
     "ContainingType": "StockManagement.Controllers.ItemdetailsController",
+    "Method": "GetByScannedCode",
+    "RelativePath": "api/Itemdetails/get-by-scanned-code/{code}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "code",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "StockManagement.Controllers.ItemdetailsController",
     "Method": "GetByBarcode",
     "RelativePath": "api/Itemdetails/GetByBarcode/{barcode}",
     "HttpMethod": "GET",

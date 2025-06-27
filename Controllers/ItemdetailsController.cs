@@ -285,8 +285,59 @@ namespace StockManagement.Controllers
 
             return Ok(results);
         }
+        [HttpGet("get-by-scanned-code/{code}")]
+        public async Task<IActionResult> GetByScannedCode(string code)
+        {
+            var results = new List<object>();
 
+            using (var connection = _context.Database.GetDbConnection())
+            {
+                await connection.OpenAsync();
 
+                using (var command = connection.CreateCommand())
+                {
+                    command.CommandText = "sp_GetItemByScanCode";
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    var param = command.CreateParameter();
+                    param.ParameterName = "@ScanCode";
+                    param.Value = code;
+                    command.Parameters.Add(param);
+
+                    using (var reader = await command.ExecuteReaderAsync())
+                    {
+                        if (!reader.HasRows)
+                            return NotFound("Item not found.");
+
+                        while (await reader.ReadAsync())
+                        {
+                            results.Add(new
+                            {
+                                itemDetailsId = reader["itemDetailsId"],
+                                itemId = reader["itemId"],
+                                serialNumber = reader["serialNumber"] is DBNull ? null : reader["serialNumber"],
+                                imei1 = reader["imei1"] is DBNull ? null : reader["imei1"],
+                                imei2 = reader["imei2"] is DBNull ? null : reader["imei2"],
+                                barcode = reader["barcode"] is DBNull ? null : reader["barcode"],
+                                quantity = Convert.ToInt32(reader["quantity"]),
+                                salePrice = Convert.ToDecimal(reader["salePrice"]),
+                                cost = Convert.ToDecimal(reader["cost"]),
+                                dateReceived = Convert.ToDateTime(reader["dateReceived"]).ToString("yyyy-MM-dd"),
+                                supplierName = reader["supplierName"] as string,
+                                brandName = reader["brandName"] as string,
+                                itemName = reader["itemName"] as string,
+                                modelNumber = reader["modelNumber"] as string,
+                                colorName = reader["colorName"] as string,
+                                categoryIdentifier = reader["categoryIdentifier"] as string,
+                                capacityName = reader["capacityName"] as string
+                            });
+                        }
+                    }
+                }
+            }
+
+            return Ok(results);
+        }
 
 
         // New POST endpoint to add item details in batches
