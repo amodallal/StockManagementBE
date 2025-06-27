@@ -98,8 +98,8 @@ namespace StockManagement.Controllers
                     (x, itemSupplier) => new { x.itemDetail, x.item, x.brand, x.color, itemSupplier })
                 // LEFT JOIN to Suppliers
                 .GroupJoin(_context.Suppliers,
-                    prev => prev.itemSupplier.SupplierId,
-                    s => s.SupplierId,
+                prev => prev.itemDetail.SupplierId,
+                s => s.SupplierId,
                     (prev, suppliers) => new { prev.itemDetail, prev.item, prev.brand, prev.color, prev.itemSupplier, suppliers })
                 .SelectMany(
                     x => x.suppliers.DefaultIfEmpty(),
@@ -179,7 +179,7 @@ namespace StockManagement.Controllers
                     (x, itemSupplier) => new { x.itemDetail, x.item, x.category, x.brand, itemSupplier })
                 // LEFT JOIN to Suppliers
                 .GroupJoin(_context.Suppliers,
-                    prev => prev.itemSupplier.SupplierId,
+                    prev => prev.itemDetail.SupplierId,
                     s => s.SupplierId,
                     (prev, suppliers) => new { prev, suppliers })
                 .SelectMany(
@@ -239,115 +239,51 @@ namespace StockManagement.Controllers
         [HttpGet("GetByBarcode/{barcode}")]
         public async Task<IActionResult> GetByBarcode(string barcode)
         {
-            // This query is rewritten with LEFT JOINs to prevent data loss from missing relational info.
-            var itemDetailsQuery = _context.ItemDetails
+            var itemDetailsList = await _context.ItemDetails
                 .Where(item => item.Barcode == barcode)
-                // LEFT JOIN to Items
-                .GroupJoin(_context.Items,
-                    id => id.ItemId,
-                    i => i.ItemId,
-                    (itemDetail, items) => new { itemDetail, items })
-                .SelectMany(
-                    x => x.items.DefaultIfEmpty(),
-                    (x, item) => new { x.itemDetail, item })
-                // LEFT JOIN to Brands
-                .GroupJoin(_context.Brands,
-                    prev => prev.item.BrandId,
-                    b => b.BrandId,
-                    (prev, brands) => new { prev, brands })
-                .SelectMany(
-                    x => x.brands.DefaultIfEmpty(),
-                    (x, brand) => new { x.prev.itemDetail, x.prev.item, brand })
-                // LEFT JOIN to ItemSupplier
-                .GroupJoin(_context.ItemSupplier,
-                    prev => prev.item.ItemId,
-                    itemsup => itemsup.ItemId,
-                    (prev, itemSuppliers) => new { prev, itemSuppliers })
-                .SelectMany(
-                    x => x.itemSuppliers.Where(itemsup => itemsup.SupplierId == x.prev.itemDetail.SupplierId).DefaultIfEmpty(),
-                    (x, itemSupplier) => new {
-                        itemDetail = x.prev.itemDetail,
-                        item = x.prev.item,
-                        brand = x.prev.brand,
-                        itemSupplier
-                    })
-                // LEFT JOIN to Suppliers
-                .GroupJoin(_context.Suppliers,
-                    prev => prev.itemSupplier.SupplierId,
-                    s => s.SupplierId,
-                    (prev, suppliers) => new { prev, suppliers })
-                .SelectMany(
-                    x => x.suppliers.DefaultIfEmpty(),
-                    (x, supplier) => new {
-                        itemDetail = x.prev.itemDetail,
-                        item = x.prev.item,
-                        brand = x.prev.brand,
-                        itemSupplier = x.prev.itemSupplier,
-                        supplier
-                    })
-                // LEFT JOIN to Colors
-                .GroupJoin(_context.Colors,
-                    prev => prev.item.ColorId,
-                    c => c.ColorId,
-                    (prev, colors) => new { prev, colors })
-                .SelectMany(
-                    x => x.colors.DefaultIfEmpty(),
-                    (x, color) => new {
-                        itemDetail = x.prev.itemDetail,
-                        item = x.prev.item,
-                        brand = x.prev.brand,
-                        itemSupplier = x.prev.itemSupplier,
-                        supplier = x.prev.supplier,
-                        color
-                    })
-                // LEFT JOIN to Categories
-                .GroupJoin(_context.Categories,
-                    prev => prev.item.CategoryId,
-                    cat => cat.CategoryId,
-                    (prev, categories) => new { prev, categories })
-                .SelectMany(
-                    x => x.categories.DefaultIfEmpty(),
-                    (x, category) => new
-                    {
-                        itemDetail = x.prev.itemDetail,
-                        item = x.prev.item,
-                        brand = x.prev.brand,
-                        itemSupplier = x.prev.itemSupplier,
-                        supplier = x.prev.supplier,
-                        color = x.prev.color,
-                        category
-                    })
-                .Select(joined => new
-                {   
-                    joined.itemDetail.ItemDetailsId,
-                    joined.itemDetail.ItemId,
-                    joined.itemDetail.SerialNumber,
-                    joined.itemDetail.Imei1,
-                    joined.itemDetail.Imei2,
-                    joined.itemDetail.Barcode,
-                    joined.itemDetail.Quantity,
-                    joined.itemDetail.SalePrice,
-                    joined.itemDetail.Cost,
-                    joined.itemDetail.DateReceived,
-                    // Safely access potentially null joined data
-                    SupplierName = joined.supplier != null ? joined.supplier.SupplierName : "N/A",
-                    BrandName = joined.brand != null ? joined.brand.BrandName : "N/A",
-                    ItemName = joined.item != null ? joined.item.Name : "N/A",
-                    ModelNumber = joined.item != null ? joined.item.ModelNumber : "N/A",
-                    ColorName = joined.color != null ? joined.color.ColorName : "N/A",
-                    CategoryIdentifier = joined.category != null ? joined.category.Identifier : "N/A",
-                    // Safely get the first capacity name or a default value
-                    CapacityName = joined.item != null && joined.item.Capacities.Any() ? joined.item.Capacities.First().CapacityName : "N/A"
-                });
+                .Join(_context.Items,
+                    itemDetail => itemDetail.ItemId,
+                    item => item.ItemId,
+                    (itemDetail, item) => new { itemDetail, item })
+                .Join(_context.Suppliers,
+                    join => join.itemDetail.SupplierId,
+                    supplier => supplier.SupplierId,
+                    (join, supplier) => new { join.itemDetail, join.item, supplier })
+                .ToListAsync(); // Fetch all matching rows
 
-            var itemDetailsList = await itemDetailsQuery.ToListAsync();
+            if (!itemDetailsList.Any())
+                return NotFound("No items found for this barcode.");
 
-            if (itemDetailsList == null || !itemDetailsList.Any())
+            var results = itemDetailsList.Select(join =>
             {
-                return NotFound(new { message = "No items found for this barcode." });
-            }
+                var brand = _context.Brands.FirstOrDefault(b => b.BrandId == join.item.BrandId);
+                var color = _context.Colors.FirstOrDefault(c => c.ColorId == join.item.ColorId);
+                var category = _context.Categories.FirstOrDefault(cat => cat.CategoryId == join.item.CategoryId);
+                var capacity = join.item.Capacities?.FirstOrDefault();
 
-            return Ok(itemDetailsList);
+                return new
+                {
+                    join.itemDetail.ItemDetailsId,
+                    join.itemDetail.ItemId,
+                    join.itemDetail.SerialNumber,
+                    join.itemDetail.Imei1,
+                    join.itemDetail.Imei2,
+                    join.itemDetail.Barcode,
+                    join.itemDetail.Quantity,
+                    join.itemDetail.SalePrice,
+                    join.itemDetail.Cost,
+                    join.itemDetail.DateReceived,
+                    SupplierName = join.supplier?.SupplierName ?? "N/A",
+                    BrandName = brand?.BrandName ?? "N/A",
+                    ItemName = join.item?.Name ?? "N/A",
+                    ModelNumber = join.item?.ModelNumber ?? "N/A",
+                    ColorName = color?.ColorName ?? "N/A",
+                    CategoryIdentifier = category?.Identifier ?? "N/A",
+                    CapacityName = capacity?.CapacityName ?? "N/A"
+                };
+            }).ToList();
+
+            return Ok(results);
         }
 
 
