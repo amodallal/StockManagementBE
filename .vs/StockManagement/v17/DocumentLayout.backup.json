@@ -88,7 +88,7 @@
               "RelativeDocumentMoniker": "Controllers\\ItemdetailsController.cs",
               "ToolTip": "D:\\StockManagementBE\\Controllers\\ItemdetailsController.cs",
               "RelativeToolTip": "Controllers\\ItemdetailsController.cs",
-              "ViewState": "AgIAACMBAAAAAAAAAAAAAFUBAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAKgAAAAAAAAAAAAkwFQBAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-27T13:25:37.256Z",
               "EditorCaption": ""
@@ -103,8 +103,7 @@
               "RelativeToolTip": "Migrations\\20250625050433_barcodetoitems.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-26T19:32:12.83Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-26T19:32:12.83Z"
             },
             {
               "$type": "Document",
