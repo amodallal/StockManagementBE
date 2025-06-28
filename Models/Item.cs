@@ -25,6 +25,8 @@ public partial class Item
 
     public virtual Category? Category { get; set; } = null!;
 
+    public int? SpecsId { get; set; }   // nullable FK
+    public Specs? Specs { get; set; }    // navigation property
 
     public string Description { get; set; }
 

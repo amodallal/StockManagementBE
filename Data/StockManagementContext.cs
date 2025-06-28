@@ -27,6 +27,8 @@ public partial class StockManagementContext : DbContext
 
     public virtual DbSet<Employee> Employees { get; set; }
 
+
+    public DbSet<Specs> Specs { get; set; }
     public virtual DbSet<Item> Items { get; set; }
 
     public DbSet<TransfersHistory> TransfersHistories { get; set; }
@@ -245,6 +247,11 @@ public partial class StockManagementContext : DbContext
               .HasMaxLength(100)
               .IsUnicode(false)
               .HasColumnName("barcode");
+           
+            entity.HasOne(i => i.Specs)
+               .WithMany()
+               .HasForeignKey(i => i.SpecsId)
+               .OnDelete(DeleteBehavior.SetNull);
 
         });
 
@@ -304,6 +311,12 @@ public partial class StockManagementContext : DbContext
                   .HasMaxLength(100); // Set a max length for CapacityName
         });
 
+
+        modelBuilder.Entity<Specs>()
+            .HasOne(s => s.Category)
+            .WithMany(c => c.Specs)
+            .HasForeignKey(s => s.CategoryId)
+            .OnDelete(DeleteBehavior.Cascade);
 
         modelBuilder.Entity<Order>(entity =>
         {

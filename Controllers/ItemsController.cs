@@ -42,7 +42,8 @@ namespace StockManagement.Controllers
                 BrandName = i.Brand != null ? i.Brand.BrandName : null,
                 i.ItemDetails,
                 i.SalesmanStocks,
-                i.Barcode
+                i.Barcode,
+                i.SpecsId
             });
 
             return Ok(result);

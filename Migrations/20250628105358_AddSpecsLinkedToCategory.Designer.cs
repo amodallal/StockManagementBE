@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StockManagement.Data;
 
@@ -11,9 +12,11 @@ using StockManagement.Data;
 namespace StockManagement.Migrations
 {
     [DbContext(typeof(StockManagementContext))]
-    partial class StockManagementContextModelSnapshot : ModelSnapshot
+    [Migration("20250628105358_AddSpecsLinkedToCategory")]
+    partial class AddSpecsLinkedToCategory
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -299,9 +302,6 @@ namespace StockManagement.Migrations
                         .HasColumnType("varchar(255)")
                         .HasColumnName("name");
 
-                    b.Property<int?>("SpecsId")
-                        .HasColumnType("int");
-
                     b.HasKey("ItemId")
                         .HasName("PK__items__52020FDD3A5A8C0E");
 
@@ -310,8 +310,6 @@ namespace StockManagement.Migrations
                     b.HasIndex("CategoryId");
 
                     b.HasIndex("ColorId");
-
-                    b.HasIndex("SpecsId");
 
                     b.ToTable("items", (string)null);
                 });
@@ -604,20 +602,21 @@ namespace StockManagement.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Memory")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Power")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ScreenSize")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Storage")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CategoryId");
+                    b.HasIndex("CategoryId")
+                        .IsUnique();
 
                     b.ToTable("Specs");
                 });
@@ -810,18 +809,11 @@ namespace StockManagement.Migrations
                         .HasForeignKey("ColorId")
                         .OnDelete(DeleteBehavior.SetNull);
 
-                    b.HasOne("StockManagement.Models.Specs", "Specs")
-                        .WithMany()
-                        .HasForeignKey("SpecsId")
-                        .OnDelete(DeleteBehavior.SetNull);
-
                     b.Navigation("Brand");
 
                     b.Navigation("Category");
 
                     b.Navigation("Color");
-
-                    b.Navigation("Specs");
                 });
 
             modelBuilder.Entity("StockManagement.Models.ItemDetail", b =>
@@ -923,8 +915,8 @@ namespace StockManagement.Migrations
             modelBuilder.Entity("StockManagement.Models.Specs", b =>
                 {
                     b.HasOne("StockManagement.Models.Category", "Category")
-                        .WithMany("Specs")
-                        .HasForeignKey("CategoryId")
+                        .WithOne("Specs")
+                        .HasForeignKey("StockManagement.Models.Specs", "CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -952,7 +944,8 @@ namespace StockManagement.Migrations
                 {
                     b.Navigation("Items");
 
-                    b.Navigation("Specs");
+                    b.Navigation("Specs")
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("StockManagement.Models.Color", b =>

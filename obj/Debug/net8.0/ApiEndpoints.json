@@ -746,6 +746,22 @@
     ]
   },
   {
+    "ContainingType": "StockManagement.Controllers.SpecsController",
+    "Method": "GetByCategory",
+    "RelativePath": "api/Specs/GetByCategory",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "categoryId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "StockManagement.Controllers.StatusController",
     "Method": "GetTestData",
     "RelativePath": "api/Status",
