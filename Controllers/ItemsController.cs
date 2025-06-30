@@ -82,31 +82,37 @@ namespace StockManagement.Controllers
             return Ok(item);
         }
 
-
-        [HttpPost]
-        public async Task<IActionResult> PostItem([FromBody] Item item)
+        [HttpGet("GetFilteredItems")]
+        public IActionResult GetFilteredItems(string search)
         {
-            if (item == null)
+            var items = _context.Items
+                .Include(i => i.Category) // include Category to get identifier
+                .Include(i => i.Brand)
+                .Where(i => i.Name.Contains(search))
+                .Take(20)
+                .ToList();
+
+            var result = items.Select(i => new
             {
-                return BadRequest("Item is null");
-            }
+                i.ItemId,
+                i.Name,
+                i.ModelNumber,
+                i.BrandId,
+                i.CategoryId,
+                i.ColorId,
+                i.Description,
+                CategoryName = i.Category != null ? i.Category.CategoryName : null,
+                Identifier = i.Category != null ? i.Category.Identifier : null,
+                BrandName = i.Brand != null ? i.Brand.BrandName : null,
+                i.ItemDetails,
+                i.SalesmanStocks,
+                i.Barcode,
+                i.SpecsId
+            });
 
-            // Check if required fields are missing
-            if (string.IsNullOrEmpty(item.Name))
-            {
-                return BadRequest("Item name cannot be null or empty");
-            }
-
-            if (string.IsNullOrEmpty(item.ModelNumber))
-            {
-                return BadRequest("Item model cannot be null or empty");
-            }
-
-            _context.Items.Add(item);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction(nameof(PostItem), new { id = item.ItemId }, item);
+            return Ok(result);
         }
+
 
         [HttpPost("bulk")]
         public async Task<IActionResult> AddItemsBulk([FromBody] List<Item> items)

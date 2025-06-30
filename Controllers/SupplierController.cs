@@ -27,6 +27,17 @@ namespace StockManagement.Controllers
             return Ok(Suppliers);
         }
 
+        [HttpGet("GetFilteredSuppliers")]
+        public IActionResult GetFilteredSuppliers(string search)
+        {
+            var suppliers = _context.Suppliers
+                .Where(s => s.SupplierName.Contains(search))
+                .Take(20)
+                .ToList();
+
+            return Ok(suppliers);
+        }
+
 
     }
 }

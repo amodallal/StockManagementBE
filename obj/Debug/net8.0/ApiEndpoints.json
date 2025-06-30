@@ -458,22 +458,6 @@
   },
   {
     "ContainingType": "StockManagement.Controllers.ItemsController",
-    "Method": "PostItem",
-    "RelativePath": "api/Items",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "item",
-        "Type": "StockManagement.Models.Item",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "StockManagement.Controllers.ItemsController",
     "Method": "GetItemById",
     "RelativePath": "api/Items/{id}",
     "HttpMethod": "GET",
@@ -568,6 +552,22 @@
         "Name": "barcode",
         "Type": "System.String",
         "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "StockManagement.Controllers.ItemsController",
+    "Method": "GetFilteredItems",
+    "RelativePath": "api/Items/GetFilteredItems",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "search",
+        "Type": "System.String",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
@@ -779,6 +779,22 @@
     "IsController": true,
     "Order": 0,
     "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "StockManagement.Controllers.SupplierController",
+    "Method": "GetFilteredSuppliers",
+    "RelativePath": "api/Supplier/GetFilteredSuppliers",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "search",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
     "ReturnTypes": []
   },
   {
