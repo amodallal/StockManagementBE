@@ -82,6 +82,39 @@ namespace StockManagement.Controllers
             return Ok(item);
         }
 
+        [HttpGet("GetFilteredItemsNameModel")]
+        public IActionResult GetFilteredItems(string search)
+        {
+            var items = _context.Items
+                .Include(i => i.Category)
+                .Include(i => i.Brand)
+                .Where(i => i.Name.Contains(search) || i.ModelNumber.Contains(search))
+                .Take(20)
+                .ToList();
+
+            var result = items.Select(i => new
+            {
+                i.ItemId,
+                i.Name,
+                i.ModelNumber,
+                i.BrandId,
+                i.CategoryId,
+                i.ColorId,
+                i.Description,
+                CategoryName = i.Category != null ? i.Category.CategoryName : null,
+                Identifier = i.Category != null ? i.Category.Identifier : null,
+                BrandName = i.Brand != null ? i.Brand.BrandName : null,
+                i.ItemDetails,
+                i.SalesmanStocks,
+                i.Barcode,
+                i.SpecsId
+            });
+
+            return Ok(result);
+        }
+
+
+
         [HttpGet("GetFilteredItems")]
         public IActionResult GetFilteredItems(string search)
         {
@@ -113,15 +146,79 @@ namespace StockManagement.Controllers
             return Ok(result);
         }
         // GET: api/items/GetItemspagination
+        /* [HttpGet("GetItemspagination")]
+         public async Task<IActionResult> GetItemspagination(
+     [FromQuery] string search = "",
+     [FromQuery] int pageNumber = 1,
+     [FromQuery] int pageSize = 1)
+         {
+             var query = _context.Items
+                 .AsNoTracking()
+                 .Include(i => i.Specs) // ✅ Include Specs table
+                 .Select(i => new
+                 {
+                     i.ItemId,
+                     i.Name,
+                     i.ModelNumber,
+                     i.BrandId,
+                     i.CategoryId,
+                     i.ColorId,
+                     i.Description,
+                     i.Barcode,
+                     i.SpecsId,
+                     Spec = i.Specs == null ? null : new
+                     {
+                         i.Specs.Id,
+                         i.Specs.Memory,
+                         i.Specs.Storage,
+                         i.Specs.ScreenSize,
+                         i.Specs.Power
+                     }
+                 });
+
+             if (!string.IsNullOrEmpty(search))
+             {
+                 query = query.Where(i =>
+                     i.Name.Contains(search) ||
+                     i.ModelNumber.Contains(search) ||
+                     i.Description.Contains(search));
+             }
+
+             var totalItems = await query.CountAsync();
+             var totalPages = (int)Math.Ceiling(totalItems / (double)pageSize);
+
+             var items = await query
+                 .OrderByDescending(i => i.ItemId)
+                 .Skip((pageNumber - 1) * pageSize)
+                 .Take(pageSize)
+                 .ToListAsync();
+
+             var result = new
+             {
+                 totalItems,
+                 page = pageNumber,
+                 pageSize,
+                 totalPages,
+                 items
+             };
+
+             return Ok(result);
+         }
+
+         */
+
+        //sorted pagination
         [HttpGet("GetItemspagination")]
         public async Task<IActionResult> GetItemspagination(
     [FromQuery] string search = "",
     [FromQuery] int pageNumber = 1,
-    [FromQuery] int pageSize = 1)
+    [FromQuery] int pageSize = 1,
+    [FromQuery] string sortBy = "ItemId",
+    [FromQuery] bool isDesc = true)
         {
             var query = _context.Items
                 .AsNoTracking()
-                .Include(i => i.Specs) // ✅ Include Specs table
+                .Include(i => i.Specs)
                 .Select(i => new
                 {
                     i.ItemId,
@@ -151,11 +248,25 @@ namespace StockManagement.Controllers
                     i.Description.Contains(search));
             }
 
+            // Apply dynamic sorting
+            query = (sortBy.ToLower(), isDesc) switch
+            {
+                ("name", true) => query.OrderByDescending(i => i.Name),
+                ("name", false) => query.OrderBy(i => i.Name),
+
+                ("modelnumber", true) => query.OrderByDescending(i => i.ModelNumber),
+                ("modelnumber", false) => query.OrderBy(i => i.ModelNumber),
+
+                ("itemid", true) => query.OrderByDescending(i => i.ItemId),
+                ("itemid", false) => query.OrderBy(i => i.ItemId),
+
+                _ => query.OrderByDescending(i => i.ItemId) // default
+            };
+
             var totalItems = await query.CountAsync();
             var totalPages = (int)Math.Ceiling(totalItems / (double)pageSize);
 
             var items = await query
-                .OrderByDescending(i => i.ItemId)
                 .Skip((pageNumber - 1) * pageSize)
                 .Take(pageSize)
                 .ToListAsync();
@@ -171,7 +282,6 @@ namespace StockManagement.Controllers
 
             return Ok(result);
         }
-
 
 
 
