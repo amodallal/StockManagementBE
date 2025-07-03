@@ -34,6 +34,7 @@ public partial class Item
 
     public string? Barcode { get; set; }
 
+
     public virtual ICollection<ItemDetail> ItemDetails { get; set; } = new List<ItemDetail>();
 
     public virtual ICollection<SalesmanStock> SalesmanStocks { get; set; } = new List<SalesmanStock>();

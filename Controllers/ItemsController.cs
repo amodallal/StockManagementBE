@@ -112,6 +112,72 @@ namespace StockManagement.Controllers
 
             return Ok(result);
         }
+        // GET: api/items/GetItemspagination
+        [HttpGet("GetItemspagination")]
+        public async Task<IActionResult> GetItemspagination(
+     [FromQuery] string search = "",
+     [FromQuery] int pageNumber = 1,
+     [FromQuery] int pageSize = 1)
+        {
+            var query = _context.Items
+                .AsNoTracking() // disables change tracking for better performance
+                .Select(i => new
+                {
+                    i.ItemId,
+                    i.Name,
+                    i.ModelNumber,
+                    i.BrandId,
+                    i.CategoryId,
+                    i.ColorId,
+                    i.Description,
+                    i.Barcode
+                });
+
+            if (!string.IsNullOrEmpty(search))
+            {
+                query = query.Where(i =>
+                    i.Name.Contains(search) ||
+                    i.ModelNumber.Contains(search) ||
+                    i.Description.Contains(search));
+            }
+
+            var totalItems = await query.CountAsync();
+            var totalPages = (int)Math.Ceiling(totalItems / (double)pageSize);
+
+            var items = await query
+                .OrderByDescending(i => i.ItemId)
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+
+            var result = new
+            {
+                totalItems,
+                page = pageNumber,
+                pageSize,
+                totalPages,
+                items
+            };
+
+            return Ok(result);
+        }
+       
+
+
+
+
+        // POST: api/items
+        [HttpPost]
+        public async Task<IActionResult> PostItem([FromBody] Item item)
+        {
+            if (item == null)
+                return BadRequest("Item is null");
+
+            _context.Items.Add(item);
+            await _context.SaveChangesAsync();
+
+            return Ok(item);
+        }
 
 
         [HttpPost("bulk")]
