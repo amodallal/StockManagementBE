@@ -115,12 +115,13 @@ namespace StockManagement.Controllers
         // GET: api/items/GetItemspagination
         [HttpGet("GetItemspagination")]
         public async Task<IActionResult> GetItemspagination(
-     [FromQuery] string search = "",
-     [FromQuery] int pageNumber = 1,
-     [FromQuery] int pageSize = 1)
+    [FromQuery] string search = "",
+    [FromQuery] int pageNumber = 1,
+    [FromQuery] int pageSize = 1)
         {
             var query = _context.Items
-                .AsNoTracking() // disables change tracking for better performance
+                .AsNoTracking()
+                .Include(i => i.Specs) // ✅ Include Specs table
                 .Select(i => new
                 {
                     i.ItemId,
@@ -130,7 +131,16 @@ namespace StockManagement.Controllers
                     i.CategoryId,
                     i.ColorId,
                     i.Description,
-                    i.Barcode
+                    i.Barcode,
+                    i.SpecsId,
+                    Spec = i.Specs == null ? null : new
+                    {
+                        i.Specs.Id,
+                        i.Specs.Memory,
+                        i.Specs.Storage,
+                        i.Specs.ScreenSize,
+                        i.Specs.Power
+                    }
                 });
 
             if (!string.IsNullOrEmpty(search))
@@ -161,7 +171,6 @@ namespace StockManagement.Controllers
 
             return Ok(result);
         }
-       
 
 
 
