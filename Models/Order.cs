@@ -18,6 +18,8 @@ public partial class Order
 
     public decimal? TotalAmount { get; set; }
 
+    public bool IsCash { get; set; }
+
     public int? Status_Id { get; set; }
 
     public virtual Customer? Customer { get; set; }
@@ -29,4 +31,6 @@ public partial class Order
     public virtual ICollection<OrderedItem> OrderedItems { get; set; } = new List<OrderedItem>();
 
     public virtual Status? Status { get; set; }
+
+    public ICollection<Transaction> Transactions { get; set; }
 }

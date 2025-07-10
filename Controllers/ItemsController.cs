@@ -115,8 +115,8 @@ namespace StockManagement.Controllers
 
 
 
-        [HttpGet("GetFilteredItems")]
-        public IActionResult GetFilteredItems(string search)
+       /* [HttpGet("GetFilteredItems")]
+         public IActionResult GetFilteredItems(string search)
         {
             var items = _context.Items
                 .Include(i => i.Category) // include Category to get identifier

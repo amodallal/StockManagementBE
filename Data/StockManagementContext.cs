@@ -142,6 +142,54 @@ public partial class StockManagementContext : DbContext
                 .HasColumnName("phone_number");
         });
 
+        // Configure Balance
+        modelBuilder.Entity<Balances>(entity =>
+        {
+            entity.ToTable("Balances");  // ✅ explicitly set table name
+
+            entity.HasKey(b => b.BalanceId);
+
+            entity.Property(b => b.BalanceAmount)
+                  .HasColumnType("decimal(18,2)")
+                  .IsRequired();
+
+            entity.Property(b => b.Date)
+                  .IsRequired();
+
+            entity.HasOne(b => b.Customer)
+                  .WithMany(c => c.Balance)  // ✅ Correct: collection navigation property
+                  .HasForeignKey(b => b.CustomerId);
+        });
+
+
+        // Configure Transaction
+        modelBuilder.Entity<Transaction>(entity =>
+        {
+            entity.ToTable("Transactions");
+
+            entity.HasKey(t => t.TransactionId);
+
+            entity.Property(t => t.TransactionType)
+                  .HasColumnType("char(1)")
+                  .IsRequired();
+
+            entity.Property(t => t.Date)
+                  .IsRequired();
+
+            entity.Property(t => t.Notes)
+                  .HasMaxLength(500);
+
+            entity.HasOne(t => t.Customer)
+                  .WithMany(c => c.Transactions)
+                  .HasForeignKey(t => t.CustomerId);
+
+            entity.HasOne(t => t.Order)
+                  .WithMany(o => o.Transactions)
+                  .HasForeignKey(t => t.OrderId)
+                  .IsRequired(false);  // ✅ Allow OrderId to be null
+        });
+
+
         modelBuilder.Entity<Delivery>(entity =>
         {
             entity.HasKey(e => e.DeliveryId).HasName("PK__deliveri__1C5CF4F59A1F4DEC");
@@ -335,6 +383,8 @@ public partial class StockManagementContext : DbContext
             entity.Property(e => e.vat)
                 .HasColumnType("decimal(10, 2)")
                 .HasColumnName("vat");
+            entity.Property(o => o.IsCash)
+                .IsRequired(); // default; not nullable
 
             entity.HasOne(d => d.Customer).WithMany(p => p.Orders)
                 .HasForeignKey(d => d.CustomerId)

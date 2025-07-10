@@ -18,4 +18,9 @@ public partial class Customer
     public string? Address { get; set; }
 
     public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
+
+    // Navigation property
+    public ICollection<Balances> Balance { get; set; }
+
+    public ICollection<Transaction> Transactions { get; set; }
 }

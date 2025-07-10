@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StockManagement.Data;
 
@@ -11,9 +12,11 @@ using StockManagement.Data;
 namespace StockManagement.Migrations
 {
     [DbContext(typeof(StockManagementContext))]
-    partial class StockManagementContextModelSnapshot : ModelSnapshot
+    [Migration("20250710074619_AddBalancesAndTransactions")]
+    partial class AddBalancesAndTransactions
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -453,9 +456,6 @@ namespace StockManagement.Migrations
                         .HasColumnType("int")
                         .HasColumnName("employee_id");
 
-                    b.Property<bool>("IsCash")
-                        .HasColumnType("bit");
-
                     b.Property<DateOnly?>("OrderDate")
                         .HasColumnType("date")
                         .HasColumnName("order_date");
@@ -718,14 +718,6 @@ namespace StockManagement.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Notes")
-                        .IsRequired()
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
-
-                    b.Property<int?>("OrderId")
-                        .HasColumnType("int");
-
                     b.Property<string>("TransactionType")
                         .IsRequired()
                         .HasColumnType("char(1)");
@@ -734,9 +726,7 @@ namespace StockManagement.Migrations
 
                     b.HasIndex("CustomerId");
 
-                    b.HasIndex("OrderId");
-
-                    b.ToTable("Transactions", (string)null);
+                    b.ToTable("Transaction");
                 });
 
             modelBuilder.Entity("StockManagement.Models.TransfersHistory", b =>
@@ -1012,13 +1002,7 @@ namespace StockManagement.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("StockManagement.Models.Order", "Order")
-                        .WithMany("Transactions")
-                        .HasForeignKey("OrderId");
-
                     b.Navigation("Customer");
-
-                    b.Navigation("Order");
                 });
 
             modelBuilder.Entity("StockManagement.Models.TransfersHistory", b =>
@@ -1080,8 +1064,6 @@ namespace StockManagement.Migrations
                     b.Navigation("Deliveries");
 
                     b.Navigation("OrderedItems");
-
-                    b.Navigation("Transactions");
                 });
 
             modelBuilder.Entity("StockManagement.Models.Role", b =>
