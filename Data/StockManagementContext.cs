@@ -42,6 +42,8 @@ public partial class StockManagementContext : DbContext
 
     public virtual DbSet<OrderedItem> OrderedItems { get; set; }
 
+    public DbSet<Invoice> Invoices { get; set; }
+
     public virtual DbSet<Role> Roles { get; set; }
 
     public virtual DbSet<SalesmanStock> SalesmanStocks { get; set; }
@@ -365,6 +367,32 @@ public partial class StockManagementContext : DbContext
             .WithMany(c => c.Specs)
             .HasForeignKey(s => s.CategoryId)
             .OnDelete(DeleteBehavior.Cascade);
+        modelBuilder.Entity<Invoice>(entity =>
+        {
+            entity.ToTable("Invoices");
+
+            entity.HasKey(i => i.Id);
+
+            entity.Property(i => i.Amount)
+                  .HasColumnType("decimal(18,2)")
+                  .IsRequired();
+
+            entity.Property(i => i.Date)
+                  .IsRequired();
+
+            entity.Property(i => i.DueDate)
+                  .IsRequired();
+
+            entity.HasOne(i => i.Customer)
+                  .WithMany(c => c.Invoices)
+                  .HasForeignKey(i => i.CustomerId);
+
+            entity.HasOne(i => i.Order)
+                  .WithMany(o => o.Invoices)
+                  .HasForeignKey(i => i.OrderId);
+        });
+
+
 
         modelBuilder.Entity<Order>(entity =>
         {

@@ -23,4 +23,6 @@ public partial class Customer
     public ICollection<Balances> Balance { get; set; }
 
     public ICollection<Transaction> Transactions { get; set; }
+
+    public ICollection<Invoice> Invoices { get; set; }
 }
